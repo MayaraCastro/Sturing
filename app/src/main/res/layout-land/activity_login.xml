@@ -61,7 +61,7 @@
         android:layout_height="96dp"
         android:layout_marginTop="100dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/notebook1"
+        app:srcCompat="@drawable/notebook"
         tools:layout_editor_absoluteX="85dp" />
 
     <android.support.v7.widget.CardView

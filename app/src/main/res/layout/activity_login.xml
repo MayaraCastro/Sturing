@@ -73,7 +73,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/notebook1" />
+        app:srcCompat="@drawable/notebook" />
 
     <android.support.v7.widget.CardView
         android:id="@+id/btLogin"
