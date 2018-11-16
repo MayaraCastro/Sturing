@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle.syncState()
 
         nav_view.setNavigationItemSelectedListener(this)
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, MainFragment()).commit()
     }
 
     override fun onBackPressed() {
@@ -60,6 +61,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         when (item.itemId) {
             R.id.nav_camera -> {
                 // Handle the camera action
+                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, CameraFragment()).commit()
             }
             R.id.nav_gallery -> {
 
