@@ -24,6 +24,12 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".CreatUser" />
+        <activity android:name=".OpeningActivity" />
+        <activity
+            android:name=".CreateUser"
+            android:label="@string/title_activity_create_user"
             android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
     </application>
 
