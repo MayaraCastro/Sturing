@@ -6,4 +6,6 @@
     <string name="change_image">Alterar foto</string>
     <string name="name">Nome</string>
     <string name="save">Salvar</string>
+    <string name="password">Senha</string>
+    <string name="user_name">Nome de usuário</string>
 </resources>
