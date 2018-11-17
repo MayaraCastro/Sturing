@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="navigation_drawer_open">Abrir desenhador de navegação</string>
+    <string name="navigation_drawer_close">Fechar desenhador de navegação</string>
+    <string name="action_settings">Configurações</string>
+    <string name="change_image">Alterar foto</string>
+    <string name="name">Nome</string>
+    <string name="save">Salvar</string>
+    <string name="password">Senha</string>
+    <string name="user_name">Nome de usuário</string>
+    <string name="description">Descrição</string>
+    <string name="choose_a_picture">Escolher imagem</string>
+    <string name="group_name">Nome do grupo</string>
+    <string name="group_site">Site do grupo</string>
+    <string name="new_group">Novo grupo</string>
+    <string name="personal_data">Dados pessoais</string>
+    <string name="group">Grupo</string>
+</resources>
