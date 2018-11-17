@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
             }
             R.id.nav_manage -> {
-
+                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, ManageFragment()).commit()
             }
             R.id.nav_share -> {
 

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="navigation_drawer_open">Abrir desenhador de navegação</string>
+    <string name="navigation_drawer_close">Fechar desenhador de navegação</string>
+    <string name="action_settings">Configurações</string>
+    <string name="change_image">Alterar foto</string>
+    <string name="name">Nome</string>
+    <string name="save">Salvar</string>
+</resources>

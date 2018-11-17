@@ -39,7 +39,7 @@
         tools:layout_editor_absoluteY="101dp" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/txtOrganization"
         android:layout_width="wrap_content"
         android:layout_height="49dp"
         android:layout_marginStart="8dp"
