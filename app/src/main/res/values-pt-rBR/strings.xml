@@ -8,4 +8,11 @@
     <string name="save">Salvar</string>
     <string name="password">Senha</string>
     <string name="user_name">Nome de usuário</string>
+    <string name="description">Descrição</string>
+    <string name="choose_a_picture">Escolher imagem</string>
+    <string name="group_name">Nome do grupo</string>
+    <string name="group_site">Site do grupo</string>
+    <string name="new_group">Novo grupo</string>
+    <string name="personal_data">Dados pessoais</string>
+    <string name="group">Grupo</string>
 </resources>

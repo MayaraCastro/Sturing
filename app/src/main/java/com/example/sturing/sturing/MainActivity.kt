@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setSupportActionBar(toolbar)
 
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+            Snackbar.make(view, R.string.app_name, Snackbar.LENGTH_SHORT)
                     .setAction("Action", null).show()
         }
 
@@ -63,8 +63,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 // Handle the camera action
                 supportFragmentManager.beginTransaction().replace(R.id.fragment_container, CameraFragment()).commit()
             }
-            R.id.nav_gallery -> {
-
+            R.id.nav_group -> {
+                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, CreateGroupFragment()).commit()
             }
             R.id.nav_slideshow -> {
 

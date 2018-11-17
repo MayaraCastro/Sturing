@@ -17,4 +17,13 @@
     <string name="login" translatable="false">Login</string>
 
     <!-- TODO: Remove or change this placeholder text -->
+    <string name="description">Description</string>
+    <string name="choose_a_picture">Choose a picture</string>
+    <string name="group_name">Group name</string>
+    <string name="group_site">Group site</string>
+    <string name="new_group">New group</string>
+    <string name="personal_data">Personal data</string>
+    <string name="group">Group</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
 </resources>
