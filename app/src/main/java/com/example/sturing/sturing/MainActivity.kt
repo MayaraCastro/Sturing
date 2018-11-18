@@ -1,5 +1,6 @@
 package com.example.sturing.sturing
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
@@ -19,8 +20,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setSupportActionBar(toolbar)
 
         fab.setOnClickListener { view ->
-            Snackbar.make(view, R.string.app_name, Snackbar.LENGTH_SHORT)
-                    .setAction("Action", null).show()
+            //Snackbar.make(view, R.string.app_name, Snackbar.LENGTH_SHORT)
+            //        .setAction("Action", null).show()
+            val i = Intent(this, CreateGroup::class.java)
+            startActivity(i)
         }
 
         val toggle = ActionBarDrawerToggle(
@@ -70,7 +73,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
             }
             R.id.nav_manage -> {
-                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, ManageFragment()).commit()
+                val i = Intent(this, ManageActivity::class.java)
+                startActivity(i)
             }
             R.id.nav_share -> {
 
