@@ -34,7 +34,7 @@
             android:theme="@style/Theme.AppCompat.NoActionBar" />
 
         <activity
-            android:name=".CreateGroup"
+            android:name=".CreateGroupActivity"
             android:label="@string/new_group"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
 

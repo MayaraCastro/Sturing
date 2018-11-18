@@ -11,7 +11,7 @@
     android:scrollbarAlwaysDrawVerticalTrack="false"
     android:scrollbars="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".CreateUser"
+    tools:context=".CreateGroupActivity"
     tools:showIn="@layout/activity_create_group">
 
     <ScrollView

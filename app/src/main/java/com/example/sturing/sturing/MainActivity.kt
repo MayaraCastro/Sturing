@@ -2,7 +2,6 @@ package com.example.sturing.sturing
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
@@ -22,7 +21,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         fab.setOnClickListener { view ->
             //Snackbar.make(view, R.string.app_name, Snackbar.LENGTH_SHORT)
             //        .setAction("Action", null).show()
-            val i = Intent(this, CreateGroup::class.java)
+            val i = Intent(this, CreateGroupActivity::class.java)
             startActivity(i)
         }
 
@@ -67,7 +66,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 supportFragmentManager.beginTransaction().replace(R.id.fragment_container, CameraFragment()).commit()
             }
             R.id.nav_group -> {
-                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, CreateGroupFragment()).commit()
+                // TODO -> To create fragment of list of groups!
+                // Removed fragment create group, changed to '+' icon (fab action)
             }
             R.id.nav_slideshow -> {
 
