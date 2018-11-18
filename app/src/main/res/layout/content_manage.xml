@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/dark_blue"
     android:fadeScrollbars="true"
     android:isScrollContainer="true"
     android:keepScreenOn="true"
@@ -37,7 +38,7 @@
                 android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/side_nav_bar"
+                android:background="@color/colorPrimary"
                 android:gravity="center_horizontal"
                 android:orientation="vertical"
                 android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -59,7 +60,7 @@
                     android:id="@+id/btnImage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/colorPrimaryDark"
+                    android:backgroundTint="@android:color/holo_red_light"
                     android:text="@string/change_image"
                     android:textAlignment="center"
                     android:textAllCaps="false" />
@@ -73,7 +74,8 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="8dp"
-                android:text="@string/name" />
+                android:text="@string/name"
+                android:textColor="@color/colorPrimary" />
 
             <EditText
                 android:id="@+id/editText2"
@@ -96,7 +98,8 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="8dp"
-                android:text="@string/e_mail" />
+                android:text="@string/e_mail"
+                android:textColor="@color/colorPrimary" />
 
             <EditText
                 android:id="@+id/editText4"
@@ -119,7 +122,8 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="8dp"
-                android:text="@string/site" />
+                android:text="@string/site"
+                android:textColor="@color/colorPrimary" />
 
             <EditText
                 android:id="@+id/editText5"
@@ -137,8 +141,7 @@
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="80dp">
+                android:layout_height="match_parent">
 
                 <Button
                     android:id="@+id/btnSave"
