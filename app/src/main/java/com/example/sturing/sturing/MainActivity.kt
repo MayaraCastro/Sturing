@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle.syncState()
 
         nav_view.setNavigationItemSelectedListener(this)
-        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, MainFragment()).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, HomeFragment()).commit()
     }
 
     override fun onBackPressed() {
@@ -61,9 +61,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
         when (item.itemId) {
-            R.id.nav_camera -> {
+            R.id.nav_home -> {
                 // Handle the camera action
-                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, CameraFragment()).commit()
+                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, HomeFragment()).commit()
             }
             R.id.nav_group -> {
                 // TODO -> To create fragment of list of groups!

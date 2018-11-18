@@ -14,7 +14,9 @@
     <string name="group_site">Site do grupo</string>
     <string name="new_group">Novo grupo</string>
     <string name="personal_data">Dados pessoais</string>
-    <string name="group">Grupo</string>
+    <string name="groups">Grupos</string>
     <string name="title_activity_create_user">Criar usuário</string>
     <string name="signUp">Registrar-se</string>
+    <string name="home">Página inicial</string>
+    <string name="welcome">Bem-vindo</string>
 </resources>
