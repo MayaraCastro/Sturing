@@ -19,4 +19,7 @@
     <string name="signUp">Registrar-se</string>
     <string name="home">Página inicial</string>
     <string name="welcome">Bem-vindo</string>
+    <string name="alreadyHaveAccount">Já possui uma conta?</string>
+    <string name="notamemberyet">Não é um membro?</string>
+    <string name="signIn">Conectar-se</string>
 </resources>

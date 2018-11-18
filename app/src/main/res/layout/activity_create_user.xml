@@ -18,7 +18,8 @@
             android:layout_height="?attr/actionBarSize"
             android:layout_gravity="center"
             android:background="@android:color/transparent"
-            app:popupTheme="@style/PopupOverlay">
+            app:popupTheme="@style/PopupOverlay"
+            app:title=" ">
 
 
             <TextView

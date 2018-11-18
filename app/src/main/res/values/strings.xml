@@ -29,6 +29,9 @@
     <string name="groups">Group</string>
     <string name="home">Home</string>
     <string name="welcome">Welcome</string>
+    <string name="notamemberyet">Not a member yet?</string>
+    <string name="alreadyHaveAccount">Already have an account?</string>
+    <string name="signIn">Sign In</string>
 
     <!-- TODO: Remove or change this placeholder text -->
 </resources>
