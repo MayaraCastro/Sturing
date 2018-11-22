@@ -14,7 +14,7 @@ class GroupListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_group_list)
         setSupportActionBar(toolbar)
         toolbar.setNavigationOnClickListener { onBackPressed() }
-        
+
         var groups : ArrayList<Group> = ArrayList()
         var g1 = Group()
         g1.setName("John")

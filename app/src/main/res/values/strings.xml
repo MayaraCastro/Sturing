@@ -31,6 +31,8 @@
     <string name="notamemberyet">Not a member yet?</string>
     <string name="alreadyHaveAccount">Already have an account?</string>
     <string name="signIn">Sign In</string>
+    <string name="group_list">Groups - List</string>
+    <string name="title_activity_test_tab" translatable="false">Test tab</string>
 
     <!-- TODO: Remove or change this placeholder text -->
 </resources>
