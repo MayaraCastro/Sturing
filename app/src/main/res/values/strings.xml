@@ -17,7 +17,6 @@
     <string name="login" translatable="false">Login</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="signUp">Sign up</string>
     <string name="title_activity_create_user">Create user</string>
     <string name="description">Description</string>
@@ -32,11 +31,6 @@
     <string name="notamemberyet">Not a member yet?</string>
     <string name="alreadyHaveAccount">Already have an account?</string>
     <string name="signIn">Sign In</string>
-    <string name="title_activity_test_tab">TestTab</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
-    <string name="tab_text_3">Tab 3</string>
-    <string name="section_format">Hello World from section: %1$d</string>
 
     <!-- TODO: Remove or change this placeholder text -->
 </resources>
