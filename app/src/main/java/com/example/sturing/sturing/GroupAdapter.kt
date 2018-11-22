@@ -26,7 +26,6 @@ class GroupAdapter(var items : ArrayList<Group>, var context : Context) : Recycl
         p0.itemView.setOnClickListener {
             Snackbar.make(it, items[p1].getName(), Snackbar.LENGTH_SHORT)
                     .setAction("Action", null).show()
-            positionSelected = p1
         }
     }
 
