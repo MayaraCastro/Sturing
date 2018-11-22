@@ -68,9 +68,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_group -> {
                 // TODO -> To create fragment of list of groups!
                 // Removed fragment create group, changed to '+' icon (fab action)
+                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, GroupPage()).commit()
             }
             R.id.nav_slideshow -> {
-
+                val i = Intent(this, TestTab::class.java)
+                startActivity(i)
             }
             R.id.nav_manage -> {
                 val i = Intent(this, ManageActivity::class.java)
