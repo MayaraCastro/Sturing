@@ -39,10 +39,7 @@
             android:label="@string/personal_data"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity android:name=".GroupListActivity"></activity>
-        <activity
-            android:name=".TestTab"
-            android:label="@string/title_activity_test_tab"
-            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
+
     </application>
 
 </manifest>
