@@ -1,8 +1,7 @@
 package com.example.sturing.sturing
 
 import android.content.Context
-import android.content.Intent
-import android.support.v4.content.ContextCompat.startActivity
+import android.support.design.widget.Snackbar
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -24,8 +23,11 @@ class GroupAdapter(var items : ArrayList<Group>, var context : Context) : Recycl
         p0.tvGroupDescription?.text = items[p1].getDescription()
         p0.tvGroupTimestamp?.text = items[p1].getTimestamp()
         //p0.ivGroupImage?.setImageResource(items[p1].getImage()!!.id)
-
-
+        p0.itemView.setOnClickListener {
+            Snackbar.make(it, items[p1].getName(), Snackbar.LENGTH_SHORT)
+                    .setAction("Action", null).show()
+            positionSelected = p1
+        }
     }
 
 }
