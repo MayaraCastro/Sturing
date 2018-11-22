@@ -6,6 +6,7 @@ import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_main.*
@@ -13,10 +14,37 @@ import kotlinx.android.synthetic.main.app_bar_main.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
+    private var itemSelecionado : Int = 0
+    private var menu : Menu? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+
+
+        if(savedInstanceState !=null){
+            itemSelecionado = savedInstanceState!!.getInt("item")
+        }else{
+            nav_view.setCheckedItem(R.id.nav_home)
+        }
+
+
+            when(itemSelecionado){
+                0->{
+                    supportFragmentManager.beginTransaction().replace(R.id.fragment_container, HomeFragment()).commit()
+                }
+                1->{
+                    supportFragmentManager.beginTransaction().replace(R.id.fragment_container, GroupPage()).commit()
+                }
+                else->{
+                    supportFragmentManager.beginTransaction().replace(R.id.fragment_container, GroupPage()).commit()
+                }
+            }
+
+
+
+
+
 
         fab.setOnClickListener {
             //Snackbar.make(view, R.string.app_name, Snackbar.LENGTH_SHORT)
@@ -31,10 +59,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle.syncState()
 
         nav_view.setNavigationItemSelectedListener(this)
-        nav_view.setCheckedItem(R.id.nav_home)
-        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, HomeFragment()).commit()
+        //nav_view.setCheckedItem(R.id.nav_home)
+        //supportFragmentManager.beginTransaction().replace(R.id.fragment_container, HomeFragment()).commit()
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt("item", itemSelecionado)
+        Log.i("TelaPrincipal", "onSaveInstanceState")
+    }
     override fun onBackPressed() {
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
             drawer_layout.closeDrawer(GravityCompat.START)
@@ -46,6 +79,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
+        this.menu = menu
         return true
     }
 
@@ -63,11 +97,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.nav_home -> {
+                this.itemSelecionado = 0
                 supportFragmentManager.beginTransaction().replace(R.id.fragment_container, HomeFragment()).commit()
             }
             R.id.nav_group -> {
                 // TODO -> To create fragment of list of groups!
                 // Removed fragment create group, changed to '+' icon (fab action)
+
+                this.itemSelecionado = 1
                 supportFragmentManager.beginTransaction().replace(R.id.fragment_container, GroupPage()).commit()
             }
             R.id.nav_slideshow -> {
@@ -88,5 +125,36 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Log.i("Tela1", "onStart")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.i("Tela1", "onResume")
+
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.i("Tela1", "onPause")
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        Log.i("Tela1", "onRestart")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.i("Tela1", "onStop")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.i("Tela1", "onDetroy")
     }
 }
