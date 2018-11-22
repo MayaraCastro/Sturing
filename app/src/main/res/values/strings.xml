@@ -25,14 +25,15 @@
     <string name="group_site">Group site</string>
     <string name="new_group">New group</string>
     <string name="personal_data">Personal data</string>
-    <string name="groups">Groups</string>
+    <string name="groups">Group</string>
     <string name="home">Home</string>
     <string name="welcome">Welcome</string>
     <string name="notamemberyet">Not a member yet?</string>
     <string name="alreadyHaveAccount">Already have an account?</string>
     <string name="signIn">Sign In</string>
+    <string name="questions">Questions</string>
+    <string name="flash_cards" translatable="false">Flash Cards</string>
     <string name="group_list">Groups - List</string>
-    <string name="title_activity_test_tab" translatable="false">Test tab</string>
 
     <!-- TODO: Remove or change this placeholder text -->
 </resources>

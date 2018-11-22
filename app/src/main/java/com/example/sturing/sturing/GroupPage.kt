@@ -66,9 +66,9 @@ class GroupPage : Fragment() {
 
     private fun setupViewPager(viewPager: ViewPager) {
         val adapter = Adapter(childFragmentManager)
-        adapter.addFragment(HomeFragment(), "HOME")
-        adapter.addFragment(MainFragment(), "QUESTIONS")
-        adapter.addFragment(HomeFragment(), "FLASH CARDS")
+        adapter.addFragment(HomeFragment(), getString(R.string.home))
+        adapter.addFragment(MainFragment(), getString(R.string.questions))
+        adapter.addFragment(HomeFragment(), getString(R.string.flash_cards))
         viewPager.adapter = adapter
     }
 
