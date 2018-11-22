@@ -42,10 +42,6 @@
             android:name=".GroupListActivity"
             android:label="@string/group_list"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity
-            android:name=".TestTab"
-            android:label="@string/title_activity_test_tab"
-            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
     </application>
 
 </manifest>
