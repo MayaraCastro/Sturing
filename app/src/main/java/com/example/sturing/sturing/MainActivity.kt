@@ -71,8 +71,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 supportFragmentManager.beginTransaction().replace(R.id.fragment_container, GroupPage()).commit()
             }
             R.id.nav_slideshow -> {
-                val i = Intent(this, TestTab::class.java)
-                startActivity(i)
+
             }
             R.id.nav_manage -> {
                 val i = Intent(this, ManageActivity::class.java)

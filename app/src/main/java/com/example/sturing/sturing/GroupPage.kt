@@ -1,18 +1,17 @@
 package com.example.sturing.sturing
 
+import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-import android.support.design.widget.TabLayout.*
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
-import com.example.sturing.sturing.R.id.viewpager
 
-import kotlinx.android.synthetic.main.fragment_group_page.*
-
+import android.support.design.widget.TabLayout
+import android.support.v4.view.ViewPager
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -32,7 +31,6 @@ class GroupPage : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    private var mSectionsPagerAdapter: SectionsPagerAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,27 +38,61 @@ class GroupPage : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections of the activity.
 
-        mSectionsPagerAdapter = SectionsPagerAdapter(childFragmentManager)
-
-        // Set up the ViewPager with the sections adapter.
-        viewpager.adapter = mSectionsPagerAdapter
-
-
-        viewpager.addOnPageChangeListener(TabLayoutOnPageChangeListener(tabLayout))
-        tabLayout.addOnTabSelectedListener(ViewPagerOnTabSelectedListener(viewpager))
 
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
+        // Inflate the layout for this fragment
+        val view = inflater.inflate(R.layout.fragment_group_page, container, false)
+        setHasOptionsMenu(true)
 
-        return inflater.inflate(R.layout.fragment_group_page, container, false)
+        val viewPager = view.findViewById(R.id.viewpager) as ViewPager
+        if (viewPager != null) {
+            setupViewPager(viewPager)
+            viewPager.isNestedScrollingEnabled = true
+        }
+
+        val tabLayout = view.findViewById(R.id.tabs) as TabLayout
+        tabLayout.setSelectedTabIndicatorColor(Color.parseColor("#008577"));
+        tabLayout.setTabTextColors(Color.parseColor("#7fa87f"), Color.parseColor("#008577"));
+        assert(viewPager != null)
+        tabLayout.setupWithViewPager(viewPager)
+
+        return view
     }
 
+    private fun setupViewPager(viewPager: ViewPager) {
+        val adapter = Adapter(childFragmentManager)
+        adapter.addFragment(HomeFragment(), "HOME")
+        adapter.addFragment(MainFragment(), "QUESTIONS")
+        adapter.addFragment(HomeFragment(), "FLASH CARDS")
+        viewPager.adapter = adapter
+    }
+
+    internal class Adapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
+        private val mFragments = ArrayList<Fragment>()
+        private val mFragmentTitles = ArrayList<String>()
+
+        fun addFragment(fragment: Fragment, title: String) {
+            mFragments.add(fragment)
+            mFragmentTitles.add(title)
+        }
+
+        override fun getItem(position: Int): Fragment {
+            return mFragments.get(position)
+        }
+
+        override fun getCount(): Int {
+            return mFragments.size
+        }
+
+        override fun getPageTitle(position: Int): CharSequence? {
+            return mFragmentTitles.get(position)
+        }
+    }
     companion object {
         /**
          * Use this factory method to create a new instance of
@@ -79,29 +111,6 @@ class GroupPage : Fragment() {
                         putString(ARG_PARAM2, param2)
                     }
                 }
-    }
-
-    /**
-     * A [FragmentPagerAdapter] that returns a fragment corresponding to
-     * one of the sections/tabs/pages.
-     */
-    inner class SectionsPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
-
-        override fun getItem(position: Int): Fragment? {
-
-            when(position) {
-                0 -> return HomeFragment()
-                1 -> return MainFragment()
-                2 -> return HomeFragment()
-                else -> return null
-            }
-        }
-
-        override fun getCount(): Int {
-            // Show 3 total pages.
-            return 3
-        }
-
     }
 
 
