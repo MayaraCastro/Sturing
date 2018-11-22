@@ -22,13 +22,14 @@
             android:src="@drawable/book" />
 
         <android.support.design.widget.TabLayout
+            android:id="@+id/tabLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/dark_blue"
             app:tabIndicatorColor="@color/colorPrimary"
             app:tabIndicatorHeight="5dp"
             app:tabSelectedTextColor="@color/colorPrimary"
-            app:tabTextColor="@color/colorToolbar">
+            app:tabTextColor="@color/colorTab">
 
             <android.support.design.widget.TabItem
                 android:layout_width="wrap_content"
@@ -47,6 +48,7 @@
         </android.support.design.widget.TabLayout>
 
         <android.support.v4.view.ViewPager
+            android:id="@+id/viewpager"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>

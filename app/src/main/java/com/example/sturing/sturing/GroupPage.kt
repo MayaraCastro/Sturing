@@ -1,12 +1,17 @@
 package com.example.sturing.sturing
 
-import android.content.Context
-import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+
+import android.support.design.widget.TabLayout.*
+import android.support.v4.app.FragmentManager
+import android.support.v4.app.FragmentPagerAdapter
+import com.example.sturing.sturing.R.id.viewpager
+
+import kotlinx.android.synthetic.main.fragment_group_page.*
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -27,7 +32,7 @@ class GroupPage : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    private var listener: OnFragmentInteractionListener? = null
+    private var mSectionsPagerAdapter: SectionsPagerAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,47 +40,25 @@ class GroupPage : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+        // Create the adapter that will return a fragment for each of the three
+        // primary sections of the activity.
+
+        mSectionsPagerAdapter = SectionsPagerAdapter(childFragmentManager)
+
+        // Set up the ViewPager with the sections adapter.
+        viewpager.adapter = mSectionsPagerAdapter
+
+
+        viewpager.addOnPageChangeListener(TabLayoutOnPageChangeListener(tabLayout))
+        tabLayout.addOnTabSelectedListener(ViewPagerOnTabSelectedListener(viewpager))
+
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_group_page, container, false)
-    }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    fun onButtonPressed(uri: Uri) {
-        listener?.onFragmentInteraction(uri)
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        if (context is OnFragmentInteractionListener) {
-            listener = context
-        } else {
-            throw RuntimeException(context.toString() + " must implement OnFragmentInteractionListener")
-        }
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        listener = null
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     *
-     *
-     * See the Android Training lesson [Communicating with Other Fragments]
-     * (http://developer.android.com/training/basics/fragments/communicating.html)
-     * for more information.
-     */
-    interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        fun onFragmentInteraction(uri: Uri)
     }
 
     companion object {
@@ -97,4 +80,29 @@ class GroupPage : Fragment() {
                     }
                 }
     }
+
+    /**
+     * A [FragmentPagerAdapter] that returns a fragment corresponding to
+     * one of the sections/tabs/pages.
+     */
+    inner class SectionsPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
+
+        override fun getItem(position: Int): Fragment? {
+
+            when(position) {
+                0 -> return HomeFragment()
+                1 -> return MainFragment()
+                2 -> return HomeFragment()
+                else -> return null
+            }
+        }
+
+        override fun getCount(): Int {
+            // Show 3 total pages.
+            return 3
+        }
+
+    }
+
+
 }
