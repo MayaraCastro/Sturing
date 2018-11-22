@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.support.design.widget.TabLayout.*
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
+import com.example.sturing.sturing.R.id.viewpager
 
 import kotlinx.android.synthetic.main.fragment_group_page.*
 
