@@ -79,7 +79,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 startActivity(i)
             }
             R.id.nav_share -> {
-
+                val i = Intent(this, GroupListActivity::class.java)
+                startActivity(i)
             }
             R.id.nav_send -> {
 

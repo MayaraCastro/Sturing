@@ -22,4 +22,5 @@
     <string name="alreadyHaveAccount">Já possui uma conta?</string>
     <string name="notamemberyet">Não é um membro?</string>
     <string name="signIn">Conectar-se</string>
+    <string name="group_list">Grupos - Lista</string>
 </resources>

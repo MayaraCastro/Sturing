@@ -5,13 +5,16 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.widget.ImageView
 import kotlinx.android.synthetic.main.activity_group_list.*
+import kotlinx.android.synthetic.main.content_group_list.*
 
 class GroupListActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_group_list)
-
+        setSupportActionBar(toolbar)
+        toolbar.setNavigationOnClickListener { onBackPressed() }
+        
         var groups : ArrayList<Group> = ArrayList()
         var g1 = Group()
         g1.setName("John")

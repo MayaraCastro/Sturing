@@ -26,7 +26,7 @@
     <string name="group_site">Group site</string>
     <string name="new_group">New group</string>
     <string name="personal_data">Personal data</string>
-    <string name="groups">Group</string>
+    <string name="groups">Groups</string>
     <string name="home">Home</string>
     <string name="welcome">Welcome</string>
     <string name="notamemberyet">Not a member yet?</string>
@@ -37,6 +37,7 @@
     <string name="tab_text_2">Tab 2</string>
     <string name="tab_text_3">Tab 3</string>
     <string name="section_format">Hello World from section: %1$d</string>
+    <string name="group_list">Groups - List</string>
 
     <!-- TODO: Remove or change this placeholder text -->
 </resources>
