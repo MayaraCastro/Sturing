@@ -25,24 +25,20 @@
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-
         <activity android:name=".OpeningActivity" />
-
         <activity
             android:name=".CreateUser"
             android:label="@string/title_activity_create_user"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-
         <activity
             android:name=".CreateGroupActivity"
             android:label="@string/new_group"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-
         <activity
             android:name=".ManageActivity"
             android:label="@string/personal_data"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-
+        <activity android:name=".GroupListActivity"></activity>
     </application>
 
 </manifest>

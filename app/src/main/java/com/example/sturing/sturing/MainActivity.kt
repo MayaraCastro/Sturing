@@ -70,7 +70,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 // Removed fragment create group, changed to '+' icon (fab action)
             }
             R.id.nav_slideshow -> {
-
+                val i = Intent(this, GroupListActivity::class.java)
+                startActivity(i)
             }
             R.id.nav_manage -> {
                 val i = Intent(this, ManageActivity::class.java)
