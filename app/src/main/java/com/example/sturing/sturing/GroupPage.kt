@@ -12,7 +12,6 @@ import android.support.v4.app.FragmentPagerAdapter
 
 import android.support.design.widget.TabLayout
 import android.support.v4.view.ViewPager
-
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
@@ -32,6 +31,8 @@ class GroupPage : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    private val viewPager: ViewPager? = null
+    private var itemSelecionado: Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -42,6 +43,11 @@ class GroupPage : Fragment() {
 
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt("item", itemSelecionado)
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -50,16 +56,23 @@ class GroupPage : Fragment() {
         setHasOptionsMenu(true)
 
         val viewPager = view.findViewById(R.id.viewpager) as ViewPager
-        if (viewPager != null) {
-            setupViewPager(viewPager)
-            viewPager.isNestedScrollingEnabled = true
+
+        setupViewPager(viewPager)
+        viewPager.isNestedScrollingEnabled = true
+
+        if(savedInstanceState !=null){
+            itemSelecionado = savedInstanceState!!.getInt("item")
+            viewPager.currentItem = itemSelecionado
         }
+
+
 
         val tabLayout = view.findViewById(R.id.tabs) as TabLayout
         tabLayout.setSelectedTabIndicatorColor(Color.parseColor("#008577"));
         tabLayout.setTabTextColors(Color.parseColor("#7fa87f"), Color.parseColor("#008577"));
         assert(viewPager != null)
         tabLayout.setupWithViewPager(viewPager)
+
 
         return view
     }
@@ -70,6 +83,8 @@ class GroupPage : Fragment() {
         adapter.addFragment(MainFragment(), getString(R.string.questions))
         adapter.addFragment(HomeFragment(), getString(R.string.flash_cards))
         viewPager.adapter = adapter
+
+
     }
 
     internal class Adapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {

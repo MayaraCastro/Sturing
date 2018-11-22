@@ -1,6 +1,8 @@
 package com.example.sturing.sturing
 
 import android.content.Context
+import android.content.Intent
+import android.support.v4.content.ContextCompat.startActivity
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -22,14 +24,18 @@ class GroupAdapter(var items : ArrayList<Group>, var context : Context) : Recycl
         p0.tvGroupDescription?.text = items[p1].getDescription()
         p0.tvGroupTimestamp?.text = items[p1].getTimestamp()
         //p0.ivGroupImage?.setImageResource(items[p1].getImage()!!.id)
+
+
     }
 
 }
 
 class ViewHolder (view: View) : RecyclerView.ViewHolder(view) {
     // Holds the TextView that will add each animal to
+
     val tvGroupName = view.tvGroupName
     val tvGroupDescription = view.tvGroupDescription
     val tvGroupTimestamp = view.tvGroupTimestamp
     val ivGroupImage = view.ivGroupImage
+
 }

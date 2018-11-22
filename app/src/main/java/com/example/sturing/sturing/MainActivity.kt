@@ -107,9 +107,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 this.itemSelecionado = 1
                 supportFragmentManager.beginTransaction().replace(R.id.fragment_container, GroupPage()).commit()
             }
-            R.id.nav_slideshow -> {
+           /* R.id.nav_slideshow -> {
 
-            }
+            }*/
             R.id.nav_manage -> {
                 val i = Intent(this, ManageActivity::class.java)
                 startActivity(i)
@@ -118,9 +118,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 val i = Intent(this, GroupListActivity::class.java)
                 startActivity(i)
             }
-            R.id.nav_send -> {
+           /* R.id.nav_send -> {
 
-            }
+            }*/
         }
 
         drawer_layout.closeDrawer(GravityCompat.START)
