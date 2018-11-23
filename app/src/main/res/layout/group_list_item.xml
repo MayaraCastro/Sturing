@@ -1,17 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/groupItem"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:contextClickable="true"
+    android:defaultFocusHighlightEnabled="true"
+    android:longClickable="true"
+    android:paddingLeft="16dp"
+    android:paddingTop="16dp"
+    android:paddingRight="16dp"
+    android:paddingBottom="0dp">
+
+  <android.support.constraint.ConstraintLayout
+      android:id="@+id/constraintLayout"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="16dp"
+      android:layout_marginBottom="16dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.0"
+      app:layout_constraintStart_toEndOf="@+id/ivGroupImage"
+      app:layout_constraintTop_toTopOf="parent">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fadingEdge="horizontal"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+      <TextView
+          android:id="@+id/tvGroupName"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:textColor="@android:color/background_light"
+          android:textSize="16sp"
+          android:textStyle="bold"
+          app:layout_constraintBottom_toTopOf="@+id/tvGroupDescription"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintHorizontal_bias="0.075"
+          app:layout_constraintStart_toEndOf="@+id/ivGroupImage"
+          app:layout_constraintTop_toTopOf="@+id/ivGroupImage"
+          app:layout_constraintVertical_bias="0.0"
+          tools:text="@tools:sample/full_names" />
+
+      <TextView
+          android:id="@+id/tvGroupDescription"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:textColor="@android:color/darker_gray"
+          android:textSize="14sp"
+          app:layout_constraintBottom_toBottomOf="@+id/ivGroupImage"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintHorizontal_bias="0.0"
+          app:layout_constraintStart_toEndOf="@+id/ivGroupImage"
+          tools:text="@android:string/paste_as_plain_text" />
+    </LinearLayout>
+
+  </android.support.constraint.ConstraintLayout>
 
   <ImageView
       android:id="@+id/ivGroupImage"
-      android:layout_width="50dp"
-      android:layout_height="50dp"
-      android:layout_marginStart="8dp"
-      android:layout_marginTop="8dp"
+      android:layout_width="40dp"
+      android:layout_height="40dp"
       android:contentDescription="@string/app_name"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
@@ -19,37 +79,16 @@
       tools:src="@tools:sample/avatars"
       tools:srcCompat="@tools:sample/avatars" />
 
-  <TextView
-      android:id="@+id/tvGroupName"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
+  <View
+      android:id="@+id/divider2"
+      android:layout_width="0dp"
+      android:layout_height="1dp"
       android:layout_marginStart="8dp"
-      android:layout_marginBottom="8dp"
-      android:textColor="@android:color/black"
-      android:textSize="20sp"
-      app:layout_constraintBottom_toTopOf="@+id/tvGroupDescription"
+      android:layout_marginTop="16dp"
+      android:background="?android:attr/listDivider"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
       app:layout_constraintStart_toEndOf="@+id/ivGroupImage"
-      app:layout_constraintTop_toTopOf="@+id/ivGroupImage"
-      tools:text="@tools:sample/full_names" />
+      app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
-  <TextView
-      android:id="@+id/tvGroupDescription"
-      android:layout_width="285dp"
-      android:layout_height="20dp"
-      tools:text="@tools:sample/lorem[4:10]"
-      app:layout_constraintBottom_toBottomOf="@+id/ivGroupImage"
-      app:layout_constraintStart_toEndOf="@+id/ivGroupImage"
-      android:layout_marginStart="8dp"
-      app:layout_constraintEnd_toEndOf="parent"
-      android:layout_marginEnd="8dp"
-      app:layout_constraintHorizontal_bias="0.050" />
-
-  <TextView
-      android:id="@+id/tvGroupTimestamp"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginEnd="8dp"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintTop_toTopOf="@+id/ivGroupImage"
-      tools:text="@tools:sample/date/hhmm" />
 </android.support.constraint.ConstraintLayout>
