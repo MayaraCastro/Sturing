@@ -3,6 +3,7 @@ package com.example.sturing.sturing
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.widget.ImageView
 import kotlinx.android.synthetic.main.activity_group_list.*
@@ -39,7 +40,7 @@ class GroupListActivity : AppCompatActivity() {
         groups.add(g3)
 
         rv_group_list.layoutManager = LinearLayoutManager(this)
-
+        rv_group_list.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
         rv_group_list.adapter = GroupAdapter(groups, this)
     }
 }
