@@ -34,6 +34,10 @@
     <string name="questions">Questions</string>
     <string name="flash_cards" translatable="false">Flash Cards</string>
     <string name="group_list">Groups - List</string>
+    <string name="error_invalid_password">This password is invalid</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="authentication_failed">Authentication failed</string>
 
     <!-- TODO: Remove or change this placeholder text -->
 </resources>

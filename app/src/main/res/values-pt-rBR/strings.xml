@@ -24,4 +24,8 @@
     <string name="signIn">Conectar-se</string>
     <string name="group_list">Grupos - Lista</string>
     <string name="questions">Questões</string>
+    <string name="error_invalid_password">Essa senha é inválida</string>
+    <string name="error_field_required">Este campo é obrigatório</string>
+    <string name="error_invalid_email">Esse endereço de email é inválido</string>
+    <string name="authentication_failed">Falha na autenticação</string>
 </resources>

@@ -149,13 +149,13 @@
                     android:layout_marginBottom="8dp"
                     android:text="@string/notamemberyet"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/btSignup"
+                    app:layout_constraintEnd_toStartOf="@+id/txtRegister"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/btLogin"
                     app:layout_constraintVertical_bias="0.515" />
 
                 <TextView
-                    android:id="@+id/btSignup"
+                    android:id="@+id/txtRegister"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -168,6 +168,14 @@
                     app:layout_constraintTop_toBottomOf="@+id/btLogin"
                     app:layout_constraintVertical_bias="0.444" />
             </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/login_progress"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="44dp"
+                android:layout_height="53dp"
+                android:visibility="gone"
+                tools:visibility="gone" />
         </LinearLayout>
 
     </LinearLayout>

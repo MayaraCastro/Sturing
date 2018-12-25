@@ -1,5 +1,6 @@
 package com.example.sturing.sturing
 
+import android.app.ActivityOptions
 import android.content.Context
 import android.content.Intent
 import android.support.design.widget.Snackbar
@@ -7,6 +8,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import kotlinx.android.synthetic.main.group_list_item.view.*
 
 class GroupAdapter(var items : ArrayList<Group>, var context : Context) : RecyclerView.Adapter<GroupAdapter.ViewHolder>() {
