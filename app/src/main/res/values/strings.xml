@@ -38,6 +38,7 @@
     <string name="error_field_required">This field is required</string>
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="authentication_failed">Authentication failed</string>
+    <string name="registration_failed">Registration failed</string>
 
     <!-- TODO: Remove or change this placeholder text -->
 </resources>

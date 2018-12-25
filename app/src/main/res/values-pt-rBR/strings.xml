@@ -28,4 +28,5 @@
     <string name="error_field_required">Este campo é obrigatório</string>
     <string name="error_invalid_email">Esse endereço de email é inválido</string>
     <string name="authentication_failed">Falha na autenticação</string>
+    <string name="registration_failed">Falha na registração</string>
 </resources>
