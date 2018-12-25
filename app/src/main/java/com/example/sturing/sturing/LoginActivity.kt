@@ -53,7 +53,7 @@ class LoginActivity : AppCompatActivity() {
         var cancel = false
         var focusView: View? = null
 
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
+        if (TextUtils.isEmpty(password) || !isPasswordValid(password)) {
             txtpass.error = getString(R.string.error_invalid_password)
             focusView = txtpass
             cancel = true
