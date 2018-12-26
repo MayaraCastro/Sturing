@@ -77,7 +77,7 @@ class LoginActivity : AppCompatActivity() {
                     .addOnCompleteListener(this) { task ->
                         showProgress(false)
                         if (task.isSuccessful) {
-                            val i = Intent(this,MainActivity::class.java)
+                            val i = Intent(this, MainActivity::class.java)
                             startActivity(i)
                         } else {
                             Toast.makeText(this@LoginActivity, getString(R.string.authentication_failed),

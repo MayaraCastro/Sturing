@@ -9,10 +9,16 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.TextView
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.nav_header_main.*
+import kotlinx.android.synthetic.main.nav_header_main.view.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+
+    private val TAG = "MainActivity"
 
     private var itemSelecionado : Int = 0
     private var menu : Menu? = null
@@ -21,30 +27,40 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
+        val user = FirebaseAuth.getInstance().currentUser
 
-        if(savedInstanceState !=null){
+        var name = ""
+        var email = ""
+
+        user?.let {
+            name += user.displayName
+            email += user.email
+
+            Log.i(TAG, name)
+        }
+
+        var nav = nav_view.getHeaderView(0)
+        nav.txtName.text = name
+        nav.txtOrganization.text = email
+
+        if (savedInstanceState != null) {
             itemSelecionado = savedInstanceState!!.getInt("item")
-        }else{
+        } else {
             nav_view.setCheckedItem(R.id.nav_home)
         }
 
 
-            when(itemSelecionado){
-                0->{
-                    supportFragmentManager.beginTransaction().replace(R.id.fragment_container, HomeFragment()).commit()
-                }
-                1->{
-                    supportFragmentManager.beginTransaction().replace(R.id.fragment_container, GroupPage()).commit()
-                }
-                else->{
-                    supportFragmentManager.beginTransaction().replace(R.id.fragment_container, GroupPage()).commit()
-                }
+        when(itemSelecionado){
+            0->{
+                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, HomeFragment()).commit()
             }
-
-
-
-
-
+            1->{
+                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, GroupPage()).commit()
+            }
+            else->{
+                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, GroupPage()).commit()
+            }
+        }
 
         fab.setOnClickListener {
             //Snackbar.make(view, R.string.app_name, Snackbar.LENGTH_SHORT)

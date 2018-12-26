@@ -8,17 +8,23 @@ import android.os.Build
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
 import kotlinx.android.synthetic.main.activity_create_user.*
 import kotlinx.android.synthetic.main.content_create_user.*
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.UserProfileChangeRequest
+import com.google.firebase.storage.FirebaseStorage
 
 
 class CreateUser : AppCompatActivity() {
 
+    private val TAG = "CreateUser"
+
     private lateinit var email: String
     private lateinit var password: String
+    private lateinit var storage: FirebaseStorage
     private var mAuth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -82,16 +88,32 @@ class CreateUser : AppCompatActivity() {
             showProgress(true)
             mAuth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this) { task ->
-                        showProgress(false)
                         if (task.isSuccessful) {
-                            val i = Intent(this,LoginActivity::class.java)
-                            startActivity(i)
+                            saveProfileName(name)
                         } else {
+                            showProgress(false)
                             Toast.makeText(this@CreateUser, getString(R.string.registration_failed),
                                     Toast.LENGTH_SHORT).show()
                         }
                     }
         }
+    }
+
+    private fun saveProfileName(name: String) {
+        val user = FirebaseAuth.getInstance().currentUser
+        val profileUpdates = UserProfileChangeRequest.Builder()
+                .setDisplayName(name).build()
+        user?.updateProfile(profileUpdates)
+                ?.addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        showProgress(false)
+                        val i = Intent(this, MainActivity::class.java)
+                        startActivity(i)
+                        Log.d(TAG, "User added." + name)
+                    }
+                    else
+                        Log.w(TAG, "User didn`t add.")
+                }
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
