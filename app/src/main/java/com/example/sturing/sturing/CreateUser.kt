@@ -109,6 +109,7 @@ class CreateUser : AppCompatActivity() {
                         showProgress(false)
                         val i = Intent(this, MainActivity::class.java)
                         startActivity(i)
+                        finish()
                     }
                     else
                         Log.w(TAG, "User didn`t add.")

@@ -9,11 +9,9 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.TextView
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
-import kotlinx.android.synthetic.main.nav_header_main.*
 import kotlinx.android.synthetic.main.nav_header_main.view.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -22,26 +20,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private var itemSelecionado : Int = 0
     private var menu : Menu? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-
-        val user = FirebaseAuth.getInstance().currentUser
-
-        var name = ""
-        var email = ""
-
-        user?.let {
-            name += user.displayName
-            email += user.email
-
-            Log.i(TAG, name)
-        }
-
-        var nav = nav_view.getHeaderView(0)
-        nav.txtName.text = name
-        nav.txtOrganization.text = email
 
         if (savedInstanceState != null) {
             itemSelecionado = savedInstanceState!!.getInt("item")
@@ -148,10 +131,26 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         Log.i("Tela1", "onStart")
     }
 
+    private fun updateUI() {
+        val user = FirebaseAuth.getInstance().currentUser
+
+        var name = ""
+        var email = ""
+
+        user?.let {
+            name += user.displayName
+            email += user.email
+        }
+
+        var nav = nav_view.getHeaderView(0)
+        nav.txtName.text = name
+        nav.txtOrganization.text = email
+    }
+
     override fun onResume() {
         super.onResume()
+        updateUI()
         Log.i("Tela1", "onResume")
-
     }
 
     override fun onPause() {
