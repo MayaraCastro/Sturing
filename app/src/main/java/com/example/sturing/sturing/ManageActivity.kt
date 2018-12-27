@@ -8,8 +8,13 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_create_group.*
 import kotlinx.android.synthetic.main.content_manage.*
 
@@ -25,17 +30,18 @@ class ManageActivity : AppCompatActivity() {
         toolbar.setNavigationOnClickListener {onBackPressed()}
 
         val user = FirebaseAuth.getInstance().currentUser
+        val userRef = FirebaseDatabase.getInstance().getReference("users").child(user!!.uid)
 
-        var name = ""
-        var email = ""
-
-        user?.let {
-            name += user.displayName
-            email += user.email
+        val userListener = object : ValueEventListener {
+            override fun onDataChange(p0: DataSnapshot) {
+                txtName.hint = p0.child("name").getValue(String::class.java)
+                txtEmail.hint = p0.child("email").getValue(String::class.java)
+            }
+            override fun onCancelled(p0: DatabaseError) {
+            }
         }
 
-        txtName.hint = name
-        txtEmail.hint = email
+        userRef.addListenerForSingleValueEvent(userListener)
 
         btnSave.setOnClickListener { saveData() }
     }
@@ -43,18 +49,19 @@ class ManageActivity : AppCompatActivity() {
     private fun saveData() {
         showProgress(true)
         val user = FirebaseAuth.getInstance().currentUser
-        val profileUpdates = UserProfileChangeRequest.Builder()
-                .setDisplayName(txtName.text.toString()).build()
-        user?.updateProfile(profileUpdates)
-                ?.addOnCompleteListener { task ->
+        val userRef = FirebaseDatabase.getInstance().getReference("users").child(user!!.uid)
+
+        userRef.child("name").setValue(txtName.text.toString())
+                .addOnSuccessListener {
                     showProgress(false)
-                    if (task.isSuccessful) {
-                        finish()
-                    }
-                    else {
-                        Log.w(TAG, "Wasn`t possible to change profile name.")
-                    }
+                    finish()
                 }
+                .addOnFailureListener {
+                    showProgress(false)
+                    Toast.makeText(this@ManageActivity, getString(R.string.registration_failed),
+                            Toast.LENGTH_SHORT).show()
+                }
+
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)

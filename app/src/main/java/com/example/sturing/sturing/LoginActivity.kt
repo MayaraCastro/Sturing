@@ -17,6 +17,8 @@ import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
 
+    private val TAG = "LoginActivity"
+
     private lateinit var email: String
     private lateinit var password: String
     private var mAuth = FirebaseAuth.getInstance()

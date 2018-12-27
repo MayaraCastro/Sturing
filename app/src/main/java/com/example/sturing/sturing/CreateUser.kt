@@ -15,6 +15,8 @@ import kotlinx.android.synthetic.main.content_create_user.*
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 
 
@@ -89,7 +91,8 @@ class CreateUser : AppCompatActivity() {
             mAuth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
-                            saveProfileName(name)
+                            writeNewUser(mAuth.currentUser!!.uid, name)
+                            //saveProfileName(name)
                         } else {
                             showProgress(false)
                             Toast.makeText(this@CreateUser, getString(R.string.registration_failed),
@@ -99,7 +102,25 @@ class CreateUser : AppCompatActivity() {
         }
     }
 
-    private fun saveProfileName(name: String) {
+    private fun writeNewUser(userId: String, name: String) {
+        val user = User(name, email)
+        val database = FirebaseDatabase.getInstance().reference
+
+        database.child("users").child(userId).setValue(user)
+                .addOnSuccessListener {
+                    val i = Intent(this, MainActivity::class.java)
+                    startActivity(i)
+                    showProgress(false)
+                    finish()
+                }
+                .addOnFailureListener {
+                    Toast.makeText(this@CreateUser, getString(R.string.registration_failed),
+                            Toast.LENGTH_SHORT).show()
+                    Log.w(TAG, "User didn`t add.")
+                }
+    }
+
+    /*private fun saveProfileName(name: String) {
         val user = FirebaseAuth.getInstance().currentUser
         val profileUpdates = UserProfileChangeRequest.Builder()
                 .setDisplayName(name).build()
@@ -114,7 +135,7 @@ class CreateUser : AppCompatActivity() {
                     else
                         Log.w(TAG, "User didn`t add.")
                 }
-    }
+    }*/
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
     private fun showProgress(show: Boolean) {

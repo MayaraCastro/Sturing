@@ -10,6 +10,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.nav_header_main.view.*
@@ -133,18 +134,20 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun updateUI() {
         val user = FirebaseAuth.getInstance().currentUser
+        val userRef = FirebaseDatabase.getInstance().getReference("users").child(user!!.uid)
 
-        var name = ""
-        var email = ""
-
-        user?.let {
-            name += user.displayName
-            email += user.email
+        val userListener = object : ValueEventListener {
+            override fun onDataChange(p0: DataSnapshot) {
+                var nav = nav_view.getHeaderView(0)
+                nav.txtName.hint = p0.child("name").getValue(String::class.java)
+                nav.txtOrganization.hint = p0.child("email").getValue(String::class.java)
+            }
+            override fun onCancelled(p0: DatabaseError) {
+            }
         }
 
-        var nav = nav_view.getHeaderView(0)
-        nav.txtName.text = name
-        nav.txtOrganization.text = email
+        userRef.addListenerForSingleValueEvent(userListener)
+
     }
 
     override fun onResume() {
