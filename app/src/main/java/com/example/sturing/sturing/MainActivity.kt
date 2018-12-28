@@ -6,9 +6,12 @@ import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
+import android.transition.Transition
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
+import com.example.sturing.sturing.Glide.GlideApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_main.*
@@ -141,6 +144,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 var nav = nav_view.getHeaderView(0)
                 nav.txtName.hint = p0.child("name").getValue(String::class.java)
                 nav.txtOrganization.hint = p0.child("email").getValue(String::class.java)
+                val imageUrl = p0.child("image").getValue(String::class.java)
+
+                if (imageUrl != null) {
+                    GlideApp.with(this@MainActivity)
+                            .load(imageUrl)
+                            .transition(withCrossFade())
+                            .circleCrop()
+                            .into(nav.imgProfile)
+                }
             }
             override fun onCancelled(p0: DatabaseError) {
             }

@@ -593,6 +593,57 @@
       <JAVADOC />
       <SOURCES />
     </library>
+    <library name="Gradle: com.firebaseui:firebase-ui-storage-4.1.0">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-ui-storage-4.1.0.aar/13232c90d1161674d16206f752e40b92/jars/classes.jar!/" />
+        <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-ui-storage-4.1.0.aar/13232c90d1161674d16206f752e40b92/res" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.firebaseui/firebase-ui-storage/4.1.0/4639b295438f9861b1075a3c5c7b06514a081180/firebase-ui-storage-4.1.0-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: com.github.bumptech.glide:annotations:4.8.0@jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/annotations/4.8.0/c4c9e79eb2bfeb9059fce55020c6b237402285f6/annotations-4.8.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/annotations/4.8.0/aec067e42c0056857682fc590a5d54c44c644144/annotations-4.8.0-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: com.github.bumptech.glide:disklrucache:4.8.0@jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/disklrucache/4.8.0/a7448551cb3edd61bcf3d1b1136b670e630441cf/disklrucache-4.8.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/disklrucache/4.8.0/a630e44b1cbd0e5e01fac844bfbc6cc6412a3991/disklrucache-4.8.0-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: com.github.bumptech.glide:gifdecoder-4.8.0">
+      <ANNOTATIONS>
+        <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/gifdecoder-4.8.0.aar/d2e009da9ad75c06a5217985a3a9859a/annotations.zip!/" />
+      </ANNOTATIONS>
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/gifdecoder-4.8.0.aar/d2e009da9ad75c06a5217985a3a9859a/jars/classes.jar!/" />
+        <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/gifdecoder-4.8.0.aar/d2e009da9ad75c06a5217985a3a9859a/res" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/gifdecoder/4.8.0/b868c1eef40822dacf2e1f08c2186b7acf3d4b6/gifdecoder-4.8.0-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: com.github.bumptech.glide:glide-4.8.0">
+      <CLASSES>
+        <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/glide-4.8.0.aar/f1b673bd5c37137b34b6a9a896573d22/res" />
+        <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/glide-4.8.0.aar/f1b673bd5c37137b34b6a9a896573d22/jars/classes.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/glide/4.8.0/ffc2684f1c6436d3942d82d29a5344942792594/glide-4.8.0-sources.jar!/" />
+      </SOURCES>
+    </library>
     <library name="Gradle: com.github.clans:fab-1.6.4">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/fab-1.6.4.aar/55d3a104fd7e0dcfc443d8a19dcb54df/jars/classes.jar!/" />

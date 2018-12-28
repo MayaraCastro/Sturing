@@ -14,15 +14,17 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.support.v7.app.AppCompatActivity
-import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
+import com.example.sturing.sturing.Glide.GlideApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_create_group.*
 import kotlinx.android.synthetic.main.content_manage.*
 import java.io.ByteArrayOutputStream
@@ -50,6 +52,15 @@ class ManageActivity : AppCompatActivity() {
             override fun onDataChange(p0: DataSnapshot) {
                 txtName.hint = p0.child("name").getValue(String::class.java)
                 txtEmail.hint = p0.child("email").getValue(String::class.java)
+                val imageUrl = p0.child("image").getValue(String::class.java)
+
+                if (imageUrl != null) {
+                    GlideApp.with(this@ManageActivity)
+                            .load(imageUrl)
+                            .transition(withCrossFade())
+                            .circleCrop()
+                            .into(imgProfile)
+                }
             }
             override fun onCancelled(p0: DatabaseError) {
             }
@@ -112,8 +123,6 @@ class ManageActivity : AppCompatActivity() {
             cursor.moveToFirst()
             val photoPath = cursor.getString(0)
             cursor.close()
-            val file = File(photoPath)
-            val uri = Uri.fromFile(file)
 
             val targetW = imgProfile.width
             val targetH = imgProfile.height
@@ -144,9 +153,25 @@ class ManageActivity : AppCompatActivity() {
         showProgress(true)
         val user = FirebaseAuth.getInstance().currentUser
         val userRef = FirebaseDatabase.getInstance().getReference("users").child(user!!.uid)
+        val imageRef = FirebaseStorage.getInstance().getReference("images").child(user!!.uid).child("profile")
 
-        if (imgProfile != null) {
+        if (::bitmap.isInitialized) {
             //TODO: Code to upload image to Storage database (not the real-time one)
+            val baos = ByteArrayOutputStream()
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+            val data = baos.toByteArray()
+
+            imageRef.putBytes(data)
+                    .addOnFailureListener {
+                        Toast.makeText(this@ManageActivity, "Image upload fail",
+                                Toast.LENGTH_SHORT).show()
+                    }
+                    .addOnSuccessListener {
+                        imageRef.downloadUrl
+                                .onSuccessTask { it ->
+                                    userRef.child("image").setValue(it.toString())
+                                }
+                    }
         }
 
         Log.i(TAG, "Entering nameisnotnull")
