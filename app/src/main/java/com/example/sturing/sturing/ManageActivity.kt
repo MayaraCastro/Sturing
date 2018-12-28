@@ -17,6 +17,7 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
 import com.example.sturing.sturing.Glide.GlideApp
 import com.google.firebase.auth.FirebaseAuth
@@ -28,7 +29,6 @@ import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_create_group.*
 import kotlinx.android.synthetic.main.content_manage.*
 import java.io.ByteArrayOutputStream
-import java.io.File
 
 class ManageActivity : AppCompatActivity() {
 
@@ -57,6 +57,7 @@ class ManageActivity : AppCompatActivity() {
                 if (imageUrl != null) {
                     GlideApp.with(this@ManageActivity)
                             .load(imageUrl)
+                            .diskCacheStrategy(DiskCacheStrategy.ALL)
                             .transition(withCrossFade())
                             .circleCrop()
                             .into(imgProfile)
@@ -124,25 +125,18 @@ class ManageActivity : AppCompatActivity() {
             val photoPath = cursor.getString(0)
             cursor.close()
 
-            val targetW = imgProfile.width
-            val targetH = imgProfile.height
-
             val bmOptions = BitmapFactory.Options()
             bmOptions.inJustDecodeBounds = true
             BitmapFactory.decodeFile(photoPath, bmOptions)
-
-            val photoW = bmOptions.outWidth
-            val photoH = bmOptions.outHeight
-
-            val scaleFactor = Math.min(photoW/targetW, photoH/targetH)
-
             bmOptions.inJustDecodeBounds = false
-            bmOptions.inSampleSize = scaleFactor
-            bmOptions.inPurgeable = true
 
             bitmap = BitmapFactory.decodeFile(photoPath, bmOptions)
 
-            imgProfile.setImageBitmap(bitmap)
+            GlideApp.with(this@ManageActivity)
+                    .load(bitmap)
+                    .transition(withCrossFade())
+                    .circleCrop()
+                    .into(imgProfile)
         }
     }
 
@@ -171,12 +165,11 @@ class ManageActivity : AppCompatActivity() {
                                 .onSuccessTask { it ->
                                     userRef.child("image").setValue(it.toString())
                                 }
+                        imageRef.
                     }
         }
 
-        Log.i(TAG, "Entering nameisnotnull")
         if (!name.isNullOrEmpty()) {
-            Log.i(TAG, "Entered nameisnotnull")
             userRef.child("name").setValue(name)
                     .addOnSuccessListener {
                         showProgress(false)

@@ -10,6 +10,7 @@ import android.transition.Transition
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
 import com.example.sturing.sturing.Glide.GlideApp
 import com.google.firebase.auth.FirebaseAuth
@@ -149,6 +150,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 if (imageUrl != null) {
                     GlideApp.with(this@MainActivity)
                             .load(imageUrl)
+                            .diskCacheStrategy(DiskCacheStrategy.ALL)
                             .transition(withCrossFade())
                             .circleCrop()
                             .into(nav.imgProfile)
