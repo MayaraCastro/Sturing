@@ -19,7 +19,7 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="I/Main" />
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="D/Create" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
   </component>
   <component name="CMakeSettings">
@@ -29,32 +29,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b1f72a14-c6a1-405b-a259-f3a75469ce9f" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/ic_people-web.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-anydpi-v26/ic_people.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-anydpi-v26/ic_people_round.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_people.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_people_round.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_people.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_people_round.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_people.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_people_round.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_people.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_people_round.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_people.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_people_round.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sturing.ipr" beforeDir="false" afterPath="$PROJECT_DIR$/Sturing.ipr" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sturing.iws" beforeDir="false" afterPath="$PROJECT_DIR$/Sturing.iws" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/CreateGroupActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/CreateGroupActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/CreateUser.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/CreateUser.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/LoginActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/LoginActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/ManageActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/ManageActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/content_create_group.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/content_create_group.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher_person_foreground.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher_person_foreground.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher_person_foreground.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher_person_foreground.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher_person_foreground.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher_person_foreground.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher_person_foreground.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher_person_foreground.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher_person_foreground.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher_person_foreground.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/Group.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/Group.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/GroupAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/GroupAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/GroupListActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/GroupListActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/User.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/User.kt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -78,15 +58,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="LoginActivity.kt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/LoginActivity.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="31" column="66" selection-start-line="31" selection-start-column="66" selection-end-line="31" selection-end-column="66" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="CreateUser.kt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/CreateUser.kt">
           <provider selected="true" editor-type-id="text-editor">
@@ -99,26 +70,8 @@
       <file leaf-file-name="ManageActivity.kt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/ManageActivity.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1234">
+            <state relative-caret-position="-1309">
               <caret line="63" column="42" selection-start-line="63" selection-start-column="42" selection-end-line="63" selection-end-column="42" />
-              <folding>
-                <element signature="e#37#1199#0" expanded="true" />
-                <element signature="e#6804#6843#1" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CreateGroupActivity.kt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/CreateGroupActivity.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="666">
-              <caret line="84" selection-start-line="84" selection-end-line="84" />
-              <folding>
-                <element signature="e#37#383#0" expanded="true" />
-                <element signature="e#1319#1359#0" expanded="true" />
-                <element signature="e#2928#2967#1" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -135,19 +88,75 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainActivity.kt" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MainActivity.kt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/MainActivity.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="415">
+            <state relative-caret-position="721">
               <caret line="194" column="9" selection-start-line="194" selection-start-column="9" selection-end-line="194" selection-end-column="9" />
               <folding>
-                <element signature="e#37#617#0" expanded="true" />
-                <element signature="e#2464#2618#0" />
-                <element signature="e#2652#2842#0" />
-                <element signature="e#2902#3083#0" />
-                <element signature="e#3149#3509#0" />
-                <element signature="e#3578#4700#0" />
+                <element signature="e#2226#2257#1" expanded="true" />
+                <element signature="e#2259#2291#1" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GroupAdapter.kt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/GroupAdapter.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="28" column="55" selection-start-line="28" selection-start-column="55" selection-end-line="28" selection-end-column="55" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GroupListActivity.kt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/GroupListActivity.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="70" column="57" selection-start-line="70" selection-start-column="57" selection-end-line="70" selection-end-column="57" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CreateGroupActivity.kt" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/CreateGroupActivity.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="449">
+              <caret line="128" column="53" selection-start-line="128" selection-start-column="53" selection-end-line="128" selection-end-column="53" />
+              <folding>
+                <element signature="e#37#910#0" expanded="true" />
+                <element signature="e#1791#1831#0" expanded="true" />
+                <element signature="e#5802#5841#1" expanded="true" />
+                <element signature="e#5443#6550#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/build.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="449">
+              <caret line="51" column="1" selection-start-line="51" selection-start-column="1" selection-end-line="51" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Group.kt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/Group.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="7" column="79" selection-start-line="7" selection-start-column="79" selection-end-line="7" selection-end-column="79" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="User.kt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/User.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" column="131" selection-start-line="4" selection-start-column="131" selection-end-line="4" selection-end-column="131" />
             </state>
           </provider>
         </entry>
@@ -2650,7 +2659,6 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/GroupItemRecyclerViewAdapter.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/ViewHolder.kt" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_item_list.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/Group.kt" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/recycler_view_item_1.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_group_list.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/content_group_list.xml" />
@@ -2658,24 +2666,25 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/group_list_item_new.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/group_list_item.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/menu/activity_main_drawer.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/GroupAdapter.kt" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout-land/activity_login.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/content_create_user.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/GroupListActivity.kt" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/AppGlideModule.kt" />
-        <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/Glide/AppGlideModule.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/User.kt" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/nav_header_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/content_manage.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/LoginActivity.kt" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/content_create_group.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/CreateUser.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/CreateGroupActivity.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/ManageActivity.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/MainActivity.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/GroupAdapter.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/Group.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/User.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/GroupListActivity.kt" />
+        <option value="$PROJECT_DIR$/app/build.gradle" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/CreateGroupActivity.kt" />
       </list>
     </option>
   </component>
@@ -2731,8 +2740,8 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -2742,7 +2751,8 @@
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Documentos\Sturing\app\src\main\res\layout" />
       <recent name="D:\Documentos\Sturing\app\src\main\java\com\example\sturing\sturing" />
     </key>
     <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
@@ -2754,8 +2764,7 @@
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
       <recent name="com.example.sturing.sturing.Glide" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Documentos\Sturing\app\src\main\res\layout" />
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Documentos\Sturing\app\src\main\java\com\example\sturing\sturing" />
     </key>
   </component>
@@ -2904,12 +2913,11 @@
       <window_info id="Designer" order="2" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17270789" />
       <window_info anchor="bottom" id="Build" order="7" sideWeight="0.4989339" weight="0.3267974" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32897604" />
       <window_info anchor="right" id="Gradle" order="6" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39978212" />
       <window_info anchor="right" id="Device File Explorer" order="5" side_tool="true" />
       <window_info anchor="right" id="Theme Preview" order="7" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39978212" />
       <window_info id="Favorites" order="5" side_tool="true" />
       <window_info anchor="right" id="Assistant" order="0" weight="0.32995737" />
       <window_info anchor="right" id="StringPreview" order="10" />
@@ -2920,6 +2928,7 @@
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32897604" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -2973,13 +2982,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/Group.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="30" selection-start-line="30" selection-end-line="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/MainFragment.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state />
@@ -3022,13 +3024,6 @@
       <provider editor-type-id="text-editor">
         <state>
           <caret selection-end-line="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/GroupAdapter.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="33" column="36" selection-start-line="33" selection-start-column="36" selection-end-line="33" selection-end-column="36" />
         </state>
       </provider>
     </entry>
@@ -3164,24 +3159,14 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/GroupListActivity.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
-          <folding>
-            <element signature="e#37#368#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="65" selection-start-line="4" selection-start-column="65" selection-end-line="4" selection-end-column="65" />
         </state>
-      </provider>
-      <provider editor-type-id="android-manifest">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/build/generated/source/kapt/debug/com/bumptech/glide/GeneratedAppGlideModuleImpl.java">
@@ -3206,20 +3191,10 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="48" column="61" selection-start-line="48" selection-start-column="61" selection-end-line="48" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/Glide/AppGlideModule.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="23" column="76" selection-start-line="23" selection-start-column="76" selection-end-line="23" selection-end-column="76" />
-          <folding>
-            <element signature="e#43#407#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3248,7 +3223,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/LoginActivity.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
+        <state relative-caret-position="272">
           <caret line="31" column="66" selection-start-line="31" selection-start-column="66" selection-end-line="31" selection-end-column="66" />
         </state>
       </provider>
@@ -3270,47 +3245,68 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/User.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="70" selection-start-line="2" selection-start-column="70" selection-end-line="2" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/CreateGroupActivity.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="666">
-          <caret line="84" selection-start-line="84" selection-end-line="84" />
-          <folding>
-            <element signature="e#37#383#0" expanded="true" />
-            <element signature="e#1319#1359#0" expanded="true" />
-            <element signature="e#2928#2967#1" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/ManageActivity.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1234">
+        <state relative-caret-position="-1309">
           <caret line="63" column="42" selection-start-line="63" selection-start-column="42" selection-end-line="63" selection-end-column="42" />
-          <folding>
-            <element signature="e#37#1199#0" expanded="true" />
-            <element signature="e#6804#6843#1" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/MainActivity.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="415">
+        <state relative-caret-position="721">
           <caret line="194" column="9" selection-start-line="194" selection-start-column="9" selection-end-line="194" selection-end-column="9" />
           <folding>
-            <element signature="e#37#617#0" expanded="true" />
-            <element signature="e#2464#2618#0" />
-            <element signature="e#2652#2842#0" />
-            <element signature="e#2902#3083#0" />
-            <element signature="e#3149#3509#0" />
-            <element signature="e#3578#4700#0" />
+            <element signature="e#2226#2257#1" expanded="true" />
+            <element signature="e#2259#2291#1" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/GroupAdapter.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="28" column="55" selection-start-line="28" selection-start-column="55" selection-end-line="28" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/Group.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="7" column="79" selection-start-line="7" selection-start-column="79" selection-end-line="7" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/User.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="131" selection-start-line="4" selection-start-column="131" selection-end-line="4" selection-end-column="131" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/GroupListActivity.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="70" column="57" selection-start-line="70" selection-start-column="57" selection-end-line="70" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="449">
+          <caret line="51" column="1" selection-start-line="51" selection-start-column="1" selection-end-line="51" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/CreateGroupActivity.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="449">
+          <caret line="128" column="53" selection-start-line="128" selection-start-column="53" selection-end-line="128" selection-end-column="53" />
+          <folding>
+            <element signature="e#37#910#0" expanded="true" />
+            <element signature="e#1791#1831#0" expanded="true" />
+            <element signature="e#5802#5841#1" expanded="true" />
+            <element signature="e#5443#6550#0" />
           </folding>
         </state>
       </provider>

@@ -22,11 +22,11 @@ class GroupAdapter(var items : ArrayList<Group>, var context : Context) : Recycl
     }
 
     override fun onBindViewHolder(p0: ViewHolder, p1: Int) {
-        p0.tvGroupName?.text = items[p1].getName()
-        p0.tvGroupDescription?.text = items[p1].getDescription()
+        p0.tvGroupName?.text = items[p1].name
+        p0.tvGroupDescription?.text = items[p1].description
         //p0.ivGroupImage?.setImageResource(items[p1].getImage()!!.id)
         p0.itemView.setOnClickListener {
-            Snackbar.make(it, items[p1].getName(), Snackbar.LENGTH_SHORT)
+            Snackbar.make(it, items[p1].name.toString(), Snackbar.LENGTH_SHORT)
                     .setAction("Action", null).show()
             val i = Intent(context, MainActivity::class.java)
             context.startActivity(i)
