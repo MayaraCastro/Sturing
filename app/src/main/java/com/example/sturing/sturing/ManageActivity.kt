@@ -4,18 +4,19 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.annotation.TargetApi
 import android.app.Activity
+import android.arch.lifecycle.LiveData
 import android.content.ContentValues
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.renderscript.Sampler
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
+import android.widget.ImageView
 import android.widget.Toast
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
@@ -43,8 +44,6 @@ class ManageActivity : AppCompatActivity() {
         setContentView(R.layout.activity_manage)
         setSupportActionBar(toolbar)
 
-        toolbar.setNavigationOnClickListener {onBackPressed()}
-
         val user = FirebaseAuth.getInstance().currentUser
         val userRef = FirebaseDatabase.getInstance().getReference("users").child(user!!.uid)
 
@@ -62,12 +61,15 @@ class ManageActivity : AppCompatActivity() {
                             .circleCrop()
                             .into(imgProfile)
                 }
+                Log.i(TAG, "Data changed")
             }
             override fun onCancelled(p0: DatabaseError) {
             }
         }
 
         userRef.addListenerForSingleValueEvent(userListener)
+
+        toolbar.setNavigationOnClickListener {onBackPressed()}
 
         btnSave.setOnClickListener { saveData() }
 
@@ -107,7 +109,6 @@ class ManageActivity : AppCompatActivity() {
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         if(intent.resolveActivity(packageManager) != null) {
             mCurrentPhotoPath = fileUri.toString()
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri)
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION
                     or Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
             startActivityForResult(intent, TAKE_PHOTO_REQUEST)
@@ -118,19 +119,8 @@ class ManageActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (resultCode == Activity.RESULT_OK && requestCode == TAKE_PHOTO_REQUEST) {
-            val cursor = contentResolver.query(Uri.parse(mCurrentPhotoPath),
-                    Array(1) {android.provider.MediaStore.Images.ImageColumns.DATA},
-                    null, null, null)
-            cursor.moveToFirst()
-            val photoPath = cursor.getString(0)
-            cursor.close()
-
-            val bmOptions = BitmapFactory.Options()
-            bmOptions.inJustDecodeBounds = true
-            BitmapFactory.decodeFile(photoPath, bmOptions)
-            bmOptions.inJustDecodeBounds = false
-
-            bitmap = BitmapFactory.decodeFile(photoPath, bmOptions)
+            val bundle = data?.extras
+            bitmap = bundle?.get("data") as Bitmap
 
             GlideApp.with(this@ManageActivity)
                     .load(bitmap)
@@ -150,7 +140,6 @@ class ManageActivity : AppCompatActivity() {
         val imageRef = FirebaseStorage.getInstance().getReference("images").child(user!!.uid).child("profile")
 
         if (::bitmap.isInitialized) {
-            //TODO: Code to upload image to Storage database (not the real-time one)
             val baos = ByteArrayOutputStream()
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
             val data = baos.toByteArray()
@@ -165,7 +154,6 @@ class ManageActivity : AppCompatActivity() {
                                 .onSuccessTask { it ->
                                     userRef.child("image").setValue(it.toString())
                                 }
-                        imageRef.
                     }
         }
 
@@ -205,4 +193,5 @@ class ManageActivity : AppCompatActivity() {
             progressBar.visibility = if (show) View.VISIBLE else View.GONE
         }
     }
+
 }

@@ -6,7 +6,6 @@ import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
-import android.transition.Transition
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -17,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.nav_header_main.*
 import kotlinx.android.synthetic.main.nav_header_main.view.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private var itemSelecionado : Int = 0
     private var menu : Menu? = null
+    private lateinit var mChildEventListener: ChildEventListener
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +37,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         } else {
             nav_view.setCheckedItem(R.id.nav_home)
         }
-
 
         when(itemSelecionado){
             0->{
@@ -51,8 +51,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
 
         fab.setOnClickListener {
-            //Snackbar.make(view, R.string.app_name, Snackbar.LENGTH_SHORT)
-            //        .setAction("Action", null).show()
             val i = Intent(this, CreateGroupActivity::class.java)
             startActivity(i)
         }
@@ -63,8 +61,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle.syncState()
 
         nav_view.setNavigationItemSelectedListener(this)
-        //nav_view.setCheckedItem(R.id.nav_home)
-        //supportFragmentManager.beginTransaction().replace(R.id.fragment_container, HomeFragment()).commit()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -72,6 +68,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         outState.putInt("item", itemSelecionado)
         Log.i("TelaPrincipal", "onSaveInstanceState")
     }
+
     override fun onBackPressed() {
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
             drawer_layout.closeDrawer(GravityCompat.START)
@@ -131,62 +128,70 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return true
     }
 
-    override fun onStart() {
-        super.onStart()
-        Log.i("Tela1", "onStart")
-    }
-
     private fun updateUI() {
         val user = FirebaseAuth.getInstance().currentUser
         val userRef = FirebaseDatabase.getInstance().getReference("users").child(user!!.uid)
 
-        val userListener = object : ValueEventListener {
-            override fun onDataChange(p0: DataSnapshot) {
-                var nav = nav_view.getHeaderView(0)
-                nav.txtName.hint = p0.child("name").getValue(String::class.java)
-                nav.txtOrganization.hint = p0.child("email").getValue(String::class.java)
-                val imageUrl = p0.child("image").getValue(String::class.java)
-
-                if (imageUrl != null) {
-                    GlideApp.with(this@MainActivity)
-                            .load(imageUrl)
-                            .diskCacheStrategy(DiskCacheStrategy.ALL)
-                            .transition(withCrossFade())
-                            .circleCrop()
-                            .into(nav.imgProfile)
-                }
+        val childEventListener = object : ChildEventListener {
+            override fun onChildAdded(p0: DataSnapshot, p1: String?) {
+                Log.i(TAG, "onChildAdded:" + p0!!.key)
+                updateChild(p0)
+            }
+            override fun onChildChanged(p0: DataSnapshot, p1: String?) {
+                Log.i(TAG, "onChildChanged:" + p0!!.key)
+                updateChild(p0)
+            }
+            override fun onChildMoved(p0: DataSnapshot, p1: String?) {
+                Log.i(TAG, "onChildMoved:" + p0!!.key)
+            }
+            override fun onChildRemoved(p0: DataSnapshot) {
+                Log.i(TAG, "onChildRemoved:" + p0!!.key)
             }
             override fun onCancelled(p0: DatabaseError) {
+                Log.i(TAG, "onChildRemoved:" + p0!!.toException())
             }
         }
 
-        userRef.addListenerForSingleValueEvent(userListener)
+        userRef.addChildEventListener(childEventListener)
 
+        mChildEventListener = childEventListener
+
+    }
+
+    private fun updateChild(p0: DataSnapshot) {
+        var nav = nav_view.getHeaderView(0)
+
+        if (p0!!.key.equals("email")) {
+            nav.txtOrganization.hint = p0!!.value as CharSequence
+        }
+        if (p0!!.key.equals("image")) {
+            val imageUrl = p0!!.value as String
+
+            if (imageUrl != null) {
+                GlideApp.with(this@MainActivity)
+                        .load(imageUrl)
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .transition(withCrossFade())
+                        .circleCrop()
+                        .into(imgProfile)
+            }
+        }
+        if (p0!!.key.equals("name")) {
+            nav.txtName.hint = p0!!.value as CharSequence
+        }
     }
 
     override fun onResume() {
         super.onResume()
         updateUI()
-        Log.i("Tela1", "onResume")
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Log.i("Tela1", "onPause")
-    }
-
-    override fun onRestart() {
-        super.onRestart()
-        Log.i("Tela1", "onRestart")
     }
 
     override fun onStop() {
         super.onStop()
-        Log.i("Tela1", "onStop")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.i("Tela1", "onDetroy")
+        if (mChildEventListener != null) {
+            val user = FirebaseAuth.getInstance().currentUser
+            val userRef = FirebaseDatabase.getInstance().getReference("users").child(user!!.uid)
+            userRef.removeEventListener(mChildEventListener)
+        }
     }
 }

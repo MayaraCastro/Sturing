@@ -14,8 +14,6 @@ import kotlinx.android.synthetic.main.activity_create_user.*
 import kotlinx.android.synthetic.main.content_create_user.*
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.UserProfileChangeRequest
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 
@@ -119,23 +117,6 @@ class CreateUser : AppCompatActivity() {
                     Log.w(TAG, "User didn`t add.")
                 }
     }
-
-    /*private fun saveProfileName(name: String) {
-        val user = FirebaseAuth.getInstance().currentUser
-        val profileUpdates = UserProfileChangeRequest.Builder()
-                .setDisplayName(name).build()
-        user?.updateProfile(profileUpdates)
-                ?.addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        showProgress(false)
-                        val i = Intent(this, MainActivity::class.java)
-                        startActivity(i)
-                        finish()
-                    }
-                    else
-                        Log.w(TAG, "User didn`t add.")
-                }
-    }*/
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
     private fun showProgress(show: Boolean) {
