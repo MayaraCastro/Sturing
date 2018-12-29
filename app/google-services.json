@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "704377342276-f25js58aiev5d5damnv1f230iv4ieadr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sturing.sturing",
+            "certificate_hash": "2b25d82652d31e56c00916a7b763d66be7d3f492"
+          }
+        },
+        {
           "client_id": "704377342276-8r0i6od30kgdll0veooghuvhrbhvco8r.apps.googleusercontent.com",
           "client_type": 3
         }
