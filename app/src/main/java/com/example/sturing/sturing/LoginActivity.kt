@@ -29,8 +29,6 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true)
-
         if(savedInstanceState != null){
             email = savedInstanceState!!.getString("email")
             password = savedInstanceState!!.getString("password")
@@ -47,6 +45,13 @@ class LoginActivity : AppCompatActivity() {
             val i = Intent(this,CreateUser::class.java)
             startActivity(i)
         }
+
+    }
+
+    private fun mainActivity() {
+        val i = Intent(this, MainActivity::class.java)
+        startActivity(i)
+        finish()
     }
 
     private fun attemptLogin() {
@@ -83,9 +88,7 @@ class LoginActivity : AppCompatActivity() {
                     .addOnCompleteListener(this) { task ->
                         showProgress(false)
                         if (task.isSuccessful) {
-                            val i = Intent(this, MainActivity::class.java)
-                            startActivity(i)
-                            finish()
+                            mainActivity()
                         } else {
                             Toast.makeText(this@LoginActivity, getString(R.string.authentication_failed),
                                     Toast.LENGTH_SHORT).show()
