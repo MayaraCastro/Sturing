@@ -34,7 +34,7 @@ class GroupPage : Fragment() {
     private var param2: String? = null
 
     private val viewPager: ViewPager? = null
-    private var itemSelecionado: Int = 0
+    private var itemSelecionado: Int? = null
     private var groupSelecionado: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,6 +45,8 @@ class GroupPage : Fragment() {
         }
         val bundle = arguments
         groupSelecionado = bundle!!.getString("group")
+        itemSelecionado = bundle!!.getInt("tab")
+
         if (groupSelecionado == null) {
             Log.d("GROUP SELEICONADOO", "NULLO")
         }
@@ -55,7 +57,7 @@ class GroupPage : Fragment() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putInt("item", itemSelecionado)
+        outState.putInt("item", itemSelecionado!!)
         outState.putString("group", groupSelecionado)
     }
 
@@ -73,10 +75,9 @@ class GroupPage : Fragment() {
 
         if(savedInstanceState !=null){
             itemSelecionado = savedInstanceState!!.getInt("item")
-            viewPager.currentItem = itemSelecionado
-
         }
 
+        viewPager.currentItem = itemSelecionado!!
 
         val tabLayout = view.findViewById(R.id.tabs) as TabLayout
         tabLayout.setSelectedTabIndicatorColor(Color.parseColor("#008577"));

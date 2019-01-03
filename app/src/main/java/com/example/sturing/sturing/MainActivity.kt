@@ -1,6 +1,7 @@
 package com.example.sturing.sturing
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
@@ -19,7 +20,10 @@ import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.nav_header_main.*
 import kotlinx.android.synthetic.main.nav_header_main.view.*
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, FragmentGroupQuestions.OnFragmentInteractionListener {
+    override fun onFragmentInteraction(uri: Uri) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     private val TAG = "MainActivity"
 
@@ -34,11 +38,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         if (savedInstanceState != null) {
             itemSelecionado = savedInstanceState!!.getInt("item")
-            Log.d("passou", "pasou")
 
         } else {
             nav_view.setCheckedItem(R.id.nav_home)
-            Log.d("NAO PASSOU", " NAO PASSOU")
         }
 
         val item = intent.getIntExtra("item",0)
@@ -52,6 +54,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 val mFrag = GroupPage()
                 val bundle = Bundle()
                 bundle.putString("group", intent.getStringExtra("group"))   //parameters are (key, value).
+                bundle.putInt("tab", intent.getIntExtra("tab", 0))
                 mFrag.arguments = bundle  //set the group
 
                 supportFragmentManager.beginTransaction().replace(R.id.fragment_container, mFrag).commit()
@@ -61,10 +64,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
         }
 
-        fab.setOnClickListener {
-            val i = Intent(this, CreateGroupActivity::class.java)
-            startActivity(i)
-        }
+
 
         val toggle = ActionBarDrawerToggle(
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
@@ -117,11 +117,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 // Removed fragment create group, changed to '+' icon (fab action)
 
                 this.itemSelecionado = 1
-                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, GroupPage()).commit()
+                val i = Intent(this, GroupListActivity::class.java)
+                startActivity(i)
             }
-           /* R.id.nav_slideshow -> {
-
-            }*/
+            R.id.nav_slideshow -> {
+                val i = Intent(this, CreateGroupActivity::class.java)
+                startActivity(i)
+            }
             R.id.nav_manage -> {
                 val i = Intent(this, ManageActivity::class.java)
                 startActivity(i)
@@ -131,7 +133,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 startActivity(i)
             }
            /* R.id.nav_send -> {
-
+                val i = Intent(this, CreateGroupActivity::class.java)
+                startActivity(i)
             }*/
         }
 

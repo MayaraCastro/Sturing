@@ -49,7 +49,7 @@ class FragmentGroupQuestions : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-   // private var listener: OnFragmentInteractionListener? = null
+    private var listener: OnFragmentInteractionListener? = null
 
     var questions : ArrayList<Question> = ArrayList()
     private var groupSelecionado: String? = null
@@ -90,7 +90,7 @@ class FragmentGroupQuestions : Fragment() {
     }
 
 
-    /*// TODO: Rename method, update argument and hook method into UI event
+    // TODO: Rename method, update argument and hook method into UI event
     fun onButtonPressed(uri: Uri) {
         listener?.onFragmentInteraction(uri)
     }
@@ -123,7 +123,7 @@ class FragmentGroupQuestions : Fragment() {
     interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         fun onFragmentInteraction(uri: Uri)
-    }*/
+    }
 
     companion object {
         /**
@@ -263,6 +263,13 @@ class FragmentGroupQuestions : Fragment() {
         userRef.updateChildren(childUpdates)
                 .addOnSuccessListener {
 
+
+                    val i = Intent(activity, MainActivity::class.java)
+                    i.putExtra("group", groupSelecionado)
+                    i.putExtra("item", 1)
+                    i.putExtra("tab", 1)
+                    startActivity(i)
+
                 }
                 .addOnFailureListener {
 
@@ -300,6 +307,7 @@ class FragmentGroupQuestions : Fragment() {
             val userListener = object : ValueEventListener {
                 override fun onDataChange(p0: DataSnapshot) {
                     var g1 = p0.getValue(Question::class.java)!!
+                    g1!!.questionKey=questionID
                     questions.add(g1!!)
                     recyclerViewQuestion.adapter!!.notifyDataSetChanged()
 
