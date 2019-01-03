@@ -43,6 +43,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="logout" translatable="false">Logout</string>
+    <string name="addQuestion">Add New Question</string>
+    <string name="addComment">New Comment</string>
 
     <!-- TODO: Remove or change this placeholder text -->
 </resources>

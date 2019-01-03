@@ -29,6 +29,8 @@ class GroupAdapter(var items : ArrayList<Group>, var context : Context) : Recycl
             Snackbar.make(it, items[p1].name.toString(), Snackbar.LENGTH_SHORT)
                     .setAction("Action", null).show()
             val i = Intent(context, MainActivity::class.java)
+            i.putExtra("group", items[p1].groupKey)
+            i.putExtra("item", 1)
             context.startActivity(i)
         }
     }

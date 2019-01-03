@@ -34,16 +34,27 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         if (savedInstanceState != null) {
             itemSelecionado = savedInstanceState!!.getInt("item")
+            Log.d("passou", "pasou")
+
         } else {
             nav_view.setCheckedItem(R.id.nav_home)
+            Log.d("NAO PASSOU", " NAO PASSOU")
         }
 
-        when(itemSelecionado){
+        val item = intent.getIntExtra("item",0)
+
+        when(item){
             0->{
                 supportFragmentManager.beginTransaction().replace(R.id.fragment_container, HomeFragment()).commit()
             }
             1->{
-                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, GroupPage()).commit()
+                //Page of group
+                val mFrag = GroupPage()
+                val bundle = Bundle()
+                bundle.putString("group", intent.getStringExtra("group"))   //parameters are (key, value).
+                mFrag.arguments = bundle  //set the group
+
+                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, mFrag).commit()
             }
             else->{
                 supportFragmentManager.beginTransaction().replace(R.id.fragment_container, GroupPage()).commit()

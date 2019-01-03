@@ -12,6 +12,8 @@ import android.support.v4.app.FragmentPagerAdapter
 
 import android.support.design.widget.TabLayout
 import android.support.v4.view.ViewPager
+import android.util.Log
+
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
@@ -33,19 +35,28 @@ class GroupPage : Fragment() {
 
     private val viewPager: ViewPager? = null
     private var itemSelecionado: Int = 0
+    private var groupSelecionado: String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
-
-
+        val bundle = arguments
+        groupSelecionado = bundle!!.getString("group")
+        if (groupSelecionado == null) {
+            Log.d("GROUP SELEICONADOO", "NULLO")
+        }
+        else{
+            Log.d("GROUP SELEICONADOO", groupSelecionado.toString())
+        }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putInt("item", itemSelecionado)
+        outState.putString("group", groupSelecionado)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -63,8 +74,8 @@ class GroupPage : Fragment() {
         if(savedInstanceState !=null){
             itemSelecionado = savedInstanceState!!.getInt("item")
             viewPager.currentItem = itemSelecionado
-        }
 
+        }
 
 
         val tabLayout = view.findViewById(R.id.tabs) as TabLayout
@@ -79,8 +90,14 @@ class GroupPage : Fragment() {
 
     private fun setupViewPager(viewPager: ViewPager) {
         val adapter = Adapter(childFragmentManager)
+
+        val mFragGroupQuestions = FragmentGroupQuestions()
+        val bundle = Bundle()
+        bundle.putString("group", groupSelecionado)   //parameters are (key, value).
+        mFragGroupQuestions.arguments = bundle  //set the group
+
         adapter.addFragment(HomeFragment(), getString(R.string.home))
-        adapter.addFragment(MainFragment(), getString(R.string.questions))
+        adapter.addFragment(mFragGroupQuestions, getString(R.string.questions))
         adapter.addFragment(HomeFragment(), getString(R.string.flash_cards))
         viewPager.adapter = adapter
 

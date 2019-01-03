@@ -83,7 +83,7 @@ class GroupListActivity : AppCompatActivity() {
 
                     Log.d(TAG, "groupName: " + g1.name)
                     Log.d(TAG, "groupDescription: " + g1.description)
-
+                    g1.groupKey = groupID
                     groups.add(g1!!)
                     rv_group_list.adapter!!.notifyDataSetChanged()
 
