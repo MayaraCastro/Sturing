@@ -24,22 +24,6 @@ class GroupListActivity : AppCompatActivity() {
         var image = ImageView(this)
         image.setImageResource(R.drawable.book)
 
-        var g1 = Group()
-        g1.name = "John"
-        g1.description = "John`s group"
-
-        var g2 = Group()
-        g2.name = "Bad"
-        g2.description = "Bad`s group"
-
-        var g3 = Group()
-        g3.name = "Ira"
-        g3.description = "Ira`s group"
-
-        groups.add(g1)
-        groups.add(g2)
-        groups.add(g3)
-
         getUserGroups()
 
         rv_group_list.layoutManager = LinearLayoutManager(this)

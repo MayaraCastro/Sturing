@@ -48,6 +48,8 @@
     <string name="requests">Requests</string>
     <string name="friends">Friends</string>
     <string name="add_member">Add Member</string>
+    <string name="friend_requests">Friend Requests</string>
+    <string name="group_requests">Group Requests</string>
 
     <!-- TODO: Remove or change this placeholder text -->
 </resources>

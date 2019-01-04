@@ -50,7 +50,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".QuestionActivity" />
-        <activity android:name=".FindAddUser"></activity>
+        <activity android:name=".FindAddUser" />
+        <activity android:name=".Requests"></activity>
     </application>
 
 </manifest>
