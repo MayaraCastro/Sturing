@@ -1,7 +1,6 @@
 package com.example.sturing.sturing
 
 import android.content.Context
-import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -13,12 +12,13 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import kotlinx.android.synthetic.main.add_user_item.view.*
 import kotlinx.android.synthetic.main.group_list_item.view.*
 
-class CommentAdapter (var items : ArrayList<Comment>, var context : Context) : RecyclerView.Adapter<CommentAdapter.ViewHolder>() {
+class FriendAdapter (var items : ArrayList<User>, var context : Context) : RecyclerView.Adapter<FriendAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ViewHolder {
-        var view = LayoutInflater.from(p0.context).inflate(R.layout.group_list_item, p0, false)
+        var view = LayoutInflater.from(p0.context).inflate(R.layout.add_user_item, p0, false)
         var holder = ViewHolder(view)
         return holder
     }
@@ -29,22 +29,22 @@ class CommentAdapter (var items : ArrayList<Comment>, var context : Context) : R
 
     override fun onBindViewHolder(p0: ViewHolder, p1: Int) {
 
-
-        // p0.tvGroupName?.text = items[p1].userAuthor
-        p0.tvGroupDescription?.text = items[p1].comment
-
         getFromBase(p1, p0)
+
         p0.itemView.setOnClickListener {
             /*val i = Intent(context, QuestionActivity::class.java)
             i.putExtra("question", items[p1].commentKey)
             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             context.startActivity(i)*/
         }
+        p0.tvbtAddMember.setOnClickListener {
+            items[p1].userKey //TODO add user no grupo
+        }
     }
 
     fun getFromBase(p1: Int, holder: ViewHolder){
 
-        val userRef = FirebaseDatabase.getInstance().getReference("users").child(items[p1].userAuthor!!)
+        val userRef = FirebaseDatabase.getInstance().getReference("users").child(items[p1].userKey!!)
 
         val user1Listener = object : ValueEventListener {
             override fun onDataChange(p0: DataSnapshot) {
@@ -56,9 +56,9 @@ class CommentAdapter (var items : ArrayList<Comment>, var context : Context) : R
                             .diskCacheStrategy(DiskCacheStrategy.ALL)
                             .transition(DrawableTransitionOptions.withCrossFade())
                             .circleCrop()
-                            .into(holder.ivGroupImage)
+                            .into(holder.tvimgFriend)
                 }
-                holder.tvGroupName.text = user!!.name
+                holder.tvNameFriend.text = user!!.name
 
 
             }
@@ -74,11 +74,9 @@ class CommentAdapter (var items : ArrayList<Comment>, var context : Context) : R
 
     class ViewHolder(view : View) : RecyclerView.ViewHolder(view) {
         // Holds the TextView that will add each animal to
-        val tvGroupName = view.tvGroupName
-        val tvGroupDescription = view.tvGroupDescription
-        val ivGroupImage = view.ivGroupImage
-        val cltGroupItem = view.groupItem
-
+        val tvimgFriend = view.tvimgFriend
+        val tvNameFriend = view.tvNameFriend
+        val tvbtAddMember = view.tvbtAddMember
     }
 
 }

@@ -132,10 +132,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 val i = Intent(this, GroupListActivity::class.java)
                 startActivity(i)
             }
-           /* R.id.nav_send -> {
-                val i = Intent(this, CreateGroupActivity::class.java)
+            R.id.nav_friends -> {
+
+                val i = Intent(this, FindAddUser::class.java)
+                i.putExtra("group", intent.getStringExtra("group"))
+                i.putExtra("funcao", 2)//mostrar todos os usuarios
                 startActivity(i)
-            }*/
+            }
         }
 
         drawer_layout.closeDrawer(GravityCompat.START)

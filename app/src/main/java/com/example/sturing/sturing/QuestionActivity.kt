@@ -55,6 +55,7 @@ class QuestionActivity : AppCompatActivity() {
         i.putExtra("item", 1)
         i.putExtra("tab", 1)
         startActivity(i)
+        finish()
 
     }
 
@@ -85,7 +86,7 @@ class QuestionActivity : AppCompatActivity() {
 
     }
 
-
+    //LIST
     fun getQuestionFromBase(){
         val questionRef = FirebaseDatabase.getInstance().getReference("questions").child(question!!)
 
@@ -251,6 +252,7 @@ class QuestionActivity : AppCompatActivity() {
                     i.putExtra("question", question)
                     i.putExtra("group", groupSelecionado)
                     startActivity(i)
+                    finish()
 
                 }
                 .addOnFailureListener {

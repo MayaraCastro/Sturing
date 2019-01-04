@@ -1,5 +1,6 @@
 package com.example.sturing.sturing
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -155,6 +156,9 @@ class GroupPage : Fragment() {
     }
 
     fun addUserToGroup(){
-        //TODO
+        val i = Intent(activity, FindAddUser::class.java)
+        i.putExtra("group", groupSelecionado)
+        i.putExtra("funcao", 1)//mostrar só amigos
+        startActivity(i)
     }
 }

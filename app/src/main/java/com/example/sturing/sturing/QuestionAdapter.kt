@@ -2,6 +2,7 @@ package com.example.sturing.sturing
 
 import android.content.Context
 import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.support.design.widget.Snackbar
 import android.support.v7.widget.RecyclerView
@@ -41,6 +42,7 @@ class QuestionAdapter (var items : ArrayList<Question>, var context : Context, v
             val i = Intent(context, QuestionActivity::class.java)
             i.putExtra("question", items[p1].questionKey)
             i.putExtra("group", group)
+           // i.addFlags(FLAG_ACTIVITY_CLEAR_TASK)
             i.addFlags(FLAG_ACTIVITY_NEW_TASK)
             context.startActivity(i)
         }

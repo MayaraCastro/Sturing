@@ -254,6 +254,7 @@ class FragmentGroupQuestions : Fragment() {
                     i.putExtra("item", 1)
                     i.putExtra("tab", 1)
                     startActivity(i)
+                    activity!!.finish()
 
                 }
                 .addOnFailureListener {

@@ -31,4 +31,6 @@
     <string name="registration_failed">Falha na registração</string>
     <string name="addQuestion">Adicionar Nova Questão</string>
     <string name="addComment">Novo Comentário</string>
+    <string name="requests">Convites</string>
+    <string name="friends">Amigos</string>
 </resources>

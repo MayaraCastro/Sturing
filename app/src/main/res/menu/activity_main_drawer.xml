@@ -16,7 +16,17 @@
         <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Create Group" />
+            android:title="@string/new_group" />
+        <item
+            android:id="@+id/nav_requests"
+            android:icon="@mipmap/ic_people"
+            android:title="@string/requests" />
+
+        <item
+            android:id="@+id/nav_friends"
+            android:icon="@mipmap/ic_people"
+            android:title="@string/friends" />
+
            <!-- -->
     </group>
 
