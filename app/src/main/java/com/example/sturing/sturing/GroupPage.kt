@@ -13,6 +13,7 @@ import android.support.v4.app.FragmentPagerAdapter
 import android.support.design.widget.TabLayout
 import android.support.v4.view.ViewPager
 import android.util.Log
+import android.widget.ImageView
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -85,6 +86,13 @@ class GroupPage : Fragment() {
         assert(viewPager != null)
         tabLayout.setupWithViewPager(viewPager)
 
+        val btAddUser = view.findViewById(R.id.btAddUser) as ImageView
+
+        btAddUser.setOnClickListener {
+            addUserToGroup()
+        }
+
+
 
         return view
     }
@@ -146,5 +154,7 @@ class GroupPage : Fragment() {
                 }
     }
 
-
+    fun addUserToGroup(){
+        //TODO
+    }
 }
