@@ -33,7 +33,7 @@
         app:layout_constraintTop_toBottomOf="@+id/recyclerViewQuestion">
 
         <EditText
-            android:id="@+id/txtQuestion"
+            android:id="@+id/txtQuestion1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -60,7 +60,7 @@
             app:cardCornerRadius="25dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/txtQuestion"
+            app:layout_constraintStart_toEndOf="@+id/txtQuestion1"
             app:layout_constraintTop_toTopOf="parent">
 
             <LinearLayout

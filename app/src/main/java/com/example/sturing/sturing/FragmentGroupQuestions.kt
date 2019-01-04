@@ -1,13 +1,10 @@
 package com.example.sturing.sturing
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v4.view.ViewPager
 import android.support.v7.widget.CardView
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
@@ -17,18 +14,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.storage.FirebaseStorage
-import kotlinx.android.synthetic.main.content_create_group.*
-import kotlinx.android.synthetic.main.content_group_list.*
 import kotlinx.android.synthetic.main.fragment_fragment_group_questions.*
-import java.io.ByteArrayOutputStream
-import kotlin.math.log
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -73,17 +64,16 @@ class FragmentGroupQuestions : Fragment() {
         val view = inflater.inflate(R.layout.fragment_fragment_group_questions, container, false)
 
         val btAddQuestion = view.findViewById(R.id.btAddQuestion) as CardView
-        btAddQuestion.setOnClickListener {
-            SendUserToQuestionActivity()
-        }
 
         getQuestionsGroup()
 
         val recyclerViewQuestion = view.findViewById(R.id.recyclerViewQuestion) as RecyclerView
         recyclerViewQuestion.layoutManager = LinearLayoutManager(activity)
         recyclerViewQuestion.addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.VERTICAL))
-        recyclerViewQuestion.adapter = QuestionAdapter(questions, activity!!.applicationContext)
+        recyclerViewQuestion.adapter = QuestionAdapter(questions, activity!!.applicationContext, groupSelecionado!!)
+
         btAddQuestion.setOnClickListener { sendQuestion() }
+
         startup()
 
         return view //inflater.inflate(R.layout.fragment_fragment_group_questions, container, false)
@@ -145,25 +135,20 @@ class FragmentGroupQuestions : Fragment() {
                 }
     }
 
-    fun SendUserToQuestionActivity(){
-        val i = Intent(activity, QuestionActivity::class.java)
-        startActivity(i)
-    }
-
     fun sendQuestion(){
 
         val user = FirebaseAuth.getInstance().currentUser
 
-        txtQuestion.error = null
+        txtQuestion1.error = null
 
-        var question = txtQuestion.text.toString()
+        var question = txtQuestion1.text.toString()
 
         var cancel = false
         var focusView: View? = null
 
         if (TextUtils.isEmpty(question)) {
-            txtQuestion.error = getString(R.string.error_field_required)
-            focusView = txtQuestion
+            txtQuestion1.error = getString(R.string.error_field_required)
+            focusView = txtQuestion1
             cancel = true
         }
 
