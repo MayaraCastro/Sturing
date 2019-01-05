@@ -13,8 +13,6 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
@@ -83,41 +81,19 @@ class LoginActivity : AppCompatActivity() {
         if (cancel) {
             focusView?.requestFocus()
         } else {
-            showProgress(true)
+            //showProgress(true)
+            loading(true)
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this) { task ->
-                        showProgress(false)
+                        //showProgress(false)
                         if (task.isSuccessful) {
                             mainActivity()
                         } else {
                             Toast.makeText(this@LoginActivity, getString(R.string.authentication_failed),
                                     Toast.LENGTH_SHORT).show()
+                            loading(false)
                         }
                     }
-        }
-    }
-
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
-    private fun showProgress(show: Boolean) {
-        // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
-        // for very easy animations. If available, use these APIs to fade-in
-        // the progress spinner.
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
-            val shortAnimTime = resources.getInteger(android.R.integer.config_shortAnimTime).toLong()
-
-            login_progress.visibility = if (show) View.VISIBLE else View.GONE
-            login_progress.animate()
-                    .setDuration(shortAnimTime)
-                    .alpha((if (show) 1 else 0).toFloat())
-                    .setListener(object : AnimatorListenerAdapter() {
-                        override fun onAnimationEnd(animation: Animator) {
-                            login_progress.visibility = if (show) View.VISIBLE else View.GONE
-                        }
-                    })
-        } else {
-            // The ViewPropertyAnimator APIs are not available, so simply show
-            // and hide the relevant UI components.
-            login_progress.visibility = if (show) View.VISIBLE else View.GONE
         }
     }
 
@@ -127,6 +103,25 @@ class LoginActivity : AppCompatActivity() {
 
     private fun isPasswordValid(password: String): Boolean {
         return password.length > 4
+    }
+
+    private fun loading(show: Boolean) {
+        animation_view.visibility = if (show) View.VISIBLE else View.GONE
+        if (show) {
+            animation_view.playAnimation()
+            btLogin.animate().alpha(0F).setDuration(200).start()
+            textView12.animate().alpha(0F).setDuration(200).start()
+            txtRegister.animate().alpha(0F).setDuration(200).start()
+            btLogin.isClickable = false
+            txtRegister.isClickable = false
+        } else {
+            animation_view.cancelAnimation()
+            btLogin.animate().alpha(1.0F).setDuration(200).start()
+            textView12.animate().alpha(1.0F).setDuration(200).start()
+            txtRegister.animate().alpha(1.0F).setDuration(200).start()
+            btLogin.isClickable = true
+            txtRegister.isClickable = true
+        }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

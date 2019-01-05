@@ -19,7 +19,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import kotlinx.android.synthetic.main.fragment_fragment_group_questions.*
+import kotlinx.android.synthetic.main.fragment_group_questions.*
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -61,7 +61,7 @@ class FragmentGroupQuestions : Fragment() {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
 
-        val view = inflater.inflate(R.layout.fragment_fragment_group_questions, container, false)
+        val view = inflater.inflate(R.layout.fragment_group_questions, container, false)
 
         val btAddQuestion = view.findViewById(R.id.btAddQuestion) as CardView
 
@@ -76,7 +76,7 @@ class FragmentGroupQuestions : Fragment() {
 
         startup()
 
-        return view //inflater.inflate(R.layout.fragment_fragment_group_questions, container, false)
+        return view //inflater.inflate(R.layout.fragment_group_questions, container, false)
     }
 
 

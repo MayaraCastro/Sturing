@@ -42,15 +42,16 @@ class FriendAdapter (var items : ArrayList<User>, var context : Context, var fun
             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             context.startActivity(i)*/
         }
-        p0.tvbtAddMember.setOnClickListener {
-
+        p0.add_user.setOnClickListener {
+            p0.add_user.isClickable = false
+            p0.add_user.speed = 2F
+            p0.add_user.playAnimation()
+            Log.d("Teste", "Clicked")
             if(funcao == 1){
-
                 addMember(items[p1].userKey)
             }
             else if(funcao == 2){
                 addFriend(items[p1].userKey)
-
             }
         }
     }
@@ -153,7 +154,7 @@ class FriendAdapter (var items : ArrayList<User>, var context : Context, var fun
         // Holds the TextView that will add each animal to
         val tvimgFriend = view.tvimgFriend
         val tvNameFriend = view.tvNameFriend
-        val tvbtAddMember = view.tvbtAddMember
+        val add_user = view.add_user
     }
 
 }

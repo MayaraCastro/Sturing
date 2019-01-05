@@ -16,6 +16,8 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_find_add_user.*
 import kotlinx.android.synthetic.main.activity_question.*
+import kotlinx.android.synthetic.main.add_user_item.*
+import kotlinx.android.synthetic.main.add_user_item.view.*
 
 class FindAddUser : AppCompatActivity() {
 

@@ -9,6 +9,23 @@
     android:visibility="visible"
     tools:context=".LoginActivity">
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animation_view"
+        android:layout_width="160dp"
+        android:layout_height="140dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.514"
+        app:layout_constraintStart_toStartOf="parent"
+        app:lottie_fileName="loading_book.json"
+        app:lottie_loop="true"
+        tools:ignore="MissingConstraints" />
+
     <ProgressBar
         android:id="@+id/login_progress"
         style="?android:attr/progressBarStyleLarge"
@@ -184,7 +201,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp"
                     android:text="@string/notamemberyet"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -197,6 +213,7 @@
                     android:id="@+id/txtRegister"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="84dp"
                     android:layout_marginBottom="8dp"

@@ -2,6 +2,7 @@
 
 buildscript {
     ext.kotlin_version = '1.2.71'
+    ext.lottieVersion = '2.7.0'
     repositories {
         google()
         jcenter()

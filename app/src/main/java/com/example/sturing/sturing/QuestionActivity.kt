@@ -19,7 +19,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_question.*
-import kotlinx.android.synthetic.main.fragment_fragment_group_questions.*
+import kotlinx.android.synthetic.main.fragment_group_questions.*
 
 class QuestionActivity : AppCompatActivity() {
 
