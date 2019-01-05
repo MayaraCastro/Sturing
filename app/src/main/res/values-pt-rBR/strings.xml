@@ -33,4 +33,12 @@
     <string name="addComment">Novo Comentário</string>
     <string name="requests">Convites</string>
     <string name="friends">Amigos</string>
+    <string name="add_member">Adicionar Membro</string>
+    <string name="friend_requests">Solicitação de Amizade</string>
+    <string name="group_requests">Solicitação de Grupo</string>
+    <string name="flash_card_title">Título do Flash Card</string>
+    <string name="title">Título</string>
+    <string name="flash_card_subtitle">Subtítulo do Flash Card</string>
+    <string name="subtitle">Subtítulo</string>
+    <string name="flash_card_description">Descrição do Flash Card</string>
 </resources>

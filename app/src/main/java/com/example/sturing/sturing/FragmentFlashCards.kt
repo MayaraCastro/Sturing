@@ -1,13 +1,23 @@
 package com.example.sturing.sturing
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.support.design.widget.FloatingActionButton
 import android.support.v4.app.Fragment
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import kotlinx.android.synthetic.main.fragment_flash_cards.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -29,18 +39,46 @@ class FragmentFlashCards : Fragment() {
     private var param2: String? = null
     private var listener: OnFragmentInteractionListener? = null
 
+    private var cardToDo: ArrayList<FlashCard> = ArrayList()
+    private var cardDoing: ArrayList<FlashCard> = ArrayList()
+    private var cardDone: ArrayList<FlashCard> = ArrayList()
+    private var groupSelecionado: String? = null
+
+    private val CREATE_FLASH_CARD_CODE = 40
+    private val TAG = "FragmentFlashCards"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+        val bundle = arguments
+        groupSelecionado = bundle!!.getString("group")
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_flash_cards, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
+        val view = inflater.inflate(R.layout.fragment_flash_cards, container, false)
+
+        val rvToDo = view.findViewById(R.id.rvToDo) as RecyclerView
+        rvToDo.layoutManager = LinearLayoutManager(activity)
+        rvToDo.adapter = FlashCardAdapter(cardToDo, activity!!.applicationContext, groupSelecionado!!)
+
+        val rvDoing = view.findViewById(R.id.rvDoing) as RecyclerView
+        rvDoing.layoutManager = LinearLayoutManager(activity)
+        rvDoing.adapter = FlashCardAdapter(cardDoing, activity!!.applicationContext, groupSelecionado!!)
+
+        val rvDone = view.findViewById(R.id.rvDone) as RecyclerView
+        rvDone.layoutManager = LinearLayoutManager(activity)
+        rvDone.adapter = FlashCardAdapter(cardDone, activity!!.applicationContext, groupSelecionado!!)
+
+        val fabAddCard = view.findViewById(R.id.fabAddCard) as FloatingActionButton
+        fabAddCard.setOnClickListener {
+            createFlashCard()
+        }
+
+        return view
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -79,6 +117,9 @@ class FragmentFlashCards : Fragment() {
     }
 
     companion object {
+
+        private var postValues = mutableMapOf<String, Boolean>()
+
         /**
          * Use this factory method to create a new instance of
          * this fragment using the provided parameters.
@@ -96,5 +137,107 @@ class FragmentFlashCards : Fragment() {
                         putString(ARG_PARAM2, param2)
                     }
                 }
+    }
+
+    private fun startup() {
+        val groupRef = FirebaseDatabase.getInstance().getReference("groups").child(groupSelecionado!!)
+        Log.d(TAG, groupSelecionado)
+
+        val groupListener = object : ValueEventListener {
+            override fun onDataChange(p0: DataSnapshot) {
+                val group = p0.getValue(Group::class.java)
+                if (group != null) {
+                    Log.d(TAG, group.name)
+                    if (group.flashcards != null) {
+                        postValues = group.flashcards!!
+                        Log.d(TAG, postValues.size.toString())
+                    }
+                }
+            }
+            override fun onCancelled(p0: DatabaseError) {
+            }
+        }
+
+        groupRef.addListenerForSingleValueEvent(groupListener)
+    }
+
+    private fun getFlashCards() {
+        val groupRef = FirebaseDatabase.getInstance().getReference("groups").child(groupSelecionado!!)
+
+        val cardsListener = object: ValueEventListener {
+            override fun onDataChange(p0: DataSnapshot) {
+                var group = p0.getValue(Group::class.java)
+                addFlashCardsOnList(group!!.flashcards)
+            }
+
+            override fun onCancelled(p0: DatabaseError) {
+            }
+        }
+        groupRef.addListenerForSingleValueEvent(cardsListener)
+    }
+
+    private fun addFlashCardsOnList(flashCards: HashMap<String, Boolean>?) {
+        if (flashCards == null) {
+            return
+        }
+        for ((cardID, _) in flashCards) {
+            val cardsRef = FirebaseDatabase.getInstance().getReference("flashcards").child(cardID)
+
+            val cardsListener = object : ValueEventListener {
+                override fun onDataChange(p0: DataSnapshot) {
+                    var flashCard = p0.getValue(FlashCard::class.java)
+
+                    if (flashCard != null) {
+                        when (flashCard!!.state) {
+                            0 -> {
+                                cardToDo.add(flashCard!!)
+                                rvToDo.adapter!!.notifyDataSetChanged()
+                            }
+                            1 -> {
+                                cardDoing.add(flashCard!!)
+                                rvDoing.adapter!!.notifyDataSetChanged()
+                            }
+                            2 -> {
+                                cardDone.add(flashCard!!)
+                                rvDone.adapter!!.notifyDataSetChanged()
+                            }
+                        }
+                    }
+                }
+                override fun onCancelled(p0: DatabaseError) {
+                }
+            }
+            cardsRef.addListenerForSingleValueEvent(cardsListener)
+        }
+    }
+
+    private fun createFlashCard() {
+        val i = Intent(activity, CreateFlashCardActivity::class.java)
+        startActivityForResult(i, CREATE_FLASH_CARD_CODE)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK && requestCode == CREATE_FLASH_CARD_CODE) {
+            val key = data?.extras?.get("key") as String
+            val groupRef = FirebaseDatabase.getInstance().getReference("groups").child(groupSelecionado!!)
+            var hash = mutableMapOf<String, Boolean>()
+            hash.put(key, true)
+
+            for((card, _) in postValues!!){
+                hash.put(card, true)
+            }
+
+            val childUpdates = HashMap<String, Any>()
+            childUpdates.put("/flashcards/", hash)
+
+            groupRef.updateChildren(childUpdates)
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        startup()
+        getFlashCards()
     }
 }

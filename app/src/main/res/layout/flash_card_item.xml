@@ -41,7 +41,7 @@
           app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imageView6"
+            android:id="@+id/ivImage"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:scaleType="fitXY"
@@ -90,7 +90,7 @@
               app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/textView14"
+                android:id="@+id/tvTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
@@ -101,7 +101,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textView16"
+                android:id="@+id/tvSubTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Subtitle here"
@@ -113,7 +113,7 @@
         <android.support.constraint.ConstraintLayout
             android:id="@+id/constraintLayout11"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -121,9 +121,9 @@
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout12">
 
           <TextView
-              android:id="@+id/textView18"
+              android:id="@+id/tvDescription"
               android:layout_width="0dp"
-              android:layout_height="0dp"
+              android:layout_height="wrap_content"
               android:text="@string/common_google_play_services_wear_update_text"
               android:textAlignment="viewStart"
               android:textSize="10sp"

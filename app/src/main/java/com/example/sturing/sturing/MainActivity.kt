@@ -20,7 +20,8 @@ import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.nav_header_main.*
 import kotlinx.android.synthetic.main.nav_header_main.view.*
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, FragmentGroupQuestions.OnFragmentInteractionListener {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
+        FragmentGroupQuestions.OnFragmentInteractionListener, FragmentFlashCards.OnFragmentInteractionListener {
     override fun onFragmentInteraction(uri: Uri) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
@@ -190,7 +191,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                         .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .transition(withCrossFade())
                         .circleCrop()
-                        .into(imgProfile)
+                        .into(imgFlashCard)
             }
         }
         if (p0!!.key.equals("name")) {

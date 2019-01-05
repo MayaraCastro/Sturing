@@ -9,77 +9,37 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.os.Build
+import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
-import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.view.View
 import android.widget.Toast
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.sturing.sturing.Glide.GlideApp
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
-import kotlinx.android.synthetic.main.activity_create_group.*
-import kotlinx.android.synthetic.main.content_manage.*
+import kotlinx.android.synthetic.main.activity_create_flash_card.*
+import kotlinx.android.synthetic.main.content_add_flash_card.*
 import java.io.ByteArrayOutputStream
 
-class ManageActivity : AppCompatActivity() {
+class CreateFlashCardActivity : AppCompatActivity() {
 
-    private val TAG = "ManageActivity"
+    private val TAG = "CreateFlashCardActivity"
     private var mCurrentPhotoPath: String = ""
     private val PERMISSION_CODE = 1000
     private val TAKE_PHOTO_REQUEST = 101
     private lateinit var bitmap: Bitmap
+    private var groupSelecionado: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_manage)
+        setContentView(R.layout.activity_create_flash_card)
         setSupportActionBar(toolbar)
-
-        val user = FirebaseAuth.getInstance().currentUser
-        val userRef = FirebaseDatabase.getInstance().getReference("users").child(user!!.uid)
-
-        val userListener = object : ValueEventListener {
-            override fun onDataChange(p0: DataSnapshot) {
-                txtName.hint = p0.child("name").getValue(String::class.java)
-                txtEmail.hint = p0.child("email").getValue(String::class.java)
-                val imageUrl = p0.child("image").getValue(String::class.java)
-
-                if (imageUrl != null) {
-                    GlideApp.with(this@ManageActivity)
-                            .load(imageUrl)
-                            .diskCacheStrategy(DiskCacheStrategy.ALL)
-                            .transition(withCrossFade())
-                            .circleCrop()
-                            .into(imgFlashCard)
-                }
-                Log.i(TAG, "Data changed")
-            }
-            override fun onCancelled(p0: DatabaseError) {
-            }
-        }
-
-        userRef.addListenerForSingleValueEvent(userListener)
-
-        toolbar.setNavigationOnClickListener {onBackPressed()}
-
-        btnSave.setOnClickListener { saveData() }
 
         btnImage.setOnClickListener { checkPermissions() }
 
-        btnLogout.setOnClickListener { signOut() }
-    }
-
-    private fun signOut() {
-        val i = Intent(this, LoginActivity::class.java)
-        startActivity(i)
-        FirebaseAuth.getInstance().signOut()
-        finish()
+        btnSave.setOnClickListener { saveData() }
     }
 
     private fun checkPermissions() {
@@ -93,19 +53,6 @@ class ManageActivity : AppCompatActivity() {
             }
         } else {
             takePhoto()
-        }
-    }
-
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        when(requestCode) {
-            PERMISSION_CODE -> {
-                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    takePhoto()
-                } else {
-                    Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show()
-                }
-            }
         }
     }
 
@@ -130,22 +77,25 @@ class ManageActivity : AppCompatActivity() {
             val bundle = data?.extras
             bitmap = bundle?.get("data") as Bitmap
 
-            GlideApp.with(this@ManageActivity)
+            GlideApp.with(this@CreateFlashCardActivity)
                     .load(bitmap)
-                    .transition(withCrossFade())
-                    .circleCrop()
+                    .transition(DrawableTransitionOptions.withCrossFade())
                     .into(imgFlashCard)
         }
     }
 
     private fun saveData() {
 
-        val name = txtName.text.toString()
-
         showProgress(true)
-        val user = FirebaseAuth.getInstance().currentUser
-        val userRef = FirebaseDatabase.getInstance().getReference("users").child(user!!.uid)
-        val imageRef = FirebaseStorage.getInstance().getReference("images").child(user!!.uid).child("profile")
+        val title = txtTitle.text.toString()
+        val subtitle = txtSubTitle.text.toString()
+        val description = txtDescription.text.toString()
+        val userAuthor = FirebaseAuth.getInstance().currentUser!!.uid
+        val flashCard = FlashCard(userAuthor, null, title, subtitle, description, 0)
+
+        val key = FirebaseDatabase.getInstance().reference.child("flashcards").push().key
+        val cardRef = FirebaseDatabase.getInstance().getReference("flashcards").child(key!!)
+        val imageRef = FirebaseStorage.getInstance().getReference("cardImage").child(key!!).child("flashCardImage")
 
         if (::bitmap.isInitialized) {
             val baos = ByteArrayOutputStream()
@@ -154,32 +104,33 @@ class ManageActivity : AppCompatActivity() {
 
             imageRef.putBytes(data)
                     .addOnFailureListener {
-                        Toast.makeText(this@ManageActivity, "Image upload fail",
+                        Toast.makeText(this@CreateFlashCardActivity, "Image upload fail",
                                 Toast.LENGTH_SHORT).show()
                     }
                     .addOnSuccessListener {
                         imageRef.downloadUrl
                                 .onSuccessTask { it ->
-                                    userRef.child("image").setValue(it.toString())
+                                    flashCard.image = it.toString()
+                                    cardRef.setValue(flashCard)
                                 }
+                    }
+        } else {
+            cardRef.setValue(flashCard)
+                    .addOnCompleteListener {
+                        if (it.isSuccessful) {
+
+                        } else {
+                            Toast.makeText(this@CreateFlashCardActivity, "Flashcard creation fail",
+                                    Toast.LENGTH_SHORT).show()
+                        }
                     }
         }
 
-        if (!name.isNullOrEmpty()) {
-            userRef.child("name").setValue(name)
-                    .addOnSuccessListener {
-                        showProgress(false)
-                        finish()
-                    }
-                    .addOnFailureListener {
-                        showProgress(false)
-                        Toast.makeText(this@ManageActivity, getString(R.string.registration_failed),
-                                Toast.LENGTH_SHORT).show()
-                    }
-        } else {
-            showProgress(false)
-            finish()
-        }
+        showProgress(false)
+        val result = Intent()
+        result.putExtra("key", key)
+        setResult(Activity.RESULT_OK, result)
+        finish()
 
     }
 
@@ -201,5 +152,4 @@ class ManageActivity : AppCompatActivity() {
             progressBar.visibility = if (show) View.VISIBLE else View.GONE
         }
     }
-
 }

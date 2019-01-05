@@ -21,18 +21,15 @@
 
             <ImageView
                 android:id="@+id/imageView5"
-                android:layout_width="wrap_content"
-                android:layout_height="130dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_gravity="center"
-                android:layout_marginStart="205dp"
-                android:layout_marginEnd="144dp"
+                android:layout_marginStart="8dp"
                 android:layout_weight="0"
                 android:background="@color/dark_blue"
                 android:padding="30dp"
                 android:src="@drawable/book"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/btAddUser"
-                app:layout_constraintHorizontal_bias="0.502"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0" />
@@ -42,22 +39,18 @@
                 android:layout_width="38dp"
                 android:layout_height="34dp"
                 android:layout_alignParentEnd="true"
-                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="2dp"
+                android:layout_marginEnd="8dp"
                 android:layout_weight="0"
                 android:src="@mipmap/ic_people"
                 app:layout_constraintBottom_toTopOf="@+id/btGroupSettings"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.98"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/btGroupSettings"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_width="38dp"
+                android:layout_height="34dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
                 android:adjustViewBounds="true"
@@ -65,10 +58,9 @@
                 android:src="@android:drawable/ic_menu_manage"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.946"
-                app:layout_constraintStart_toEndOf="@+id/imageView5"
                 app:layout_constraintTop_toBottomOf="@+id/btAddUser"
                 app:layout_constraintVertical_bias="0.0" />
+
         </android.support.constraint.ConstraintLayout>
 
         <LinearLayout

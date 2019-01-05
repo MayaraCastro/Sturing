@@ -4,7 +4,6 @@ data class Question(var userAuthor: String? = null, var question: String? = null
 
     var questionKey: String? =null
 
-
     fun toMap(): Map<String, Any?> {
         val result = HashMap<String, Any>()
         result.put("userAuthor", userAuthor!!)
@@ -13,7 +12,6 @@ data class Question(var userAuthor: String? = null, var question: String? = null
         if (comments != null) {
             result.put("comments", comments!!)
         }
-
 
         return result
     }

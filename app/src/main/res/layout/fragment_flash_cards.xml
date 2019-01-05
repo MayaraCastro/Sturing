@@ -9,6 +9,18 @@
 
     <!-- TODO: Update blank fragment layout -->
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabAddCard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:clickable="true"
+        android:src="@mipmap/ic_add_flash_card"
+        app:backgroundTint="@color/dark_blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout8"
         android:layout_width="0dp"
@@ -23,19 +35,19 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@android:color/holo_blue_bright"
-            android:text="Backlog"
+            android:text="To Do"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Button"
             android:textColor="@color/design_default_color_primary_dark"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/rvBacklog"
-            app:layout_constraintEnd_toEndOf="@+id/rvBacklog"
-            app:layout_constraintStart_toStartOf="@+id/rvBacklog"
+            app:layout_constraintBottom_toTopOf="@+id/rvToDo"
+            app:layout_constraintEnd_toEndOf="@+id/rvToDo"
+            app:layout_constraintStart_toStartOf="@+id/rvToDo"
             app:layout_constraintTop_toTopOf="parent" />
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/rvBacklog"
+            android:id="@+id/rvToDo"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"

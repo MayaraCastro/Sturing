@@ -51,7 +51,8 @@
         </activity>
         <activity android:name=".QuestionActivity" />
         <activity android:name=".FindAddUser" />
-        <activity android:name=".Requests"></activity>
+        <activity android:name=".Requests" />
+        <activity android:name=".CreateFlashCardActivity"></activity>
     </application>
 
 </manifest>

@@ -93,8 +93,6 @@ class GroupPage : Fragment() {
             addUserToGroup()
         }
 
-
-
         return view
     }
 
@@ -102,15 +100,16 @@ class GroupPage : Fragment() {
         val adapter = Adapter(childFragmentManager)
 
         val mFragGroupQuestions = FragmentGroupQuestions()
+        val mFragFlashCards = FragmentFlashCards()
         val bundle = Bundle()
         bundle.putString("group", groupSelecionado)   //parameters are (key, value).
         mFragGroupQuestions.arguments = bundle  //set the group
+        mFragFlashCards.arguments = bundle
 
         adapter.addFragment(HomeFragment(), getString(R.string.home))
         adapter.addFragment(mFragGroupQuestions, getString(R.string.questions))
-        adapter.addFragment(HomeFragment(), getString(R.string.flash_cards))
+        adapter.addFragment(mFragFlashCards, getString(R.string.flash_cards))
         viewPager.adapter = adapter
-
 
     }
 
