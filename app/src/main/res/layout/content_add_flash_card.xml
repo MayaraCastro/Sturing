@@ -51,10 +51,10 @@
                     android:id="@+id/imgFlashCard"
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
+                    android:background="#222223"
                     android:contentDescription="@string/nav_header_desc"
-                    android:paddingTop="@dimen/nav_header_vertical_spacing"
-                    android:scaleType="fitXY"
-                    tools:srcCompat="@tools:sample/backgrounds/scenic" />
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/default_flashcard" />
 
                 <Button
                     android:id="@+id/btnImage"

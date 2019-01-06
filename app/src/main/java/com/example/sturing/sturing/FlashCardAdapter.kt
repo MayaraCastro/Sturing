@@ -1,6 +1,13 @@
 package com.example.sturing.sturing
 
+import android.app.Activity
+import android.app.ActivityOptions
 import android.content.Context
+import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
+import android.support.v4.app.ActivityOptionsCompat
+import android.support.v4.app.FragmentTransaction
+import android.support.v4.view.ViewCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -23,16 +30,36 @@ class FlashCardAdapter(var items: ArrayList<FlashCard>, var context: Context, va
     }
 
     override fun onBindViewHolder(p0: ViewHolder, p1: Int) {
+        p0.tvTitle?.text = items[p1].title
+        p0.tvSubtitle?.text = items[p1].subTitle
+        p0.tvDescription?.text = items[p1].description
+
         if (items[p1].image != null) {
+            ViewCompat.setTransitionName(p0.ivImage, items[p1].title!!.hashCode().toString())
+            p0.ivImage.visibility = View.VISIBLE
             GlideApp.with(context)
                     .load(items[p1].image)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .transition(DrawableTransitionOptions.withCrossFade())
                     .into(p0.ivImage)
+        } else {
+            p0.ivImage.visibility = View.GONE
         }
-        p0.tvTitle?.text = items[p1].title
-        p0.tvSubtitle?.text = items[p1].subTitle
-        p0.tvDescription?.text = items[p1].description
+
+        p0.cvCard.setOnClickListener {
+            var i = Intent(p0.cvCard.context, DetailCardActivity::class.java)
+            i.addFlags(FLAG_ACTIVITY_NEW_TASK)
+            i.putExtra("image", items[p1].image)
+            i.putExtra("code", items[p1].title!!.hashCode().toString())
+
+            val options: ActivityOptionsCompat
+            if (items[p1].image != null) {
+                options = ActivityOptionsCompat.makeSceneTransitionAnimation(p0.cvCard.context as Activity, p0.ivImage, ViewCompat.getTransitionName(p0.ivImage)!!)
+                p0.cvCard.context.startActivity(i, options.toBundle())
+            } else {
+                p0.cvCard.context.startActivity(i)
+            }
+        }
     }
 
     class ViewHolder(view : View) : RecyclerView.ViewHolder(view) {
@@ -40,6 +67,7 @@ class FlashCardAdapter(var items: ArrayList<FlashCard>, var context: Context, va
         val tvTitle = view.tvTitle
         val tvSubtitle = view.tvSubTitle
         val tvDescription = view.tvDescription
+        val cvCard = view.cvCard
     }
 
 }

@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
+import android.widget.ImageView
 import android.widget.Toast
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.sturing.sturing.Glide.GlideApp
@@ -30,7 +31,6 @@ class CreateFlashCardActivity : AppCompatActivity() {
     private val PERMISSION_CODE = 1000
     private val TAKE_PHOTO_REQUEST = 101
     private lateinit var bitmap: Bitmap
-    private var groupSelecionado: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +40,8 @@ class CreateFlashCardActivity : AppCompatActivity() {
         btnImage.setOnClickListener { checkPermissions() }
 
         btnSave.setOnClickListener { saveData() }
+
+        toolbar.setNavigationOnClickListener { onBackPressed() }
     }
 
     private fun checkPermissions() {
@@ -77,6 +79,8 @@ class CreateFlashCardActivity : AppCompatActivity() {
             val bundle = data?.extras
             bitmap = bundle?.get("data") as Bitmap
 
+            imgFlashCard.scaleType = ImageView.ScaleType.FIT_XY
+            imgFlashCard.background = null
             GlideApp.with(this@CreateFlashCardActivity)
                     .load(bitmap)
                     .transition(DrawableTransitionOptions.withCrossFade())

@@ -16,8 +16,8 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
         android:clickable="true"
-        android:src="@mipmap/ic_add_flash_card"
-        app:backgroundTint="@color/dark_blue"
+        android:src="@drawable/ic_add_to_photos_black_24dp"
+        app:backgroundTint="@color/colorPrimaryDark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

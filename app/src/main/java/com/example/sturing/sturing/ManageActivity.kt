@@ -66,7 +66,7 @@ class ManageActivity : AppCompatActivity() {
 
         userRef.addListenerForSingleValueEvent(userListener)
 
-        toolbar.setNavigationOnClickListener {onBackPressed()}
+        toolbar.setNavigationOnClickListener { onBackPressed() }
 
         btnSave.setOnClickListener { saveData() }
 
