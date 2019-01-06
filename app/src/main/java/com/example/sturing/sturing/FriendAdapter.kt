@@ -67,12 +67,15 @@ class FriendAdapter (var items : ArrayList<User>, var context : Context, var fun
         val user = FirebaseAuth.getInstance().currentUser
 
         addFriendToUser(userKey, user!!.uid)
-
         addFriendToUser(user!!.uid, userKey)
     }
 
-    private fun startup_group(group: String?) {
+
+    fun addUserToGroup(userKey: String?, group: String?){
+        postValues = mutableMapOf<String, Boolean>()
+
         val userRef = FirebaseDatabase.getInstance().getReference("groups").child(group!!)
+
         val user1Listener = object : ValueEventListener {
             override fun onDataChange(p0: DataSnapshot) {
 
@@ -81,9 +84,30 @@ class FriendAdapter (var items : ArrayList<User>, var context : Context, var fun
                 if (group1 != null) {
                     if(group1.users !=null){
                         postValues = group1.users!!
+
                     }else{
                         postValues = mutableMapOf<String, Boolean>()
                     }
+                    var hash = mutableMapOf<String, Boolean>()
+                    hash.put(userKey!!, true) //true para a pessoa que enviou o pedido
+
+
+                    if(postValues!=null){
+                        for((gp, value) in postValues!!){
+                            hash.put(gp, value)
+                        }
+                    }
+
+                    val childUpdates = HashMap<String, Any>()
+                    childUpdates.put("/users/", hash)
+
+                    userRef.updateChildren(childUpdates)
+                            .addOnSuccessListener {
+
+                            }
+                            .addOnFailureListener {
+
+                            }
 
                 }
             }
@@ -91,129 +115,119 @@ class FriendAdapter (var items : ArrayList<User>, var context : Context, var fun
             }
         }
         userRef.addListenerForSingleValueEvent(user1Listener)
-    }
-
-    fun addUserToGroup(userKey: String?, group: String?){
-        startup_group(group)
-        val userRef = FirebaseDatabase.getInstance().getReference("groups").child(group!!)
-
-        var hash = mutableMapOf<String, Boolean>()
-        hash.put(userKey!!, true) //true para a pessoa que enviou o pedido
-
-
-        if(postValues!=null){
-            for((gp, value) in postValues!!){
-                hash.put(gp, value)
-            }
-        }
-
-        val childUpdates = HashMap<String, Any>()
-        childUpdates.put("/users/", hash)
-
-        userRef.updateChildren(childUpdates)
-                .addOnSuccessListener {
-
-                }
-                .addOnFailureListener {
-
-                }
 
     }
     fun addGroupToUser(userKey: String?, group: String?){
-
-        startup_user(userKey, 2)
-        val userRef = FirebaseDatabase.getInstance().getReference("users").child(userKey!!)
-
-        var hash = mutableMapOf<String, Boolean>()
-        hash.put(group!!, true) //true para a pessoa que enviou o pedido
-
-
-        if(postValues!=null){
-            for((gp, value) in postValues!!){
-                hash.put(gp, value)
-            }
-        }
-
-        val childUpdates = HashMap<String, Any>()
-        childUpdates.put("/groups/", hash)
-
-        userRef.updateChildren(childUpdates)
-                .addOnSuccessListener {
-
-                }
-                .addOnFailureListener {
-
-                }
-
-    }
-
-    private fun startup_user(userKey: String?, op: Int ) {
+        postValues = mutableMapOf<String, Boolean>()
 
         val userRef = FirebaseDatabase.getInstance().getReference("users").child(userKey!!)
+
         val user1Listener = object : ValueEventListener {
             override fun onDataChange(p0: DataSnapshot) {
-
                 var user1 = p0.getValue(User::class.java)
 
                 if (user1 != null) {
-                   if(op ==1){
+                        if(user1.groups != null){
+                            postValues = user1.groups!!
+
+
+
+                        }else{
+                            postValues = mutableMapOf<String, Boolean>()
+                        }
+
+                    var hash = mutableMapOf<String, Boolean>()
+                    hash.put(group!!, true) //true para a pessoa que enviou o pedido
+
+
+                    if(postValues!=null){
+                        for((gp, value) in postValues!!){
+                            hash.put(gp, value)
+                        }
+                    }
+
+                    val childUpdates = HashMap<String, Any>()
+                    childUpdates.put("/groups/", hash)
+
+                    userRef.updateChildren(childUpdates)
+                            .addOnSuccessListener {
+
+                            }
+                            .addOnFailureListener {
+
+                            }
+                }
+
+                Log.d("POSTVALUES", postValues.toString())
+            }
+            override fun onCancelled(p0: DatabaseError) {
+            }
+        }
+
+        userRef.addListenerForSingleValueEvent(user1Listener)
+
+
+    }
+
+
+    private fun addFriendToUser(userId : String?, currentUser: String?){
+        postValues = mutableMapOf<String, Boolean>()
+
+        val userRef = FirebaseDatabase.getInstance().getReference("users").child(currentUser!!)
+        userRef.keepSynced(true)
+
+
+        val user1Listener = object : ValueEventListener {
+            override fun onDataChange(p0: DataSnapshot) {
+                var user1 = p0.getValue(User::class.java)
+                Log.d("POSTVALUES", postValues.toString())
+                if (user1 != null) {
+
                         if(user1.friends  != null){
-                            Log.d("ENTRA", "CHAMOU O DATASHOT")
                             postValues = user1.friends!!
 
                         }else{
                             postValues = mutableMapOf()
                         }
-                   }else if(op ==2){
-                        if(user1.groups != null){
-                            postValues = user1.groups!!
-                        }else{
-                            postValues = mutableMapOf<String, Boolean>()
-                        }
+
+                    var hash = mutableMapOf<String, Boolean>()
+
+                    if(currentUser!!.equals(FirebaseAuth.getInstance().currentUser!!.uid)){
+                        hash.put(userId!!, true) //true para a pessoa que enviou o pedido
                     }
+                    else{
+                        hash.put(userId!!, false)
+                    }
+
+
+                    for((gp, _) in postValues){
+                        // Log.d("ENTRA", "CHAMOU O POSTVALUES")
+                        hash.put(gp, true)
+                    }
+                    Log.d("HASH", hash.toString())
+
+
+                    val childUpdates = HashMap<String, Any>()
+                    //childUpdates.put("/friend_requests/", hash)
+                    childUpdates.put("/friends/", hash)
+                    userRef.updateChildren(childUpdates)
+                            .addOnSuccessListener {
+
+                            }
+                            .addOnFailureListener {
+
+                            }
+
                 }
+
+
             }
             override fun onCancelled(p0: DatabaseError) {
             }
         }
 
         userRef.addListenerForSingleValueEvent(user1Listener)
-    }
 
-    private fun addFriendToUser(userId : String?, currentUser: String?){
-
-        startup_user(currentUser, 1)
-
-
-        val userRef = FirebaseDatabase.getInstance().getReference("users").child(currentUser!!)
-
-        var hash = mutableMapOf<String, Boolean>()
-
-        if(currentUser!!.equals(FirebaseAuth.getInstance().currentUser!!.uid)){
-            hash.put(userId!!, true) //true para a pessoa que enviou o pedido
-        }
-        else{
-            hash.put(userId!!, false)
-        }
-
-
-        for((gp, _) in postValues){
-            Log.d("ENTRA", "CHAMOU O POSTVALUES")
-           hash.put(gp, true)
-        }
-
-
-
-        val childUpdates = HashMap<String, Any>()
-        //childUpdates.put("/friend_requests/", hash)
-        childUpdates.put("/friends/", hash)
-        userRef.updateChildren(childUpdates)
-                .addOnSuccessListener {
-
-                }
-                .addOnFailureListener {
-
-                }
     }
 
     fun getFromBase(p1: Int, holder: ViewHolder){

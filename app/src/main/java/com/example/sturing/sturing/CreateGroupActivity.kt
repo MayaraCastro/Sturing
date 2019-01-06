@@ -127,6 +127,7 @@ class CreateGroupActivity : AppCompatActivity() {
                 if (user1 != null) {
                     if (user1.groups != null) {
                         postValues = user1.groups!!
+
                     }
                 }
 
