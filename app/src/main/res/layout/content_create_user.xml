@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/teste1"
-    android:backgroundTint="#010011"
     android:fadeScrollbars="true"
     android:isScrollContainer="true"
     android:keepScreenOn="true"
