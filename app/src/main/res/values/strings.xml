@@ -56,6 +56,12 @@
     <string name="subtitle">Subtitle</string>
     <string name="flash_card_description">Flash Card description</string>
     <string name="scrolling_view_behavior" translatable="false">scroll_view_behavior</string>
+    <string name="doing">Doing</string>
+    <string name="done">Done</string>
+    <string name="to_do">To Do</string>
+    <string name="set_to_do">Set as To Do</string>
+    <string name="set_doing">Set as Doing</string>
+    <string name="set_done">Set as Done</string>
 
     <!-- TODO: Remove or change this placeholder text -->
 </resources>

@@ -115,6 +115,11 @@ class CreateFlashCardActivity : AppCompatActivity() {
                         imageRef.downloadUrl
                                 .onSuccessTask { it ->
                                     flashCard.image = it.toString()
+                                    showProgress(false)
+                                    val result = Intent()
+                                    result.putExtra("key", key)
+                                    setResult(Activity.RESULT_OK, result)
+                                    finish()
                                     cardRef.setValue(flashCard)
                                 }
                     }
@@ -122,19 +127,17 @@ class CreateFlashCardActivity : AppCompatActivity() {
             cardRef.setValue(flashCard)
                     .addOnCompleteListener {
                         if (it.isSuccessful) {
-
+                            showProgress(false)
+                            val result = Intent()
+                            result.putExtra("key", key)
+                            setResult(Activity.RESULT_OK, result)
+                            finish()
                         } else {
                             Toast.makeText(this@CreateFlashCardActivity, "Flashcard creation fail",
                                     Toast.LENGTH_SHORT).show()
                         }
                     }
         }
-
-        showProgress(false)
-        val result = Intent()
-        result.putExtra("key", key)
-        setResult(Activity.RESULT_OK, result)
-        finish()
 
     }
 
@@ -144,6 +147,8 @@ class CreateFlashCardActivity : AppCompatActivity() {
             val shortAnimTime = resources.getInteger(android.R.integer.config_shortAnimTime).toLong()
 
             progressBar.visibility = if (show) View.VISIBLE else View.GONE
+            btnSave.isClickable = !show
+            btnSave.animate().alpha(0F).setDuration(200).start()
             progressBar.animate()
                     .setDuration(shortAnimTime)
                     .alpha((if (show) 1 else 0).toFloat())
@@ -154,6 +159,8 @@ class CreateFlashCardActivity : AppCompatActivity() {
                     })
         } else {
             progressBar.visibility = if (show) View.VISIBLE else View.GONE
+            btnSave.isClickable = !show
+            btnSave.animate().alpha(0F).setDuration(200).start()
         }
     }
 }

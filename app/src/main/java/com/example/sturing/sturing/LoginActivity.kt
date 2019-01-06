@@ -107,20 +107,18 @@ class LoginActivity : AppCompatActivity() {
 
     private fun loading(show: Boolean) {
         animation_view.visibility = if (show) View.VISIBLE else View.GONE
+        btLogin.isClickable = !show
+        txtRegister.isClickable = !show
         if (show) {
             animation_view.playAnimation()
             btLogin.animate().alpha(0F).setDuration(200).start()
             textView12.animate().alpha(0F).setDuration(200).start()
             txtRegister.animate().alpha(0F).setDuration(200).start()
-            btLogin.isClickable = false
-            txtRegister.isClickable = false
         } else {
             animation_view.cancelAnimation()
             btLogin.animate().alpha(1.0F).setDuration(200).start()
             textView12.animate().alpha(1.0F).setDuration(200).start()
             txtRegister.animate().alpha(1.0F).setDuration(200).start()
-            btLogin.isClickable = true
-            txtRegister.isClickable = true
         }
     }
 

@@ -191,19 +191,19 @@ class FragmentFlashCards : Fragment() {
                         when (flashCard!!.state) {
                             0 -> {
                                 if (!cardToDo.contains(flashCard!!)) {
-                                    cardToDo.add(flashCard!!)
+                                    cardToDo.add(cardToDo.size, flashCard!!)
                                     rvToDo.adapter!!.notifyDataSetChanged()
                                 }
                             }
                             1 -> {
                                 if (cardDoing.contains(flashCard!!)) {
-                                    cardDoing.add(flashCard!!)
+                                    cardDoing.add(cardDoing.size, flashCard!!)
                                     rvDoing.adapter!!.notifyDataSetChanged()
                                 }
                             }
                             2 -> {
                                 if (cardDone.contains(flashCard!!)) {
-                                    cardDone.add(flashCard!!)
+                                    cardDone.add(cardDone.size, flashCard!!)
                                     rvDone.adapter!!.notifyDataSetChanged()
                                 }
                             }

@@ -51,6 +51,11 @@ class FlashCardAdapter(var items: ArrayList<FlashCard>, var context: Context, va
             i.addFlags(FLAG_ACTIVITY_NEW_TASK)
             i.putExtra("image", items[p1].image)
             i.putExtra("code", items[p1].title!!.hashCode().toString())
+            i.putExtra("title", items[p1].title)
+            i.putExtra("subTitle", items[p1].subTitle)
+            i.putExtra("description", items[p1].description)
+            i.putExtra("author", items[p1].userAuthor)
+            i.putExtra("state", items[p1].state)
 
             val options: ActivityOptionsCompat
             if (items[p1].image != null) {

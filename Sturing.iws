@@ -28,7 +28,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b1f72a14-c6a1-405b-a259-f3a75469ce9f" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/ShrinkBehavior.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sturing.iws" beforeDir="false" afterPath="$PROJECT_DIR$/Sturing.iws" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/CreateFlashCardActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/CreateFlashCardActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/DetailCardActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/DetailCardActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/FlashCardAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/FlashCardAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/FragmentFlashCards.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/FragmentFlashCards.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/LoginActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/LoginActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_detail_card.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_detail_card.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_flash_cards.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_flash_cards.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_group_page.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_group_page.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values-pt-rBR/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values-pt-rBR/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -55,8 +65,17 @@
       <file leaf-file-name="CreateFlashCardActivity.kt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/CreateFlashCardActivity.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1003">
-              <caret line="81" column="37" selection-start-line="81" selection-start-column="37" selection-end-line="81" selection-end-column="63" />
+            <state relative-caret-position="292">
+              <caret line="138" column="21" selection-start-line="138" selection-start-column="21" selection-end-line="138" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LoginActivity.kt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/LoginActivity.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="598">
+              <caret line="121" column="9" selection-start-line="121" selection-start-column="9" selection-end-line="121" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -64,35 +83,8 @@
       <file leaf-file-name="FragmentFlashCards.kt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/FragmentFlashCards.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="836">
-              <caret line="210" column="21" selection-start-line="210" selection-start-column="21" selection-end-line="210" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FlashCardAdapter.kt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/FlashCardAdapter.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="394">
-              <caret line="50" column="46" selection-start-line="50" selection-start-column="46" selection-end-line="50" selection-end-column="46" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DetailCardActivity.kt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/DetailCardActivity.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="21" selection-start-line="21" selection-end-line="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GroupAdapter.kt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/GroupAdapter.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="32" column="46" selection-start-line="32" selection-start-column="46" selection-end-line="32" selection-end-column="46" />
+            <state relative-caret-position="619">
+              <caret line="78" column="9" selection-start-line="78" selection-start-column="9" selection-end-line="78" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -100,36 +92,33 @@
       <file leaf-file-name="MainActivity.kt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/MainActivity.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="646">
-              <caret line="59" column="82" selection-start-line="59" selection-start-column="82" selection-end-line="59" selection-end-column="82" />
+            <state relative-caret-position="139">
+              <caret line="153" selection-start-line="153" selection-end-line="153" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GroupPage.kt" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/GroupPage.kt">
+      <file leaf-file-name="FlashCardAdapter.kt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/FlashCardAdapter.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="512">
-              <caret line="92" column="33" lean-forward="true" selection-start-line="92" selection-start-column="33" selection-end-line="92" selection-end-column="33" />
-              <folding>
-                <element signature="e#37#673#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="615">
+              <caret line="57" column="47" selection-start-line="57" selection-start-column="47" selection-end-line="57" selection-end-column="47" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fragment_group_page.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_group_page.xml">
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="37" selection-start-line="5" selection-start-column="37" selection-end-line="5" selection-end-column="37" />
+      <file leaf-file-name="DetailCardActivity.kt" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/DetailCardActivity.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="479">
+              <caret line="61" column="5" lean-forward="true" selection-start-line="61" selection-start-column="5" selection-end-line="61" selection-end-column="5" />
               <folding>
-                <element signature="e#3594#3634#0" expanded="true" />
+                <element signature="e#2319#2348#0" expanded="true" />
+                <element signature="e#2417#2446#0" expanded="true" />
+                <element signature="e#2478#2506#0" expanded="true" />
+                <element signature="e#2669#2698#0" expanded="true" />
               </folding>
             </state>
-          </provider>
-          <provider selected="true" editor-type-id="android-designer2">
-            <state />
           </provider>
         </entry>
       </file>
@@ -139,6 +128,23 @@
             <state />
           </provider>
           <provider selected="true" editor-type-id="android-designer2">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="fragment_flash_cards.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_flash_cards.xml">
+          <provider editor-type-id="text-editor">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="android-designer2">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Translations Editor" pinned="false" current-in-tab="false">
+        <entry file="android-dummy://D:/Documentos/Sturing/app/Translations Editor">
+          <provider selected="true" editor-type-id="string-resource-editor">
             <state />
           </provider>
         </entry>
@@ -2644,41 +2650,41 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout-land/activity_login.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/FindAddUser.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/LoginActivity.kt" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/add_user_item.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/FriendAdapter.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/Question.kt" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_create_flash_card.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/Group.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/FlashCard.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/FragmentFlashCards.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_flash_cards.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/ManageActivity.kt" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/content_add_flash_card.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/CreateFlashCardActivity.kt" />
         <option value="$PROJECT_DIR$/app/src/main/res/transition/detail_enter.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/transition/card_exit.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/transition/card_reenter.xml" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_detail_card.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/DetailCardActivity.kt" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/flash_card_item.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/FlashCardAdapter.kt" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/ShrinkBehavior.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_group_page.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/GroupAdapter.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/MainActivity.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/GroupPage.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_group_page.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/FragmentFlashCards.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/LoginActivity.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/CreateFlashCardActivity.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/FlashCardAdapter.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_flash_cards.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_detail_card.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/DetailCardActivity.kt" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="2246" />
+    <option name="x" value="2113" />
     <option name="y" value="-9" />
-    <option name="width" value="1536" />
-    <option name="height" value="824" />
+    <option name="width" value="1229" />
+    <option name="height" value="659" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -2978,13 +2984,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/LoginActivity.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="836">
-          <caret line="111" column="30" selection-start-line="111" selection-start-column="30" selection-end-line="111" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/QuestionActivity.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -3050,14 +3049,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/group_list_item.xml">
-      <provider editor-type-id="text-editor">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_flash_cards.xml">
       <provider editor-type-id="text-editor">
         <state />
       </provider>
@@ -3178,13 +3169,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/CreateFlashCardActivity.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1003">
-          <caret line="81" column="37" selection-start-line="81" selection-start-column="37" selection-end-line="81" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/QuestionAdapter.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
@@ -3253,34 +3237,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/FlashCardAdapter.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="50" column="46" selection-start-line="50" selection-start-column="46" selection-end-line="50" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/FragmentFlashCards.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="836">
-          <caret line="210" column="21" selection-start-line="210" selection-start-column="21" selection-end-line="210" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/flash_card_item.xml">
-      <provider editor-type-id="text-editor">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="android-dummy://D:/Documentos/Sturing/app/Translations Editor">
-      <provider selected="true" editor-type-id="string-resource-editor">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_detail_card.xml">
       <provider editor-type-id="text-editor">
         <state />
       </provider>
@@ -3295,30 +3252,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_group_page.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="37" selection-start-line="5" selection-start-column="37" selection-end-line="5" selection-end-column="37" />
-          <folding>
-            <element signature="e#3594#3634#0" expanded="true" />
-          </folding>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/LoginActivity.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="598">
+          <caret line="121" column="9" selection-start-line="121" selection-start-column="9" selection-end-line="121" selection-end-column="9" />
         </state>
       </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/DetailCardActivity.kt">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/CreateFlashCardActivity.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
+        <state relative-caret-position="292">
+          <caret line="138" column="21" selection-start-line="138" selection-start-column="21" selection-end-line="138" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/MainActivity.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="59" column="82" selection-start-line="59" selection-start-column="82" selection-end-line="59" selection-end-column="82" />
+        <state relative-caret-position="139">
+          <caret line="153" selection-start-line="153" selection-end-line="153" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/FragmentFlashCards.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="619">
+          <caret line="78" column="9" selection-start-line="78" selection-start-column="9" selection-end-line="78" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/GroupPage.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="92" column="33" selection-start-line="92" selection-start-column="33" selection-end-line="92" selection-end-column="33" />
+          <folding>
+            <element signature="e#37#673#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -3329,12 +3297,53 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/GroupPage.kt">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/FlashCardAdapter.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="512">
-          <caret line="92" column="33" lean-forward="true" selection-start-line="92" selection-start-column="33" selection-end-line="92" selection-end-column="33" />
+        <state relative-caret-position="615">
+          <caret line="57" column="47" selection-start-line="57" selection-start-column="47" selection-end-line="57" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_group_page.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="37" selection-start-line="6" selection-start-column="37" selection-end-line="6" selection-end-column="37" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="android-dummy://D:/Documentos/Sturing/app/Translations Editor">
+      <provider selected="true" editor-type-id="string-resource-editor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_flash_cards.xml">
+      <provider editor-type-id="text-editor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_detail_card.xml">
+      <provider editor-type-id="text-editor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/DetailCardActivity.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="479">
+          <caret line="61" column="5" lean-forward="true" selection-start-line="61" selection-start-column="5" selection-end-line="61" selection-end-column="5" />
           <folding>
-            <element signature="e#37#673#0" expanded="true" />
+            <element signature="e#2319#2348#0" expanded="true" />
+            <element signature="e#2417#2446#0" expanded="true" />
+            <element signature="e#2478#2506#0" expanded="true" />
+            <element signature="e#2669#2698#0" expanded="true" />
           </folding>
         </state>
       </provider>

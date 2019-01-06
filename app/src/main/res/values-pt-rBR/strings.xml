@@ -41,4 +41,10 @@
     <string name="flash_card_subtitle">Subtítulo do Flash Card</string>
     <string name="subtitle">Subtítulo</string>
     <string name="flash_card_description">Descrição do Flash Card</string>
+    <string name="to_do">A fazer</string>
+    <string name="doing">Executando</string>
+    <string name="done">Concluído</string>
+    <string name="set_to_do">Marcar como a fazer</string>
+    <string name="set_doing">Marcar como executando</string>
+    <string name="set_done">Marcar como concluído</string>
 </resources>
