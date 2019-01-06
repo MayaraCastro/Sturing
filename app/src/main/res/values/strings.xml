@@ -55,6 +55,7 @@
     <string name="flash_card_subtitle">Flash Card subtitle</string>
     <string name="subtitle">Subtitle</string>
     <string name="flash_card_description">Flash Card description</string>
+    <string name="scrolling_view_behavior" translatable="false">scroll_view_behavior</string>
 
     <!-- TODO: Remove or change this placeholder text -->
 </resources>

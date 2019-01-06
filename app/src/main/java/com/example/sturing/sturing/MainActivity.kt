@@ -56,6 +56,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 val bundle = Bundle()
                 bundle.putString("group", intent.getStringExtra("group"))   //parameters are (key, value).
                 bundle.putInt("tab", intent.getIntExtra("tab", 0))
+                bundle.putString("name", intent.getStringExtra("name"))
+                bundle.putString("description", intent.getStringExtra("description"))
                 mFrag.arguments = bundle  //set the group
 
                 supportFragmentManager.beginTransaction().replace(R.id.fragment_container, mFrag).commit()

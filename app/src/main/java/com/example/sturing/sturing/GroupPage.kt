@@ -3,6 +3,7 @@ package com.example.sturing.sturing
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.support.design.widget.CoordinatorLayout
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,8 @@ import android.support.design.widget.TabLayout
 import android.support.v4.view.ViewPager
 import android.util.Log
 import android.widget.ImageView
+import kotlinx.android.synthetic.main.fragment_group_page.*
+import kotlinx.android.synthetic.main.fragment_group_page.view.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -35,9 +38,10 @@ class GroupPage : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
-    private val viewPager: ViewPager? = null
     private var itemSelecionado: Int? = null
     private var groupSelecionado: String? = null
+    private var groupName: String? = null
+    private var groupDescription: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +52,8 @@ class GroupPage : Fragment() {
         val bundle = arguments
         groupSelecionado = bundle!!.getString("group")
         itemSelecionado = bundle!!.getInt("tab")
+        groupName = bundle!!.getString("name")
+        groupDescription = bundle!!.getString("description")
 
         if (groupSelecionado == null) {
             Log.d("GROUP SELEICONADOO", "NULLO")
@@ -82,16 +88,17 @@ class GroupPage : Fragment() {
         viewPager.currentItem = itemSelecionado!!
 
         val tabLayout = view.findViewById(R.id.tabs) as TabLayout
-        tabLayout.setSelectedTabIndicatorColor(Color.parseColor("#008577"));
-        tabLayout.setTabTextColors(Color.parseColor("#7fa87f"), Color.parseColor("#008577"));
+        tabLayout.setSelectedTabIndicatorColor(Color.parseColor("#008577"))
+        tabLayout.setTabTextColors(Color.parseColor("#7fa87f"), Color.parseColor("#008577"))
         assert(viewPager != null)
         tabLayout.setupWithViewPager(viewPager)
 
-        val btAddUser = view.findViewById(R.id.btAddUser) as ImageView
-
-        btAddUser.setOnClickListener {
+        view.btAddUser.setOnClickListener {
             addUserToGroup()
         }
+
+        view.txtName.text = groupName
+        view.txtDescription.text = groupDescription
 
         return view
     }

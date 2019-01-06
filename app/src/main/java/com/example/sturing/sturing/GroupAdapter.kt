@@ -30,6 +30,8 @@ class GroupAdapter(var items : ArrayList<Group>, var context : Context) : Recycl
                     .setAction("Action", null).show()
             val i = Intent(context, MainActivity::class.java)
             i.putExtra("group", items[p1].groupKey)
+            i.putExtra("name", items[p1].name)
+            i.putExtra("description", items[p1].description)
             i.putExtra("item", 1)
             context.startActivity(i)
         }
