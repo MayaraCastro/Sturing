@@ -91,7 +91,7 @@ class FindAddUser : AppCompatActivity() {
             filteredData = friendList
         }
 
-        rvFriends.adapter = FriendAdapter(filteredData, this!!.applicationContext, funcao)
+        rvFriends.adapter = FriendAdapter(filteredData, this!!.applicationContext, funcao, groupSelecionado)
     }
     //LIST
     fun getFriendsFromBase(){

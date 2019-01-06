@@ -20,8 +20,9 @@ import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.add_user_item.view.*
 import kotlinx.android.synthetic.main.group_list_item.view.*
 
-class FriendAdapter (var items : ArrayList<User>, var context : Context, var funcao:Int) : RecyclerView.Adapter<FriendAdapter.ViewHolder>() {
-    private var postValues = mutableMapOf<String, Boolean>()
+class FriendAdapter (var items : ArrayList<User>, var context : Context, var funcao:Int, var groupSelecionado:String?=null) : RecyclerView.Adapter<FriendAdapter.ViewHolder>() {
+    private var postValues = kotlin.collections.mutableMapOf<String, Boolean>()
+
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ViewHolder {
         var view = LayoutInflater.from(p0.context).inflate(R.layout.add_user_item, p0, false)
         var holder = ViewHolder(view)
@@ -58,6 +59,8 @@ class FriendAdapter (var items : ArrayList<User>, var context : Context, var fun
 
     private fun addMember(userKey: String?) {
         //TODO
+        addUserToGroup(userKey,groupSelecionado )
+        addGroupToUser(userKey,groupSelecionado)
     }
 
     private fun addFriend(userKey: String?) {
@@ -66,23 +69,109 @@ class FriendAdapter (var items : ArrayList<User>, var context : Context, var fun
         addFriendToUser(userKey, user!!.uid)
 
         addFriendToUser(user!!.uid, userKey)
+    }
 
+    private fun startup_group(group: String?) {
+        val userRef = FirebaseDatabase.getInstance().getReference("groups").child(group!!)
+        val user1Listener = object : ValueEventListener {
+            override fun onDataChange(p0: DataSnapshot) {
+
+                var group1 = p0.getValue(Group::class.java)
+
+                if (group1 != null) {
+                    if(group1.users !=null){
+                        postValues = group1.users!!
+                    }else{
+                        postValues = mutableMapOf<String, Boolean>()
+                    }
+
+                }
+            }
+            override fun onCancelled(p0: DatabaseError) {
+            }
+        }
+        userRef.addListenerForSingleValueEvent(user1Listener)
+    }
+
+    fun addUserToGroup(userKey: String?, group: String?){
+        startup_group(group)
+        val userRef = FirebaseDatabase.getInstance().getReference("groups").child(group!!)
+
+        var hash = mutableMapOf<String, Boolean>()
+        hash.put(userKey!!, true) //true para a pessoa que enviou o pedido
+
+
+        if(postValues!=null){
+            for((gp, value) in postValues!!){
+                hash.put(gp, value)
+            }
+        }
+
+        val childUpdates = HashMap<String, Any>()
+        childUpdates.put("/users/", hash)
+
+        userRef.updateChildren(childUpdates)
+                .addOnSuccessListener {
+
+                }
+                .addOnFailureListener {
+
+                }
+
+    }
+    fun addGroupToUser(userKey: String?, group: String?){
+
+        startup_user(userKey, 2)
+        val userRef = FirebaseDatabase.getInstance().getReference("users").child(userKey!!)
+
+        var hash = mutableMapOf<String, Boolean>()
+        hash.put(group!!, true) //true para a pessoa que enviou o pedido
+
+
+        if(postValues!=null){
+            for((gp, value) in postValues!!){
+                hash.put(gp, value)
+            }
+        }
+
+        val childUpdates = HashMap<String, Any>()
+        childUpdates.put("/groups/", hash)
+
+        userRef.updateChildren(childUpdates)
+                .addOnSuccessListener {
+
+                }
+                .addOnFailureListener {
+
+                }
 
     }
 
-    private fun startup(userKey: String?) {
-        val user = FirebaseAuth.getInstance().currentUser
+    private fun startup_user(userKey: String?, op: Int ) {
+
         val userRef = FirebaseDatabase.getInstance().getReference("users").child(userKey!!)
         val user1Listener = object : ValueEventListener {
             override fun onDataChange(p0: DataSnapshot) {
 
                 var user1 = p0.getValue(User::class.java)
+
                 if (user1 != null) {
-                    if (user1.friends != null) {
-                        postValues = user1.friends!!
+                   if(op ==1){
+                        if(user1.friends  != null){
+                            Log.d("ENTRA", "CHAMOU O DATASHOT")
+                            postValues = user1.friends!!
+
+                        }else{
+                            postValues = mutableMapOf()
+                        }
+                   }else if(op ==2){
+                        if(user1.groups != null){
+                            postValues = user1.groups!!
+                        }else{
+                            postValues = mutableMapOf<String, Boolean>()
+                        }
                     }
                 }
-
             }
             override fun onCancelled(p0: DatabaseError) {
             }
@@ -92,10 +181,14 @@ class FriendAdapter (var items : ArrayList<User>, var context : Context, var fun
     }
 
     private fun addFriendToUser(userId : String?, currentUser: String?){
-        startup(currentUser)
+
+        startup_user(currentUser, 1)
+
+
         val userRef = FirebaseDatabase.getInstance().getReference("users").child(currentUser!!)
 
         var hash = mutableMapOf<String, Boolean>()
+
         if(currentUser!!.equals(FirebaseAuth.getInstance().currentUser!!.uid)){
             hash.put(userId!!, true) //true para a pessoa que enviou o pedido
         }
@@ -104,13 +197,16 @@ class FriendAdapter (var items : ArrayList<User>, var context : Context, var fun
         }
 
 
-        for((gp, value) in postValues!!){
-            hash.put(gp, value)
+        for((gp, _) in postValues){
+            Log.d("ENTRA", "CHAMOU O POSTVALUES")
+           hash.put(gp, true)
         }
 
-        val childUpdates = HashMap<String, Any>()
-        childUpdates.put("/friend_requests/", hash)
 
+
+        val childUpdates = HashMap<String, Any>()
+        //childUpdates.put("/friend_requests/", hash)
+        childUpdates.put("/friends/", hash)
         userRef.updateChildren(childUpdates)
                 .addOnSuccessListener {
 
