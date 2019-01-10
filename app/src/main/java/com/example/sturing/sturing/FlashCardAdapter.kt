@@ -56,6 +56,7 @@ class FlashCardAdapter(var items: ArrayList<FlashCard>, var context: Context, va
             i.putExtra("description", items[p1].description)
             i.putExtra("author", items[p1].userAuthor)
             i.putExtra("state", items[p1].state)
+            i.putExtra("key", items[p1].key)
 
             val options: ActivityOptionsCompat
             if (items[p1].image != null) {

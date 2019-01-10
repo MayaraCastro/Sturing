@@ -23,6 +23,7 @@ import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_create_flash_card.*
 import kotlinx.android.synthetic.main.content_add_flash_card.*
 import java.io.ByteArrayOutputStream
+import java.time.LocalDateTime
 
 class CreateFlashCardActivity : AppCompatActivity() {
 
@@ -91,15 +92,17 @@ class CreateFlashCardActivity : AppCompatActivity() {
     private fun saveData() {
 
         showProgress(true)
-        val title = txtTitle.text.toString()
-        val subtitle = txtSubTitle.text.toString()
-        val description = txtDescription.text.toString()
-        val userAuthor = FirebaseAuth.getInstance().currentUser!!.uid
-        val flashCard = FlashCard(userAuthor, null, title, subtitle, description, 0)
 
         val key = FirebaseDatabase.getInstance().reference.child("flashcards").push().key
         val cardRef = FirebaseDatabase.getInstance().getReference("flashcards").child(key!!)
         val imageRef = FirebaseStorage.getInstance().getReference("cardImage").child(key!!).child("flashCardImage")
+
+        val title = txtTitle.text.toString()
+        val subtitle = txtSubTitle.text.toString()
+        val description = txtDescription.text.toString()
+        val userAuthor = FirebaseAuth.getInstance().currentUser!!.uid
+        val timestamp = LocalDateTime.now().toString()
+        val flashCard = FlashCard(userAuthor, null, title, subtitle, description, 0, key, timestamp)
 
         if (::bitmap.isInitialized) {
             val baos = ByteArrayOutputStream()

@@ -73,6 +73,10 @@ class FragmentFlashCards : Fragment() {
         rvDone.layoutManager = LinearLayoutManager(activity)
         rvDone.adapter = FlashCardAdapter(cardDone, activity!!.applicationContext, groupSelecionado!!)
 
+        cardToDo.sortBy { flashCard -> flashCard.timestamp }
+        cardDoing.sortBy { flashCard -> flashCard.timestamp }
+        cardDone.sortBy{ flashCard -> flashCard.timestamp }
+
         val fabAddCard = view.findViewById(R.id.fabAddCard) as FloatingActionButton
         fabAddCard.setOnClickListener {
             createFlashCard()
@@ -188,23 +192,26 @@ class FragmentFlashCards : Fragment() {
                     var flashCard = p0.getValue(FlashCard::class.java)
 
                     if (flashCard != null) {
-                        when (flashCard!!.state) {
+                        when (flashCard.state) {
                             0 -> {
-                                if (!cardToDo.contains(flashCard!!)) {
-                                    cardToDo.add(cardToDo.size, flashCard!!)
+                                if (!cardToDo.contains(flashCard)) {
+                                    cardToDo.add(flashCard)
                                     rvToDo.adapter!!.notifyDataSetChanged()
+                                    removeFlashCard(flashCard, 0)
                                 }
                             }
                             1 -> {
-                                if (cardDoing.contains(flashCard!!)) {
-                                    cardDoing.add(cardDoing.size, flashCard!!)
+                                if (!cardDoing.contains(flashCard)) {
+                                    cardDoing.add(flashCard)
                                     rvDoing.adapter!!.notifyDataSetChanged()
+                                    removeFlashCard(flashCard, 1)
                                 }
                             }
                             2 -> {
-                                if (cardDone.contains(flashCard!!)) {
-                                    cardDone.add(cardDone.size, flashCard!!)
+                                if (!cardDone.contains(flashCard)) {
+                                    cardDone.add(flashCard)
                                     rvDone.adapter!!.notifyDataSetChanged()
+                                    removeFlashCard(flashCard, 2)
                                 }
                             }
                         }
@@ -214,6 +221,47 @@ class FragmentFlashCards : Fragment() {
                 }
             }
             cardsRef.addListenerForSingleValueEvent(cardsListener)
+        }
+    }
+
+    private fun removeFlashCard(card: FlashCard, state: Int) {
+        when (state) {
+            0 -> {
+                val existDoing = cardDoing.find { flashCard -> flashCard.key == card.key }
+                if (cardDoing.contains(existDoing)) {
+                    cardDoing.remove(existDoing)
+                    rvDoing.adapter!!.notifyDataSetChanged()
+                }
+                val existDone = cardDone.find { flashCard -> flashCard.key == card.key }
+                if (cardDone.contains(existDone)) {
+                    cardDone.remove(existDone)
+                    rvDone.adapter!!.notifyDataSetChanged()
+                }
+            }
+            1 -> {
+                val existToDo = cardToDo.find { flashCard -> flashCard.key == card.key }
+                if (cardToDo.contains(existToDo)) {
+                    cardToDo.remove(existToDo)
+                    rvToDo.adapter!!.notifyDataSetChanged()
+                }
+                val existDone = cardDone.find { flashCard -> flashCard.key == card.key }
+                if (cardDone.contains(existDone)) {
+                    cardDone.remove(existDone)
+                    rvDone.adapter!!.notifyDataSetChanged()
+                }
+            }
+            2 -> {
+                val existToDo = cardToDo.find { flashCard -> flashCard.key == card.key }
+                if (cardToDo.contains(existToDo)) {
+                    cardToDo.remove(existToDo)
+                    rvToDo.adapter!!.notifyDataSetChanged()
+                }
+                val existDoing = cardDoing.find { flashCard -> flashCard.key == card.key }
+                if (cardDoing.contains(existDoing)) {
+                    cardDoing.remove(existDoing)
+                    rvDoing.adapter!!.notifyDataSetChanged()
+                }
+            }
         }
     }
 
