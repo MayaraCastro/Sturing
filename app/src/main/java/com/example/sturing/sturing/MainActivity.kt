@@ -24,7 +24,9 @@ import kotlinx.android.synthetic.main.nav_header_main.*
 import kotlinx.android.synthetic.main.nav_header_main.view.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
-        FragmentGroupQuestions.OnFragmentInteractionListener, FragmentFlashCards.OnFragmentInteractionListener {
+        FragmentGroupQuestions.OnFragmentInteractionListener, FragmentFlashCards.OnFragmentInteractionListener,
+        FragmentDeck.OnFragmentInteractionListener {
+
     override fun onFragmentInteraction(uri: Uri) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }

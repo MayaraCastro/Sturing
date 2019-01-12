@@ -53,7 +53,8 @@
         <activity android:name=".FindAddUser" />
         <activity android:name=".Requests" />
         <activity android:name=".CreateFlashCardActivity" />
-        <activity android:name=".DetailCardActivity"></activity>
+        <activity android:name=".DetailCardActivity" />
+        <activity android:name=".CreateDeckActivity"></activity>
     </application>
 
 </manifest>

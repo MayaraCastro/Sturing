@@ -9,9 +9,9 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.os.Build
+import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
-import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils
 import android.view.View
 import android.widget.ImageView
@@ -21,12 +21,12 @@ import com.example.sturing.sturing.Glide.GlideApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
-import kotlinx.android.synthetic.main.activity_create_flash_card.*
-import kotlinx.android.synthetic.main.content_add_flash_card.*
+import kotlinx.android.synthetic.main.activity_create_deck.*
+import kotlinx.android.synthetic.main.content_create_deck.*
 import java.io.ByteArrayOutputStream
 import java.time.LocalDateTime
 
-class CreateFlashCardActivity : AppCompatActivity() {
+class CreateDeckActivity : AppCompatActivity() {
 
     private val TAG = "CreateFlashCardActivity"
     private var mCurrentPhotoPath: String = ""
@@ -36,7 +36,7 @@ class CreateFlashCardActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_create_flash_card)
+        setContentView(R.layout.activity_create_deck)
         setSupportActionBar(toolbar)
 
         btnImage.setOnClickListener { checkPermissions() }
@@ -48,11 +48,9 @@ class CreateFlashCardActivity : AppCompatActivity() {
 
     private fun checkError() {
         val title = txtTitle.text.toString()
-        val subTitle = txtSubTitle.text.toString()
         val description = txtDescription.text.toString()
 
         txtTitle.error = null
-        txtSubTitle.error = null
         txtDescription.error = null
 
         var cancel = false
@@ -61,12 +59,6 @@ class CreateFlashCardActivity : AppCompatActivity() {
         if (TextUtils.isEmpty(description)) {
             txtDescription.error = getString(R.string.error_field_required)
             focusView = txtDescription
-            cancel = true
-        }
-
-        if (TextUtils.isEmpty(subTitle)) {
-            txtSubTitle.error = getString(R.string.error_field_required)
-            focusView = txtSubTitle
             cancel = true
         }
 
@@ -119,27 +111,26 @@ class CreateFlashCardActivity : AppCompatActivity() {
             val bundle = data?.extras
             bitmap = bundle?.get("data") as Bitmap
 
-            imgFlashCard.scaleType = ImageView.ScaleType.FIT_XY
-            imgFlashCard.background = null
-            GlideApp.with(this@CreateFlashCardActivity)
+            imgDeck.scaleType = ImageView.ScaleType.FIT_XY
+            imgDeck.background = null
+            GlideApp.with(this@CreateDeckActivity)
                     .load(bitmap)
                     .transition(DrawableTransitionOptions.withCrossFade())
-                    .into(imgFlashCard)
+                    .into(imgDeck)
         }
     }
 
     private fun saveData() {
 
-        val key = FirebaseDatabase.getInstance().reference.child("flashcards").push().key
-        val cardRef = FirebaseDatabase.getInstance().getReference("flashcards").child(key!!)
-        val imageRef = FirebaseStorage.getInstance().getReference("cardImage").child(key!!).child("flashCardImage")
+        val key = FirebaseDatabase.getInstance().reference.child("decks").push().key
+        val cardRef = FirebaseDatabase.getInstance().getReference("decks").child(key!!)
+        val imageRef = FirebaseStorage.getInstance().getReference("deckImage").child(key!!).child("deckImage")
 
         val title = txtTitle.text.toString()
-        val subtitle = txtSubTitle.text.toString()
         val description = txtDescription.text.toString()
         val userAuthor = FirebaseAuth.getInstance().currentUser!!.uid
         val timestamp = LocalDateTime.now().toString()
-        val flashCard = FlashCard(userAuthor, null, title, subtitle, description, 0, key, timestamp)
+        val deck = Deck(userAuthor, null, title, description, key, timestamp)
 
         if (::bitmap.isInitialized) {
             val baos = ByteArrayOutputStream()
@@ -148,23 +139,23 @@ class CreateFlashCardActivity : AppCompatActivity() {
 
             imageRef.putBytes(data)
                     .addOnFailureListener {
-                        Toast.makeText(this@CreateFlashCardActivity, "Image upload fail",
+                        Toast.makeText(this@CreateDeckActivity, "Image upload fail",
                                 Toast.LENGTH_SHORT).show()
                     }
                     .addOnSuccessListener {
                         imageRef.downloadUrl
                                 .onSuccessTask { it ->
-                                    flashCard.image = it.toString()
+                                    deck.image = it.toString()
                                     showProgress(false)
                                     val result = Intent()
                                     result.putExtra("key", key)
                                     setResult(Activity.RESULT_OK, result)
                                     finish()
-                                    cardRef.setValue(flashCard)
+                                    cardRef.setValue(deck)
                                 }
                     }
         } else {
-            cardRef.setValue(flashCard)
+            cardRef.setValue(deck)
                     .addOnCompleteListener {
                         if (it.isSuccessful) {
                             showProgress(false)
@@ -173,7 +164,7 @@ class CreateFlashCardActivity : AppCompatActivity() {
                             setResult(Activity.RESULT_OK, result)
                             finish()
                         } else {
-                            Toast.makeText(this@CreateFlashCardActivity, "Flashcard creation fail",
+                            Toast.makeText(this@CreateDeckActivity, "Deck creation fail",
                                     Toast.LENGTH_SHORT).show()
                         }
                     }

@@ -62,6 +62,9 @@
     <string name="set_to_do">Set as To Do</string>
     <string name="set_doing">Set as Doing</string>
     <string name="set_done">Set as Done</string>
+    <string name="deck_title">Deck Title</string>
+    <string name="deck_description">Deck Description</string>
+    <string name="deck">Decks</string>
 
     <!-- TODO: Remove or change this placeholder text -->
 </resources>

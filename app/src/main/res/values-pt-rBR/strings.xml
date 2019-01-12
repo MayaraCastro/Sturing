@@ -47,4 +47,7 @@
     <string name="set_to_do">Marcar como a fazer</string>
     <string name="set_doing">Marcar como executando</string>
     <string name="set_done">Marcar como concluído</string>
+    <string name="deck_title">Título do Deck</string>
+    <string name="deck_description">Descrição do Deck</string>
+    <string name="deck">Baralhos</string>
 </resources>
