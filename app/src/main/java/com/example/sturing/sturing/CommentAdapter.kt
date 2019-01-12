@@ -1,7 +1,6 @@
 package com.example.sturing.sturing
 
 import android.content.Context
-import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -15,7 +14,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.group_list_item.view.*
 
-class CommentAdapter (var items : ArrayList<Comment>, var context : Context) : RecyclerView.Adapter<CommentAdapter.ViewHolder>() {
+class CommentAdapter(var items: ArrayList<Comment>, var context: Context) : RecyclerView.Adapter<CommentAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ViewHolder {
         var view = LayoutInflater.from(p0.context).inflate(R.layout.group_list_item, p0, false)
@@ -42,7 +41,7 @@ class CommentAdapter (var items : ArrayList<Comment>, var context : Context) : R
         }
     }
 
-    fun getFromBase(p1: Int, holder: ViewHolder){
+    fun getFromBase(p1: Int, holder: ViewHolder) {
 
         val userRef = FirebaseDatabase.getInstance().getReference("users").child(items[p1].userAuthor!!)
 
@@ -62,7 +61,8 @@ class CommentAdapter (var items : ArrayList<Comment>, var context : Context) : R
 
 
             }
-            override fun onCancelled(error: DatabaseError) { }
+
+            override fun onCancelled(error: DatabaseError) {}
 
 
         }
@@ -72,7 +72,7 @@ class CommentAdapter (var items : ArrayList<Comment>, var context : Context) : R
 
     }
 
-    class ViewHolder(view : View) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         // Holds the TextView that will add each animal to
         val tvGroupName = view.tvGroupName
         val tvGroupDescription = view.tvGroupDescription

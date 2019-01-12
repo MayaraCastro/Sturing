@@ -60,6 +60,7 @@ class ManageActivity : AppCompatActivity() {
                 }
                 Log.i(TAG, "Data changed")
             }
+
             override fun onCancelled(p0: DatabaseError) {
             }
         }
@@ -98,7 +99,7 @@ class ManageActivity : AppCompatActivity() {
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        when(requestCode) {
+        when (requestCode) {
             PERMISSION_CODE -> {
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     takePhoto()
@@ -115,7 +116,7 @@ class ManageActivity : AppCompatActivity() {
         val fileUri = contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
 
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        if(intent.resolveActivity(packageManager) != null) {
+        if (intent.resolveActivity(packageManager) != null) {
             mCurrentPhotoPath = fileUri.toString()
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION
                     or Intent.FLAG_GRANT_WRITE_URI_PERMISSION)

@@ -1,18 +1,21 @@
 package com.example.sturing.sturing
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.widget.ImageView
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.*
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_group_list.*
 import kotlinx.android.synthetic.main.content_group_list.*
 
 class GroupListActivity : AppCompatActivity() {
-    var groups : ArrayList<Group> = ArrayList()
+    var groups: ArrayList<Group> = ArrayList()
     private val TAG = "GroupListActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +34,7 @@ class GroupListActivity : AppCompatActivity() {
         rv_group_list.adapter = GroupAdapter(groups, this)
     }
 
-    private fun getUserGroups(){
+    private fun getUserGroups() {
 
         val user = FirebaseAuth.getInstance().currentUser
         val userRef = FirebaseDatabase.getInstance().getReference("users").child(user!!.uid)
@@ -45,6 +48,7 @@ class GroupListActivity : AppCompatActivity() {
                 addGroupsOnList(user1!!.groups)
 
             }
+
             override fun onCancelled(p0: DatabaseError) {
             }
         }
@@ -52,13 +56,13 @@ class GroupListActivity : AppCompatActivity() {
         userRef.addListenerForSingleValueEvent(user1Listener)
     }
 
-    fun addGroupsOnList(groupos : HashMap<String, Boolean>?){
+    fun addGroupsOnList(groupos: HashMap<String, Boolean>?) {
 
         if (groupos == null) {
 
             return
         }
-        for((groupID, _) in groupos){
+        for ((groupID, _) in groupos) {
             val userRef = FirebaseDatabase.getInstance().getReference("groups").child(groupID)
 
             val userListener = object : ValueEventListener {
@@ -72,6 +76,7 @@ class GroupListActivity : AppCompatActivity() {
                     rv_group_list.adapter!!.notifyDataSetChanged()
 
                 }
+
                 override fun onCancelled(p0: DatabaseError) {
                 }
             }

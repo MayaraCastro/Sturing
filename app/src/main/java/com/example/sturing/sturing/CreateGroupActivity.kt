@@ -4,12 +4,12 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.annotation.TargetApi
 import android.content.Intent
-import android.os.Build
 import android.graphics.Bitmap
+import android.os.Build
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
@@ -42,7 +42,7 @@ class CreateGroupActivity : AppCompatActivity() {
         startup()
     }
 
-    private fun saveGroup(){
+    private fun saveGroup() {
         val user = FirebaseAuth.getInstance().currentUser
 
         edtGroupName.error = null
@@ -92,7 +92,7 @@ class CreateGroupActivity : AppCompatActivity() {
 
     }
 
-    private fun writeNewGroup(name: String, description: String, userId : String) {
+    private fun writeNewGroup(name: String, description: String, userId: String) {
         val database = FirebaseDatabase.getInstance().reference
         val key = database.child("groups").push().key
         val post = Group(name, description, userId)
@@ -132,6 +132,7 @@ class CreateGroupActivity : AppCompatActivity() {
                 }
 
             }
+
             override fun onCancelled(p0: DatabaseError) {
             }
         }
@@ -139,14 +140,14 @@ class CreateGroupActivity : AppCompatActivity() {
         userRef.addListenerForSingleValueEvent(user1Listener)
     }
 
-    private fun addGroupUser(groupId : String){
+    private fun addGroupUser(groupId: String) {
         val user = FirebaseAuth.getInstance().currentUser
         val userRef = FirebaseDatabase.getInstance().getReference("users").child(user!!.uid)
 
         var hash = mutableMapOf<String, Boolean>()
         hash.put(groupId, true)
 
-        for((gp, _) in postValues!!){
+        for ((gp, _) in postValues!!) {
             hash.put(gp, true)
         }
 

@@ -1,12 +1,8 @@
 package com.example.sturing.sturing
 
-import android.animation.Animator
-import android.animation.AnimatorListenerAdapter
-import android.annotation.TargetApi
 import android.content.Intent
-import android.os.Build
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextUtils
 import android.util.Log
@@ -27,7 +23,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        if(savedInstanceState != null){
+        if (savedInstanceState != null) {
             email = savedInstanceState!!.getString("email")
             password = savedInstanceState!!.getString("password")
 
@@ -40,7 +36,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         txtRegister.setOnClickListener {
-            val i = Intent(this,CreateUser::class.java)
+            val i = Intent(this, CreateUser::class.java)
             startActivity(i)
         }
 

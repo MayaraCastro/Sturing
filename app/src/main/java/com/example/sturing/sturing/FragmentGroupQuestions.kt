@@ -21,7 +21,6 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.fragment_group_questions.*
 
-
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
@@ -42,7 +41,7 @@ class FragmentGroupQuestions : Fragment() {
     private var param2: String? = null
     private var listener: OnFragmentInteractionListener? = null
 
-    var questions : ArrayList<Question> = ArrayList()
+    var questions: ArrayList<Question> = ArrayList()
     private var groupSelecionado: String? = null
     private var postValues = mutableMapOf<String, Boolean>()
 
@@ -54,6 +53,8 @@ class FragmentGroupQuestions : Fragment() {
         }
         val bundle = arguments
         groupSelecionado = bundle!!.getString("group")
+
+        retainInstance = true
 
     }
 
@@ -135,7 +136,7 @@ class FragmentGroupQuestions : Fragment() {
                 }
     }
 
-    fun sendQuestion(){
+    fun sendQuestion() {
 
         val user = FirebaseAuth.getInstance().currentUser
 
@@ -157,9 +158,9 @@ class FragmentGroupQuestions : Fragment() {
         } else {
             //showProgress(true)
 
-           // val questionUid = FirebaseDatabase.getInstance().getReference("groups").child(question).push().key
+            // val questionUid = FirebaseDatabase.getInstance().getReference("groups").child(question).push().key
             //val questionRef = FirebaseDatabase.getInstance().getReference("groups").child(questionUid!!)
-          //  val imageRef = FirebaseStorage.getInstance().getReference("groupImages").child(questionUid).child("groupImage")
+            //  val imageRef = FirebaseStorage.getInstance().getReference("groupImages").child(questionUid).child("groupImage")
 /*
             if (::bitmap.isInitialized) {
                 val baos = ByteArrayOutputStream()
@@ -185,10 +186,10 @@ class FragmentGroupQuestions : Fragment() {
 
     }
 
-    private fun writeNewQuestion(question: String, userId : String) {
+    private fun writeNewQuestion(question: String, userId: String) {
         val database = FirebaseDatabase.getInstance().reference
         val key = database.child("questions").push().key
-        val post = Question( userId, question)
+        val post = Question(userId, question)
         val postValues = post.toMap()
 
         val childUpdates = HashMap<String, Any>()
@@ -224,6 +225,7 @@ class FragmentGroupQuestions : Fragment() {
                 }
 
             }
+
             override fun onCancelled(p0: DatabaseError) {
             }
         }
@@ -231,14 +233,14 @@ class FragmentGroupQuestions : Fragment() {
         userRef.addListenerForSingleValueEvent(user1Listener)
     }
 
-    private fun addGroupQuestion(questionId : String){
+    private fun addGroupQuestion(questionId: String) {
         val user = FirebaseAuth.getInstance().currentUser
         val userRef = FirebaseDatabase.getInstance().getReference("groups").child(groupSelecionado!!)
 
         var hash = mutableMapOf<String, Boolean>()
         hash.put(questionId, true)
 
-        for((gp, _) in postValues!!){
+        for ((gp, _) in postValues!!) {
             hash.put(gp, true)
         }
 
@@ -262,7 +264,7 @@ class FragmentGroupQuestions : Fragment() {
                 }
     }
 
-    fun getQuestionsGroup(){
+    fun getQuestionsGroup() {
         val user = FirebaseAuth.getInstance().currentUser
         val userRef = FirebaseDatabase.getInstance().getReference("groups").child(groupSelecionado!!)
 
@@ -274,6 +276,7 @@ class FragmentGroupQuestions : Fragment() {
                 addQuestionsOnList(group!!.questions)
 
             }
+
             override fun onCancelled(p0: DatabaseError) {
             }
         }
@@ -281,23 +284,24 @@ class FragmentGroupQuestions : Fragment() {
         userRef.addListenerForSingleValueEvent(user1Listener)
     }
 
-    fun addQuestionsOnList(questoes : HashMap<String, Boolean>?){
+    fun addQuestionsOnList(questoes: HashMap<String, Boolean>?) {
 
         if (questoes == null) {
 
             return
         }
-        for((questionID, _) in questoes){
+        for ((questionID, _) in questoes) {
             val userRef = FirebaseDatabase.getInstance().getReference("questions").child(questionID)
 
             val userListener = object : ValueEventListener {
                 override fun onDataChange(p0: DataSnapshot) {
                     var g1 = p0.getValue(Question::class.java)!!
-                    g1!!.questionKey=questionID
-                    questions.add(g1!!)
-                    recyclerViewQuestion.adapter!!.notifyDataSetChanged()
-
+                    g1.questionKey = questionID
+                    questions.add(g1)
+                    if (recyclerViewQuestion != null)
+                        recyclerViewQuestion.adapter!!.notifyDataSetChanged()
                 }
+
                 override fun onCancelled(p0: DatabaseError) {
                 }
             }

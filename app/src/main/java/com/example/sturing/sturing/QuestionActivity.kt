@@ -1,9 +1,8 @@
 package com.example.sturing.sturing
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v4.view.GravityCompat
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.text.TextUtils
@@ -17,16 +16,14 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_question.*
-import kotlinx.android.synthetic.main.fragment_group_questions.*
 
 class QuestionActivity : AppCompatActivity() {
 
     private var question: String? = null
     private var groupSelecionado: String? = null
 
-    var comments : ArrayList<Comment> = ArrayList()
+    var comments: ArrayList<Comment> = ArrayList()
     private var postValues = mutableMapOf<String, Boolean>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,8 +45,9 @@ class QuestionActivity : AppCompatActivity() {
         startup()
 
     }
+
     override fun onBackPressed() {
-         //super.onBackPressed()
+        //super.onBackPressed()
         val i = Intent(this, MainActivity::class.java)
         i.putExtra("group", groupSelecionado!!)
         i.putExtra("item", 1)
@@ -59,7 +57,7 @@ class QuestionActivity : AppCompatActivity() {
 
     }
 
-    fun sendQuestion(){
+    fun sendQuestion() {
 
         val user = FirebaseAuth.getInstance().currentUser
 
@@ -87,7 +85,7 @@ class QuestionActivity : AppCompatActivity() {
     }
 
     //LIST
-    fun getQuestionFromBase(){
+    fun getQuestionFromBase() {
         val questionRef = FirebaseDatabase.getInstance().getReference("questions").child(question!!)
 
         val questionListener = object : ValueEventListener {
@@ -100,7 +98,8 @@ class QuestionActivity : AppCompatActivity() {
                 getcommentsFromBase(quest.comments)
 
             }
-            override fun onCancelled(error: DatabaseError) { }
+
+            override fun onCancelled(error: DatabaseError) {}
 
 
         }
@@ -108,7 +107,7 @@ class QuestionActivity : AppCompatActivity() {
         questionRef.addListenerForSingleValueEvent(questionListener)
     }
 
-    fun getAuthorFromBase(userID: String){
+    fun getAuthorFromBase(userID: String) {
 
         val userRef = FirebaseDatabase.getInstance().getReference("users").child(userID)
 
@@ -128,7 +127,8 @@ class QuestionActivity : AppCompatActivity() {
 
 
             }
-            override fun onCancelled(error: DatabaseError) { }
+
+            override fun onCancelled(error: DatabaseError) {}
 
 
         }
@@ -149,6 +149,7 @@ class QuestionActivity : AppCompatActivity() {
                 addCommentsOnList(quest!!.comments)
 
             }
+
             override fun onCancelled(p0: DatabaseError) {
             }
         }
@@ -156,13 +157,13 @@ class QuestionActivity : AppCompatActivity() {
         userRef.addListenerForSingleValueEvent(user1Listener)
     }
 
-    fun addCommentsOnList(comentarios : HashMap<String, Boolean>?){
+    fun addCommentsOnList(comentarios: HashMap<String, Boolean>?) {
 
         if (comentarios == null) {
 
             return
         }
-        for((commentID, _) in comentarios){
+        for ((commentID, _) in comentarios) {
             val userRef = FirebaseDatabase.getInstance().getReference("comments").child(commentID)
 
             val userListener = object : ValueEventListener {
@@ -173,6 +174,7 @@ class QuestionActivity : AppCompatActivity() {
                     recyclerViewComment.adapter!!.notifyDataSetChanged()
 
                 }
+
                 override fun onCancelled(p0: DatabaseError) {
                 }
             }
@@ -184,10 +186,10 @@ class QuestionActivity : AppCompatActivity() {
 
     //create
 
-    private fun writeNewComment(comment: String, userId : String) {
+    private fun writeNewComment(comment: String, userId: String) {
         val database = FirebaseDatabase.getInstance().reference
         val key = database.child("questions").push().key
-        val post = Comment( userId, comment)
+        val post = Comment(userId, comment)
         val postValues = post.toMap()
 
         val childUpdates = HashMap<String, Any>()
@@ -223,6 +225,7 @@ class QuestionActivity : AppCompatActivity() {
                 }
 
             }
+
             override fun onCancelled(p0: DatabaseError) {
             }
         }
@@ -230,14 +233,14 @@ class QuestionActivity : AppCompatActivity() {
         userRef.addListenerForSingleValueEvent(user1Listener)
     }
 
-    private fun addQuestionComment(commentId : String){
+    private fun addQuestionComment(commentId: String) {
         val user = FirebaseAuth.getInstance().currentUser
         val userRef = FirebaseDatabase.getInstance().getReference("questions").child(question!!)
 
         var hash = mutableMapOf<String, Boolean>()
         hash.put(commentId, true)
 
-        for((gp, _) in postValues!!){
+        for ((gp, _) in postValues!!) {
             hash.put(gp, true)
         }
 
@@ -246,7 +249,6 @@ class QuestionActivity : AppCompatActivity() {
 
         userRef.updateChildren(childUpdates)
                 .addOnSuccessListener {
-
 
                     val i = Intent(this, QuestionActivity::class.java)
                     i.putExtra("question", question)

@@ -14,7 +14,10 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
 import com.example.sturing.sturing.Glide.GlideApp
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.*
+import com.google.firebase.database.ChildEventListener
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.nav_header_main.*
@@ -28,8 +31,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private val TAG = "MainActivity"
 
-    private var itemSelecionado : Int = 0
-    private var menu : Menu? = null
+    private var itemSelecionado: Int = 0
+    private var menu: Menu? = null
     private lateinit var mChildEventListener: ChildEventListener
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,13 +47,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             nav_view.setCheckedItem(R.id.nav_home)
         }
 
-        val item = intent.getIntExtra("item",0)
+        val item = intent.getIntExtra("item", 0)
 
-        when(item){
-            0->{
+        when (item) {
+            0 -> {
                 supportFragmentManager.beginTransaction().replace(R.id.fragment_container, HomeFragment()).commit()
             }
-            1->{
+            1 -> {
                 //Page of group
                 val mFrag = GroupPage()
                 val bundle = Bundle()
@@ -62,12 +65,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
                 supportFragmentManager.beginTransaction().replace(R.id.fragment_container, mFrag).commit()
             }
-            else->{
+            else -> {
                 supportFragmentManager.beginTransaction().replace(R.id.fragment_container, GroupPage()).commit()
             }
         }
-
-
 
         val toggle = ActionBarDrawerToggle(
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
@@ -157,16 +158,20 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 Log.i(TAG, "onChildAdded:" + p0!!.key)
                 updateChild(p0)
             }
+
             override fun onChildChanged(p0: DataSnapshot, p1: String?) {
                 Log.i(TAG, "onChildChanged:" + p0!!.key)
                 updateChild(p0)
             }
+
             override fun onChildMoved(p0: DataSnapshot, p1: String?) {
                 Log.i(TAG, "onChildMoved:" + p0!!.key)
             }
+
             override fun onChildRemoved(p0: DataSnapshot) {
                 Log.i(TAG, "onChildRemoved:" + p0!!.key)
             }
+
             override fun onCancelled(p0: DatabaseError) {
                 Log.i(TAG, "onChildRemoved:" + p0!!.toException())
             }

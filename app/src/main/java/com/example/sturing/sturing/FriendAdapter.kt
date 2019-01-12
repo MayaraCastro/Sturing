@@ -1,14 +1,11 @@
 package com.example.sturing.sturing
 
 import android.content.Context
-import android.content.Intent
-import android.support.design.widget.Snackbar
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.sturing.sturing.Glide.GlideApp
@@ -18,9 +15,8 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.add_user_item.view.*
-import kotlinx.android.synthetic.main.group_list_item.view.*
 
-class FriendAdapter (var items : ArrayList<User>, var context : Context, var funcao:Int, var groupSelecionado:String?=null) : RecyclerView.Adapter<FriendAdapter.ViewHolder>() {
+class FriendAdapter(var items: ArrayList<User>, var context: Context, var funcao: Int, var groupSelecionado: String? = null) : RecyclerView.Adapter<FriendAdapter.ViewHolder>() {
     private var postValues = kotlin.collections.mutableMapOf<String, Boolean>()
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ViewHolder {
@@ -48,10 +44,9 @@ class FriendAdapter (var items : ArrayList<User>, var context : Context, var fun
             p0.add_user.speed = 2F
             p0.add_user.playAnimation()
             Log.d("Teste", "Clicked")
-            if(funcao == 1){
+            if (funcao == 1) {
                 addMember(items[p1].userKey)
-            }
-            else if(funcao == 2){
+            } else if (funcao == 2) {
                 addFriend(items[p1].userKey)
             }
         }
@@ -59,8 +54,8 @@ class FriendAdapter (var items : ArrayList<User>, var context : Context, var fun
 
     private fun addMember(userKey: String?) {
         //TODO
-        addUserToGroup(userKey,groupSelecionado )
-        addGroupToUser(userKey,groupSelecionado)
+        addUserToGroup(userKey, groupSelecionado)
+        addGroupToUser(userKey, groupSelecionado)
     }
 
     private fun addFriend(userKey: String?) {
@@ -71,7 +66,7 @@ class FriendAdapter (var items : ArrayList<User>, var context : Context, var fun
     }
 
 
-    fun addUserToGroup(userKey: String?, group: String?){
+    fun addUserToGroup(userKey: String?, group: String?) {
         postValues = mutableMapOf<String, Boolean>()
 
         val userRef = FirebaseDatabase.getInstance().getReference("groups").child(group!!)
@@ -82,18 +77,18 @@ class FriendAdapter (var items : ArrayList<User>, var context : Context, var fun
                 var group1 = p0.getValue(Group::class.java)
 
                 if (group1 != null) {
-                    if(group1.users !=null){
+                    if (group1.users != null) {
                         postValues = group1.users!!
 
-                    }else{
+                    } else {
                         postValues = mutableMapOf<String, Boolean>()
                     }
                     var hash = mutableMapOf<String, Boolean>()
                     hash.put(userKey!!, true) //true para a pessoa que enviou o pedido
 
 
-                    if(postValues!=null){
-                        for((gp, value) in postValues!!){
+                    if (postValues != null) {
+                        for ((gp, value) in postValues!!) {
                             hash.put(gp, value)
                         }
                     }
@@ -111,13 +106,15 @@ class FriendAdapter (var items : ArrayList<User>, var context : Context, var fun
 
                 }
             }
+
             override fun onCancelled(p0: DatabaseError) {
             }
         }
         userRef.addListenerForSingleValueEvent(user1Listener)
 
     }
-    fun addGroupToUser(userKey: String?, group: String?){
+
+    fun addGroupToUser(userKey: String?, group: String?) {
         postValues = mutableMapOf<String, Boolean>()
 
         val userRef = FirebaseDatabase.getInstance().getReference("users").child(userKey!!)
@@ -127,21 +124,20 @@ class FriendAdapter (var items : ArrayList<User>, var context : Context, var fun
                 var user1 = p0.getValue(User::class.java)
 
                 if (user1 != null) {
-                        if(user1.groups != null){
-                            postValues = user1.groups!!
+                    if (user1.groups != null) {
+                        postValues = user1.groups!!
 
 
-
-                        }else{
-                            postValues = mutableMapOf<String, Boolean>()
-                        }
+                    } else {
+                        postValues = mutableMapOf<String, Boolean>()
+                    }
 
                     var hash = mutableMapOf<String, Boolean>()
                     hash.put(group!!, true) //true para a pessoa que enviou o pedido
 
 
-                    if(postValues!=null){
-                        for((gp, value) in postValues!!){
+                    if (postValues != null) {
+                        for ((gp, value) in postValues!!) {
                             hash.put(gp, value)
                         }
                     }
@@ -160,6 +156,7 @@ class FriendAdapter (var items : ArrayList<User>, var context : Context, var fun
 
                 Log.d("POSTVALUES", postValues.toString())
             }
+
             override fun onCancelled(p0: DatabaseError) {
             }
         }
@@ -170,7 +167,7 @@ class FriendAdapter (var items : ArrayList<User>, var context : Context, var fun
     }
 
 
-    private fun addFriendToUser(userId : String?, currentUser: String?){
+    private fun addFriendToUser(userId: String?, currentUser: String?) {
         postValues = mutableMapOf<String, Boolean>()
 
         val userRef = FirebaseDatabase.getInstance().getReference("users").child(currentUser!!)
@@ -183,24 +180,23 @@ class FriendAdapter (var items : ArrayList<User>, var context : Context, var fun
                 Log.d("POSTVALUES", postValues.toString())
                 if (user1 != null) {
 
-                        if(user1.friends  != null){
-                            postValues = user1.friends!!
+                    if (user1.friends != null) {
+                        postValues = user1.friends!!
 
-                        }else{
-                            postValues = mutableMapOf()
-                        }
+                    } else {
+                        postValues = mutableMapOf()
+                    }
 
                     var hash = mutableMapOf<String, Boolean>()
 
-                    if(currentUser!!.equals(FirebaseAuth.getInstance().currentUser!!.uid)){
+                    if (currentUser!!.equals(FirebaseAuth.getInstance().currentUser!!.uid)) {
                         hash.put(userId!!, true) //true para a pessoa que enviou o pedido
-                    }
-                    else{
+                    } else {
                         hash.put(userId!!, false)
                     }
 
 
-                    for((gp, _) in postValues){
+                    for ((gp, _) in postValues) {
                         // Log.d("ENTRA", "CHAMOU O POSTVALUES")
                         hash.put(gp, true)
                     }
@@ -222,6 +218,7 @@ class FriendAdapter (var items : ArrayList<User>, var context : Context, var fun
 
 
             }
+
             override fun onCancelled(p0: DatabaseError) {
             }
         }
@@ -230,7 +227,7 @@ class FriendAdapter (var items : ArrayList<User>, var context : Context, var fun
 
     }
 
-    fun getFromBase(p1: Int, holder: ViewHolder){
+    fun getFromBase(p1: Int, holder: ViewHolder) {
 
         val userRef = FirebaseDatabase.getInstance().getReference("users").child(items[p1].userKey!!)
 
@@ -250,7 +247,8 @@ class FriendAdapter (var items : ArrayList<User>, var context : Context, var fun
 
 
             }
-            override fun onCancelled(error: DatabaseError) { }
+
+            override fun onCancelled(error: DatabaseError) {}
 
 
         }
@@ -260,7 +258,7 @@ class FriendAdapter (var items : ArrayList<User>, var context : Context, var fun
 
     }
 
-    class ViewHolder(view : View) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         // Holds the TextView that will add each animal to
         val tvimgFriend = view.tvimgFriend
         val tvNameFriend = view.tvNameFriend

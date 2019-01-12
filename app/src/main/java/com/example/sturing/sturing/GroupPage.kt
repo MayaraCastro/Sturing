@@ -3,20 +3,15 @@ package com.example.sturing.sturing
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.support.design.widget.CoordinatorLayout
+import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentManager
+import android.support.v4.app.FragmentPagerAdapter
+import android.support.v4.view.ViewPager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentPagerAdapter
-
-import android.support.design.widget.TabLayout
-import android.support.v4.view.ViewPager
-import android.util.Log
-import android.widget.ImageView
-import kotlinx.android.synthetic.main.fragment_group_page.*
 import kotlinx.android.synthetic.main.fragment_group_page.view.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -57,8 +52,7 @@ class GroupPage : Fragment() {
 
         if (groupSelecionado == null) {
             Log.d("GROUP SELEICONADOO", "NULLO")
-        }
-        else{
+        } else {
             Log.d("GROUP SELEICONADOO", groupSelecionado.toString())
         }
     }
@@ -81,7 +75,7 @@ class GroupPage : Fragment() {
         setupViewPager(viewPager)
         viewPager.isNestedScrollingEnabled = true
 
-        if(savedInstanceState !=null){
+        if (savedInstanceState != null) {
             itemSelecionado = savedInstanceState!!.getInt("item")
         }
 
@@ -141,6 +135,7 @@ class GroupPage : Fragment() {
             return mFragmentTitles.get(position)
         }
     }
+
     companion object {
         /**
          * Use this factory method to create a new instance of
@@ -161,7 +156,7 @@ class GroupPage : Fragment() {
                 }
     }
 
-    fun addUserToGroup(){
+    fun addUserToGroup() {
         val i = Intent(activity, FindAddUser::class.java)
         i.putExtra("group", groupSelecionado)
         i.putExtra("funcao", 1)//mostrar só amigos

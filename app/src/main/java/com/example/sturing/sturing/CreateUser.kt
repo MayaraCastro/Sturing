@@ -10,12 +10,12 @@ import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils
 import android.util.Log
 import android.view.View
-import kotlinx.android.synthetic.main.activity_create_user.*
-import kotlinx.android.synthetic.main.content_create_user.*
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
+import kotlinx.android.synthetic.main.activity_create_user.*
+import kotlinx.android.synthetic.main.content_create_user.*
 
 
 class CreateUser : AppCompatActivity() {
@@ -36,7 +36,7 @@ class CreateUser : AppCompatActivity() {
             signup()
         }
 
-        btSignin.setOnClickListener {onBackPressed()}
+        btSignin.setOnClickListener { onBackPressed() }
     }
 
     private fun signup() {

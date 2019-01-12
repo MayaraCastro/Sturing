@@ -21,6 +21,9 @@
     </profile>
     <version value="1.0" />
   </component>
+  <component name="Kotlin2JsCompilerArguments">
+    <option name="sourceMapEmbedSources" />
+  </component>
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="android.support.annotation.Nullable" />
     <option name="myDefaultNotNull" value="android.support.annotation.NonNull" />
@@ -51,6 +54,7 @@
     </option>
   </component>
   <component name="ProjectCodeStyleConfiguration">
+    <option name="PREFERRED_PROJECT_CODE_STYLE" value="Default" />
     <code_scheme name="Project" version="173">
       <Objective-C-extensions>
         <file>

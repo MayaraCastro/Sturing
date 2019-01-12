@@ -1,7 +1,7 @@
 package com.example.sturing.sturing
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import com.example.sturing.sturing.Glide.GlideApp
 import com.google.firebase.database.DataSnapshot
@@ -36,9 +36,10 @@ class DetailCardActivity : AppCompatActivity() {
 
         val userListener = object : ValueEventListener {
             override fun onDataChange(p0: DataSnapshot) {
-                val user =  p0.getValue(User::class.java)
+                val user = p0.getValue(User::class.java)
                 txtAuthor.text = user!!.name
             }
+
             override fun onCancelled(p0: DatabaseError) {
             }
         }

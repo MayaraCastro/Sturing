@@ -75,7 +75,7 @@ class FragmentFlashCards : Fragment() {
 
         cardToDo.sortBy { flashCard -> flashCard.timestamp }
         cardDoing.sortBy { flashCard -> flashCard.timestamp }
-        cardDone.sortBy{ flashCard -> flashCard.timestamp }
+        cardDone.sortBy { flashCard -> flashCard.timestamp }
 
         val fabAddCard = view.findViewById(R.id.fabAddCard) as FloatingActionButton
         fabAddCard.setOnClickListener {
@@ -158,6 +158,7 @@ class FragmentFlashCards : Fragment() {
                     }
                 }
             }
+
             override fun onCancelled(p0: DatabaseError) {
             }
         }
@@ -168,7 +169,7 @@ class FragmentFlashCards : Fragment() {
     private fun getFlashCards() {
         val groupRef = FirebaseDatabase.getInstance().getReference("groups").child(groupSelecionado!!)
 
-        val cardsListener = object: ValueEventListener {
+        val cardsListener = object : ValueEventListener {
             override fun onDataChange(p0: DataSnapshot) {
                 var group = p0.getValue(Group::class.java)
                 addFlashCardsOnList(group!!.flashcards)
@@ -217,6 +218,7 @@ class FragmentFlashCards : Fragment() {
                         }
                     }
                 }
+
                 override fun onCancelled(p0: DatabaseError) {
                 }
             }
@@ -278,7 +280,7 @@ class FragmentFlashCards : Fragment() {
             var hash = mutableMapOf<String, Boolean>()
             hash.put(key, true)
 
-            for((card, _) in postValues!!){
+            for ((card, _) in postValues!!) {
                 hash.put(card, true)
             }
 
