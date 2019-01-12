@@ -30,8 +30,6 @@ class QuestionAdapter(var items: ArrayList<Question>, var context: Context, var 
     }
 
     override fun onBindViewHolder(p0: ViewHolder, p1: Int) {
-
-
         // p0.tvGroupName?.text = items[p1].userAuthor
         p0.tvGroupDescription?.text = items[p1].question
 

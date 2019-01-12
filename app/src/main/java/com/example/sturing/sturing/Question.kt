@@ -1,7 +1,6 @@
 package com.example.sturing.sturing
 
 data class Question(var userAuthor: String? = null, var question: String? = null, var comments: HashMap<String, Boolean>? = null) {
-
     var questionKey: String? = null
 
     fun toMap(): Map<String, Any?> {

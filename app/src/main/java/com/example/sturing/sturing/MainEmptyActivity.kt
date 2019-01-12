@@ -21,7 +21,6 @@ class MainEmptyActivity : AppCompatActivity() {
             FirebaseDatabase.getInstance().setPersistenceEnabled(true)
             mDatabase = true
         }
-
         val i: Intent
 
         val user = FirebaseAuth.getInstance().currentUser

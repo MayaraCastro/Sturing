@@ -22,7 +22,6 @@ class QuestionActivity : AppCompatActivity() {
 
     private var question: String? = null
     private var groupSelecionado: String? = null
-
     var comments: ArrayList<Comment> = ArrayList()
     private var postValues = mutableMapOf<String, Boolean>()
 
@@ -185,7 +184,6 @@ class QuestionActivity : AppCompatActivity() {
 
 
     //create
-
     private fun writeNewComment(comment: String, userId: String) {
         val database = FirebaseDatabase.getInstance().reference
         val key = database.child("questions").push().key

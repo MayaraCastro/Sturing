@@ -168,7 +168,6 @@ class FragmentFlashCards : Fragment() {
 
     private fun getFlashCards() {
         val groupRef = FirebaseDatabase.getInstance().getReference("groups").child(groupSelecionado!!)
-
         val cardsListener = object : ValueEventListener {
             override fun onDataChange(p0: DataSnapshot) {
                 var group = p0.getValue(Group::class.java)

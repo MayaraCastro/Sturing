@@ -65,7 +65,6 @@ class FriendAdapter(var items: ArrayList<User>, var context: Context, var funcao
         addFriendToUser(user!!.uid, userKey)
     }
 
-
     fun addUserToGroup(userKey: String?, group: String?) {
         postValues = mutableMapOf<String, Boolean>()
 
@@ -85,8 +84,6 @@ class FriendAdapter(var items: ArrayList<User>, var context: Context, var funcao
                     }
                     var hash = mutableMapOf<String, Boolean>()
                     hash.put(userKey!!, true) //true para a pessoa que enviou o pedido
-
-
                     if (postValues != null) {
                         for ((gp, value) in postValues!!) {
                             hash.put(gp, value)
@@ -134,8 +131,6 @@ class FriendAdapter(var items: ArrayList<User>, var context: Context, var funcao
 
                     var hash = mutableMapOf<String, Boolean>()
                     hash.put(group!!, true) //true para a pessoa que enviou o pedido
-
-
                     if (postValues != null) {
                         for ((gp, value) in postValues!!) {
                             hash.put(gp, value)
@@ -166,7 +161,6 @@ class FriendAdapter(var items: ArrayList<User>, var context: Context, var funcao
 
     }
 
-
     private fun addFriendToUser(userId: String?, currentUser: String?) {
         postValues = mutableMapOf<String, Boolean>()
 
@@ -179,7 +173,6 @@ class FriendAdapter(var items: ArrayList<User>, var context: Context, var funcao
                 var user1 = p0.getValue(User::class.java)
                 Log.d("POSTVALUES", postValues.toString())
                 if (user1 != null) {
-
                     if (user1.friends != null) {
                         postValues = user1.friends!!
 

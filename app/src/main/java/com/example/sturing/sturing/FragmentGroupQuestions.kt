@@ -40,7 +40,6 @@ class FragmentGroupQuestions : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private var listener: OnFragmentInteractionListener? = null
-
     var questions: ArrayList<Question> = ArrayList()
     private var groupSelecionado: String? = null
     private var postValues = mutableMapOf<String, Boolean>()
@@ -157,7 +156,6 @@ class FragmentGroupQuestions : Fragment() {
             focusView?.requestFocus()
         } else {
             //showProgress(true)
-
             // val questionUid = FirebaseDatabase.getInstance().getReference("groups").child(question).push().key
             //val questionRef = FirebaseDatabase.getInstance().getReference("groups").child(questionUid!!)
             //  val imageRef = FirebaseStorage.getInstance().getReference("groupImages").child(questionUid).child("groupImage")

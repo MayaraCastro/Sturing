@@ -107,7 +107,6 @@ class FindAddUser : AppCompatActivity() {
         userRef.addListenerForSingleValueEvent(userListener)
     }
 
-
     fun addFriendsOnList(friends: HashMap<String, Boolean>?) {
 
         if (friends == null) {
@@ -142,7 +141,6 @@ class FindAddUser : AppCompatActivity() {
         val userRef = FirebaseDatabase.getInstance().getReference("users")
         val userListener = object : ValueEventListener {
             override fun onDataChange(p0: DataSnapshot) {
-
                 for (dsp in p0.children) {
                     var user = dsp.getValue(User::class.java)
 

@@ -1,7 +1,6 @@
 package com.example.sturing.sturing
 
 data class Comment(var userAuthor: String? = null, var comment: String? = null) {
-
     var commentKey: String? = null
 
 

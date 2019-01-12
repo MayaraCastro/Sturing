@@ -30,7 +30,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private val TAG = "MainActivity"
-
     private var itemSelecionado: Int = 0
     private var menu: Menu? = null
     private lateinit var mChildEventListener: ChildEventListener
@@ -46,7 +45,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         } else {
             nav_view.setCheckedItem(R.id.nav_home)
         }
-
         val item = intent.getIntExtra("item", 0)
 
         when (item) {
