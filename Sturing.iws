@@ -30,7 +30,6 @@
     <list default="true" id="b1f72a14-c6a1-405b-a259-f3a75469ce9f" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/Sturing.iws" beforeDir="false" afterPath="$PROJECT_DIR$/Sturing.iws" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/CreateGroupActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/CreateGroupActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/GroupPage.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/GroupPage.kt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -57,10 +56,11 @@
       <file leaf-file-name="CreateGroupActivity.kt" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/CreateGroupActivity.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1071">
-              <caret line="134" column="18" selection-start-line="134" selection-start-column="18" selection-end-line="134" selection-end-column="18" />
+            <state relative-caret-position="442">
+              <caret line="87" lean-forward="true" selection-start-line="87" selection-end-line="87" />
               <folding>
-                <element signature="e#3334#3364#0" expanded="true" />
+                <element signature="e#3312#3342#0" expanded="true" />
+                <element signature="e#3702#3733#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -2660,7 +2660,6 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/DetailDeckActivity.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/FragmentDeck.kt" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/content_create_group.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/Group.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/GroupListActivity.kt" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_group_page.xml" />
@@ -2668,6 +2667,7 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/group_list_item.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/GroupPage.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/MainActivity.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/content_create_group.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/CreateGroupActivity.kt" />
       </list>
     </option>
@@ -3294,14 +3294,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_group_page.xml">
-      <provider editor-type-id="text-editor">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/MainActivity.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
@@ -3324,6 +3316,14 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_group_page.xml">
+      <provider editor-type-id="text-editor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_create_group.xml">
       <provider editor-type-id="text-editor">
         <state />
@@ -3334,10 +3334,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/sturing/sturing/CreateGroupActivity.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1071">
-          <caret line="134" column="18" selection-start-line="134" selection-start-column="18" selection-end-line="134" selection-end-column="18" />
+        <state relative-caret-position="442">
+          <caret line="87" lean-forward="true" selection-start-line="87" selection-end-line="87" />
           <folding>
-            <element signature="e#3334#3364#0" expanded="true" />
+            <element signature="e#3312#3342#0" expanded="true" />
+            <element signature="e#3702#3733#0" expanded="true" />
           </folding>
         </state>
       </provider>

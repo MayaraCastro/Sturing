@@ -84,6 +84,7 @@ class CreateGroupActivity : AppCompatActivity() {
         var name = edtGroupName.text.toString()
         val nameHint = edtGroupName.hint.toString()
         var description = edtDescription.text.toString()
+        val descriptionHint = edtDescription.hint.toString()
 
         var cancel = false
         var focusView: View? = null
@@ -93,10 +94,10 @@ class CreateGroupActivity : AppCompatActivity() {
             focusView = edtGroupName
             cancel = true
         } else {
-            name = nameHint
-            if (TextUtils.isEmpty(description)) {
-                description = edtDescription.hint.toString()
-            }
+            if (TextUtils.isEmpty(name))
+                name = nameHint
+            if (TextUtils.isEmpty(description) && descriptionHint != getString(R.string.description))
+                description = descriptionHint
         }
 
         if (cancel) {
