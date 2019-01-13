@@ -96,6 +96,10 @@ class GroupPage : Fragment() {
             addUserToGroup()
         }
 
+        view.btGroupSettings.setOnClickListener {
+            groupSettings()
+        }
+
         view.txtName.text = groupName
         view.txtAnswer.text = groupDescription
         if (groupImage != null) {
@@ -173,6 +177,16 @@ class GroupPage : Fragment() {
         val i = Intent(activity, FindAddUser::class.java)
         i.putExtra("group", groupSelecionado)
         i.putExtra("funcao", 1)//mostrar só amigos
+        startActivity(i)
+    }
+
+    private fun groupSettings() {
+        val i = Intent(activity, CreateGroupActivity::class.java)
+        i.putExtra("settings", true)
+        i.putExtra("group", groupSelecionado)
+        i.putExtra("name", groupName)
+        i.putExtra("description", groupDescription)
+        i.putExtra("image", groupImage)
         startActivity(i)
     }
 }

@@ -44,30 +44,59 @@ class CreateGroupActivity : AppCompatActivity() {
         setContentView(R.layout.activity_create_group)
         setSupportActionBar(toolbar)
 
+        val settings = intent.getBooleanExtra("settings", false)
+
+        if (settings) {
+            val groupName = intent.getStringExtra("name")
+            val groupDescription = intent.getStringExtra("description")
+            val groupImage = intent.getStringExtra("image")
+            val groupKey = intent.getStringExtra("group")
+
+            edtGroupName.hint = groupName
+            edtDescription.hint = groupDescription
+            if (groupImage != null) {
+                imgGroup.scaleType = ImageView.ScaleType.FIT_XY
+                imgGroup.background = null
+                GlideApp.with(this@CreateGroupActivity)
+                        .load(groupImage)
+                        .circleCrop()
+                        .transition(DrawableTransitionOptions.withCrossFade())
+                        .into(imgGroup)
+            }
+
+            btnSaveGroup.setOnClickListener { saveGroup(groupKey, groupImage) }
+        } else {
+            btnSaveGroup.setOnClickListener { saveGroup(null, null) }
+        }
+
         toolbar.setNavigationOnClickListener { onBackPressed() }
 
         btnImageGroup.setOnClickListener { checkPermissions() }
 
-        btnSaveGroup.setOnClickListener { saveGroup() }
-
         startup()
     }
 
-    private fun saveGroup() {
+    private fun saveGroup(key: String?, groupImage: String?) {
         val user = FirebaseAuth.getInstance().currentUser
 
         edtGroupName.error = null
 
         var name = edtGroupName.text.toString()
+        val nameHint = edtGroupName.hint.toString()
         var description = edtDescription.text.toString()
 
         var cancel = false
         var focusView: View? = null
 
-        if (TextUtils.isEmpty(name)) {
+        if (TextUtils.isEmpty(name) && nameHint == getString(R.string.group_name)) {
             edtGroupName.error = getString(R.string.error_field_required)
             focusView = edtGroupName
             cancel = true
+        } else {
+            name = nameHint
+            if (TextUtils.isEmpty(description)) {
+                description = edtDescription.hint.toString()
+            }
         }
 
         if (cancel) {
@@ -75,10 +104,15 @@ class CreateGroupActivity : AppCompatActivity() {
         } else {
             showProgress(true)
 
-            val groupUid = FirebaseDatabase.getInstance().getReference("groups").push().key
+            val groupUid: String?
+            if (key == null)
+                groupUid = FirebaseDatabase.getInstance().getReference("groups").push().key
+            else
+                groupUid = key
+
             val groupRef = FirebaseDatabase.getInstance().getReference("groups").child(groupUid!!)
             val imageRef = FirebaseStorage.getInstance().getReference("groupImages").child(groupUid).child("groupImage")
-            var group = Group(name, description, user!!.uid, null)
+            val group = Group(name, description, user!!.uid, groupImage)
 
             if (::bitmap.isInitialized) {
                 val baos = ByteArrayOutputStream()

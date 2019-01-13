@@ -49,10 +49,10 @@
 
                 <ImageView
                     android:id="@+id/imgGroup"
-                    android:layout_width="120dp"
+                    android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:contentDescription="@string/nav_header_desc"
-                    app:srcCompat="@mipmap/ic_people_round"
+                    app:srcCompat="@drawable/notebook"
                     tools:src="@tools:sample/backgrounds/scenic" />
 
                 <Button
