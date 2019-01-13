@@ -8,13 +8,13 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="AppTheme.CardAdapter" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+    <style name="AppTheme.Adapter" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="android:windowContentTransitions">true</item>
         <item name="android:windowExitTransition">@transition/card_exit</item>
         <item name="android:windowReenterTransition">@transition/card_reenter</item>
     </style>
 
-    <style name="AppTheme.CardDetail" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+    <style name="AppTheme.Detail" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="android:windowContentTransitions">true</item>
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowAllowEnterTransitionOverlap">true</item>

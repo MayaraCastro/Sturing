@@ -54,7 +54,9 @@
         <activity android:name=".Requests" />
         <activity android:name=".CreateFlashCardActivity" />
         <activity android:name=".DetailCardActivity" />
-        <activity android:name=".CreateDeckActivity"></activity>
+        <activity android:name=".CreateDeckActivity" />
+        <activity android:name=".DetailDeckActivity" />
+        <activity android:name=".CreateCardActivity"></activity>
     </application>
 
 </manifest>

@@ -48,17 +48,17 @@ class CreateDeckActivity : AppCompatActivity() {
 
     private fun checkError() {
         val title = txtTitle.text.toString()
-        val description = txtDescription.text.toString()
+        val description = txtAnswer.text.toString()
 
         txtTitle.error = null
-        txtDescription.error = null
+        txtAnswer.error = null
 
         var cancel = false
         var focusView: View? = null
 
         if (TextUtils.isEmpty(description)) {
-            txtDescription.error = getString(R.string.error_field_required)
-            focusView = txtDescription
+            txtAnswer.error = getString(R.string.error_field_required)
+            focusView = txtAnswer
             cancel = true
         }
 
@@ -127,7 +127,7 @@ class CreateDeckActivity : AppCompatActivity() {
         val imageRef = FirebaseStorage.getInstance().getReference("deckImage").child(key!!).child("deckImage")
 
         val title = txtTitle.text.toString()
-        val description = txtDescription.text.toString()
+        val description = txtAnswer.text.toString()
         val userAuthor = FirebaseAuth.getInstance().currentUser!!.uid
         val timestamp = LocalDateTime.now().toString()
         val deck = Deck(userAuthor, null, title, description, key, timestamp)

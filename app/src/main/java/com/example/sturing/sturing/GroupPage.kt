@@ -92,7 +92,7 @@ class GroupPage : Fragment() {
         }
 
         view.txtName.text = groupName
-        view.txtDescription.text = groupDescription
+        view.txtAnswer.text = groupDescription
 
         return view
     }

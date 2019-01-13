@@ -50,4 +50,10 @@
     <string name="deck_title">Título do Deck</string>
     <string name="deck_description">Descrição do Deck</string>
     <string name="deck">Baralhos</string>
+    <string name="question">Questão</string>
+    <string name="answer">Resposta</string>
+    <string name="card_question">Questão do Cartão</string>
+    <string name="card_answer">Resposta do Cartão</string>
+    <string name="error_must_end_with_interrogation">Uma questão deve terminar com uma interrogação</string>
+    <string name="add_a_new_card"><![CDATA[Adicione um novo cartão ->]]></string>
 </resources>

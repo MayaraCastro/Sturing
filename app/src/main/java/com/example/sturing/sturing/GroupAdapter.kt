@@ -45,12 +45,10 @@ class GroupAdapter(var items: ArrayList<Group>, var context: Context) : Recycler
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        // Holds the TextView that will add each animal to
         val tvGroupName = view.tvGroupName
         val tvGroupDescription = view.tvGroupDescription
         val ivGroupImage = view.ivGroupImage
         val cltGroupItem = view.groupItem
-
     }
 
 }

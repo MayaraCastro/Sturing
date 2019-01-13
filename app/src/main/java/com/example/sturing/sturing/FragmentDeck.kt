@@ -180,7 +180,8 @@ class FragmentDeck : Fragment() {
                     var deck = p0.getValue(Deck::class.java)
 
                     if (deck != null) {
-                        if (!deckList.contains(deck)) {
+                        val exist = deckList.find { it -> it.key == deck.key }
+                        if (exist == null) {
                             deckList.add(deck)
                             rvDeck.adapter!!.notifyDataSetChanged()
                         }

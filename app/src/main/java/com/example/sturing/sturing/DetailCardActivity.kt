@@ -2,7 +2,6 @@ package com.example.sturing.sturing
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import com.example.sturing.sturing.Glide.GlideApp
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -19,7 +18,6 @@ class DetailCardActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_card)
-        Log.d(TAG, "Entered")
 
         val extra = intent.extras
         val author = extra.getString("author")
@@ -55,7 +53,7 @@ class DetailCardActivity : AppCompatActivity() {
         }
         txtTitle.text = title
         txtSubtitle.text = subtitle
-        txtDescription.text = description
+        txtAnswer.text = description
 
         fabBack.setOnClickListener {
             onBackPressed()

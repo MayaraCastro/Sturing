@@ -45,7 +45,7 @@
                     android:layout_width="0dp"
                     android:layout_height="70dp"
                     android:scaleType="fitXY"
-                    android:theme="@style/AppTheme.CardAdapter"
+                    android:theme="@style/AppTheme.Adapter"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"

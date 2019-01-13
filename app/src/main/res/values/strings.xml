@@ -65,6 +65,12 @@
     <string name="deck_title">Deck Title</string>
     <string name="deck_description">Deck Description</string>
     <string name="deck">Decks</string>
+    <string name="question">Question</string>
+    <string name="answer">Answer</string>
+    <string name="card_question">Card Question</string>
+    <string name="card_answer">Card Answer</string>
+    <string name="error_must_end_with_interrogation">A question must finish with an interrogation symbol</string>
+    <string name="add_a_new_card"><![CDATA[Add a new card ->]]></string>
 
     <!-- TODO: Remove or change this placeholder text -->
 </resources>

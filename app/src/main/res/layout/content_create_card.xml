@@ -12,8 +12,8 @@
     android:scrollbarAlwaysDrawVerticalTrack="false"
     android:scrollbars="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".CreateFlashCardActivity"
-    tools:showIn="@layout/activity_create_flash_card">
+    tools:context=".CreateCardActivity"
+    tools:showIn="@layout/activity_create_card">
 
     <ScrollView
         android:id="@+id/scrollView2"
@@ -34,39 +34,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
-            <LinearLayout
-                android:id="@+id/linearLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorPrimary"
-                android:gravity="center_horizontal"
-                android:orientation="vertical"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingTop="@dimen/activity_vertical_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin"
-                android:paddingBottom="@dimen/activity_vertical_margin"
-                android:theme="@style/ThemeOverlay.AppCompat.Dark">
-
-                <ImageView
-                    android:id="@+id/imgFlashCard"
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:background="#222223"
-                    android:contentDescription="@string/nav_header_desc"
-                    android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/default_flashcard" />
-
-                <Button
-                    android:id="@+id/btnImage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@android:color/holo_red_light"
-                    android:text="@string/change_image"
-                    android:textAlignment="center"
-                    android:textAllCaps="false" />
-
-            </LinearLayout>
-
             <TextView
                 android:id="@+id/textView4"
                 android:layout_width="match_parent"
@@ -74,11 +41,11 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="8dp"
-                android:text="@string/flash_card_title"
+                android:text="@string/card_question"
                 android:textColor="@color/colorPrimary" />
 
             <EditText
-                android:id="@+id/txtTitle"
+                android:id="@+id/txtQuestion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
@@ -86,37 +53,11 @@
                 android:layout_marginBottom="8dp"
                 android:ems="10"
                 android:enabled="true"
-                android:hint="@string/title"
+                android:hint="@string/question"
                 android:importantForAutofill="no"
                 android:inputType="text|textCapSentences"
                 android:selectAllOnFocus="true"
                 android:singleLine="true" />
-
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="8dp"
-                android:text="@string/flash_card_subtitle"
-                android:textColor="@color/colorPrimary" />
-
-            <EditText
-                android:id="@+id/txtSubTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="8dp"
-                android:ems="10"
-                android:enabled="true"
-                android:hint="@string/subtitle"
-                android:importantForAutofill="no"
-                android:inputType="text|textCapSentences"
-                android:selectAllOnFocus="true"
-                android:singleLine="true"
-                android:visibility="visible" />
 
             <TextView
                 android:id="@+id/textView14"
@@ -125,7 +66,7 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="8dp"
-                android:text="@string/flash_card_description"
+                android:text="@string/card_answer"
                 android:textColor="@color/colorPrimary" />
 
             <EditText
@@ -137,7 +78,7 @@
                 android:layout_marginBottom="8dp"
                 android:ems="10"
                 android:enabled="true"
-                android:hint="@string/description"
+                android:hint="@string/answer"
                 android:importantForAutofill="no"
                 android:inputType="text|textCapSentences|textMultiLine"
                 android:selectAllOnFocus="true"
