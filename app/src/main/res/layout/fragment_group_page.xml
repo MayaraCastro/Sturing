@@ -23,9 +23,9 @@
             <ImageView
                 android:id="@+id/app_bar_image"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="150dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/book" />
+                android:src="@mipmap/ic_sturing_foreground" />
 
             <ImageView
                 android:id="@+id/btAddUser"

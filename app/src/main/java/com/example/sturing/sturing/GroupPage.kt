@@ -12,6 +12,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.example.sturing.sturing.Glide.GlideApp
+import kotlinx.android.synthetic.main.fragment_group_page.*
 import kotlinx.android.synthetic.main.fragment_group_page.view.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -37,6 +40,7 @@ class GroupPage : Fragment() {
     private var groupSelecionado: String? = null
     private var groupName: String? = null
     private var groupDescription: String? = null
+    private var groupImage: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,9 +50,10 @@ class GroupPage : Fragment() {
         }
         val bundle = arguments
         groupSelecionado = bundle!!.getString("group")
-        itemSelecionado = bundle!!.getInt("tab")
-        groupName = bundle!!.getString("name")
-        groupDescription = bundle!!.getString("description")
+        itemSelecionado = bundle.getInt("tab")
+        groupName = bundle.getString("name")
+        groupDescription = bundle.getString("description")
+        groupImage = bundle.getString("image")
 
         if (groupSelecionado == null) {
             Log.d("GROUP SELEICONADOO", "NULLO")
@@ -93,6 +98,12 @@ class GroupPage : Fragment() {
 
         view.txtName.text = groupName
         view.txtAnswer.text = groupDescription
+        if (groupImage != null) {
+            GlideApp.with(this)
+                    .load(groupImage)
+                    .transition(DrawableTransitionOptions.withCrossFade())
+                    .into(view.app_bar_image)
+        }
 
         return view
     }

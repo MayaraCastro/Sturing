@@ -2,7 +2,8 @@ package com.example.sturing.sturing
 
 
 data class Group(var name: String? = null, var description: String? = null,
-                 var userAdm: String? = null, var users: HashMap<String, Boolean>? = null,
+                 var userAdm: String? = null, var image: String? = null,
+                 var users: HashMap<String, Boolean>? = null,
                  var questions: HashMap<String, Boolean>? = null,
                  var flashcards: HashMap<String, Boolean>? = null,
                  var decks: HashMap<String, Boolean>? = null) {
@@ -12,8 +13,9 @@ data class Group(var name: String? = null, var description: String? = null,
         val result = HashMap<String, Any>()
         result.put("name", name!!)
         result.put("description", description!!)
-        //result.put("image", image!!)
         result.put("userAdm", userAdm!!)
+        if (image != null)
+            result.put("image", image!!)
 
         return result
     }

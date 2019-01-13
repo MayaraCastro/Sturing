@@ -8,6 +8,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.example.sturing.sturing.Glide.GlideApp
 import kotlinx.android.synthetic.main.group_list_item.view.*
 
 class GroupAdapter(var items: ArrayList<Group>, var context: Context) : RecyclerView.Adapter<GroupAdapter.ViewHolder>() {
@@ -25,15 +28,21 @@ class GroupAdapter(var items: ArrayList<Group>, var context: Context) : Recycler
     override fun onBindViewHolder(p0: ViewHolder, p1: Int) {
         p0.tvGroupName?.text = items[p1].name
         p0.tvGroupDescription?.text = items[p1].description
-        //p0.ivGroupImage?.setImageResource(items[p1].getImage()!!.id)
+        if (items[p1].image != null) {
+            GlideApp.with(context)
+                    .load(items[p1].image)
+                    .circleCrop()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .transition(DrawableTransitionOptions.withCrossFade())
+                    .into(p0.ivGroupImage)
+        }
         p0.itemView.setOnClickListener {
-            Snackbar.make(it, items[p1].name.toString(), Snackbar.LENGTH_SHORT)
-                    .setAction("Action", null).show()
             val i = Intent(context, MainActivity::class.java)
             i.putExtra("group", items[p1].groupKey)
             i.putExtra("name", items[p1].name)
             i.putExtra("description", items[p1].description)
             i.putExtra("item", 1)
+            i.putExtra("image", items[p1].image)
             context.startActivity(i)
         }
         setAnimation(p0.itemView)
@@ -48,7 +57,6 @@ class GroupAdapter(var items: ArrayList<Group>, var context: Context) : Recycler
         val tvGroupName = view.tvGroupName
         val tvGroupDescription = view.tvGroupDescription
         val ivGroupImage = view.ivGroupImage
-        val cltGroupItem = view.groupItem
     }
 
 }

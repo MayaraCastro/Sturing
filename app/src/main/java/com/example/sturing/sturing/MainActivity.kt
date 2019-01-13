@@ -61,6 +61,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 bundle.putInt("tab", intent.getIntExtra("tab", 0))
                 bundle.putString("name", intent.getStringExtra("name"))
                 bundle.putString("description", intent.getStringExtra("description"))
+                bundle.putString("image", intent.getStringExtra("image"))
                 mFrag.arguments = bundle  //set the group
 
                 supportFragmentManager.beginTransaction().replace(R.id.fragment_container, mFrag).commit()

@@ -15,6 +15,15 @@
     android:paddingRight="16dp"
     android:paddingBottom="0dp">
 
+  <View
+      android:id="@+id/divider3"
+      android:layout_width="0dp"
+      android:layout_height="1dp"
+      android:background="?android:attr/listDivider"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
+      app:layout_constraintStart_toStartOf="@+id/constraintLayout" />
+
   <android.support.constraint.ConstraintLayout
       android:id="@+id/constraintLayout"
       android:layout_width="0dp"
@@ -74,11 +83,11 @@
       android:id="@+id/ivGroupImage"
       android:layout_width="40dp"
       android:layout_height="40dp"
+      android:background="#00000000"
       android:contentDescription="@string/app_name"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
-      app:srcCompat="@drawable/book"
-      tools:src="@tools:sample/avatars"
-      tools:srcCompat="@tools:sample/avatars" />
+      app:srcCompat="@drawable/notebook"
+      tools:src="@tools:sample/avatars" />
 
 </android.support.constraint.ConstraintLayout>

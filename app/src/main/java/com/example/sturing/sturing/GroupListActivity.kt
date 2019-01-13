@@ -30,7 +30,6 @@ class GroupListActivity : AppCompatActivity() {
         getUserGroups()
 
         rv_group_list.layoutManager = LinearLayoutManager(this)
-        rv_group_list.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
         rv_group_list.adapter = GroupAdapter(groups, this)
     }
 
@@ -69,8 +68,6 @@ class GroupListActivity : AppCompatActivity() {
                 override fun onDataChange(p0: DataSnapshot) {
                     var g1 = p0.getValue(Group::class.java)!!
 
-                    Log.d(TAG, "groupName: " + g1.name)
-                    Log.d(TAG, "groupDescription: " + g1.description)
                     g1.groupKey = groupID
                     groups.add(g1!!)
                     rv_group_list.adapter!!.notifyDataSetChanged()

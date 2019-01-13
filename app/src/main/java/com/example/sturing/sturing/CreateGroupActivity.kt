@@ -3,15 +3,22 @@ package com.example.sturing.sturing
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.annotation.TargetApi
+import android.app.Activity
+import android.content.ContentValues
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.os.Build
 import android.os.Bundle
+import android.provider.MediaStore
 import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils
 import android.util.Log
 import android.view.View
+import android.widget.ImageView
 import android.widget.Toast
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.example.sturing.sturing.Glide.GlideApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -25,8 +32,12 @@ import java.io.ByteArrayOutputStream
 
 class CreateGroupActivity : AppCompatActivity() {
 
-    private lateinit var bitmap: Bitmap
     private var postValues = mutableMapOf<String, Boolean>()
+    private val TAG = "CreateGroupActivity"
+    private var mCurrentPhotoPath: String = ""
+    private val PERMISSION_CODE = 1000
+    private val TAKE_PHOTO_REQUEST = 101
+    private lateinit var bitmap: Bitmap
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +46,7 @@ class CreateGroupActivity : AppCompatActivity() {
 
         toolbar.setNavigationOnClickListener { onBackPressed() }
 
-        btnImageGroup.setOnClickListener { chooseGroupImage() }
+        btnImageGroup.setOnClickListener { checkPermissions() }
 
         btnSaveGroup.setOnClickListener { saveGroup() }
 
@@ -64,15 +75,16 @@ class CreateGroupActivity : AppCompatActivity() {
         } else {
             showProgress(true)
 
-            val groupUid = FirebaseDatabase.getInstance().getReference("groups").child(name).push().key
+            val groupUid = FirebaseDatabase.getInstance().getReference("groups").push().key
             val groupRef = FirebaseDatabase.getInstance().getReference("groups").child(groupUid!!)
             val imageRef = FirebaseStorage.getInstance().getReference("groupImages").child(groupUid).child("groupImage")
+            var group = Group(name, description, user!!.uid, null)
 
             if (::bitmap.isInitialized) {
                 val baos = ByteArrayOutputStream()
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
-
                 val data = baos.toByteArray()
+
                 imageRef.putBytes(data)
                         .addOnFailureListener {
                             Toast.makeText(this@CreateGroupActivity, "Image upload fail",
@@ -81,30 +93,26 @@ class CreateGroupActivity : AppCompatActivity() {
                         .addOnSuccessListener {
                             imageRef.downloadUrl
                                     .onSuccessTask { it ->
+                                        group.image = it.toString()
+                                        writeNewGroup(group, groupUid)
                                         groupRef.child("image").setValue(it.toString())
                                     }
                         }
-            }
-
-            writeNewGroup(name, description, user!!.uid)
-
+            } else
+                writeNewGroup(group, groupUid)
         }
-
     }
 
-    private fun writeNewGroup(name: String, description: String, userId: String) {
+    private fun writeNewGroup(group: Group, key: String) {
         val database = FirebaseDatabase.getInstance().reference
-        val key = database.child("groups").push().key
-        val post = Group(name, description, userId)
-        val postValues = post.toMap()
+        val postValues = group.toMap()
 
         val childUpdates = HashMap<String, Any>()
         childUpdates.put("/groups/$key", postValues)
-        //childUpdates.put("/user-posts/$userId/$key", postValues)
 
         database.updateChildren(childUpdates)
                 .addOnSuccessListener {
-                    addGroupUser(key!!)
+                    addGroupUser(key)
                     val i = Intent(this, MainActivity::class.java)
                     startActivity(i)
                     showProgress(false)
@@ -155,19 +163,57 @@ class CreateGroupActivity : AppCompatActivity() {
         childUpdates.put("/groups/", hash)
 
         userRef.updateChildren(childUpdates)
-                .addOnSuccessListener {
-                    Toast.makeText(this@CreateGroupActivity, groupId,
-                            Toast.LENGTH_LONG).show()
-                }
                 .addOnFailureListener {
                     Toast.makeText(this@CreateGroupActivity, getString(R.string.registration_failed),
                             Toast.LENGTH_SHORT).show()
                 }
     }
 
-    private fun chooseGroupImage() {
-
+    private fun checkPermissions() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (checkSelfPermission(android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED
+                    || checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
+                val permission = arrayOf(android.Manifest.permission.CAMERA, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                requestPermissions(permission, PERMISSION_CODE)
+            } else {
+                takePhoto()
+            }
+        } else {
+            takePhoto()
+        }
     }
+
+    private fun takePhoto() {
+        val values = ContentValues(1)
+        values.put(MediaStore.Images.Media.MIME_TYPE, "images/jpg")
+        val fileUri = contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
+
+        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        if (intent.resolveActivity(packageManager) != null) {
+            mCurrentPhotoPath = fileUri.toString()
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION
+                    or Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
+            startActivityForResult(intent, TAKE_PHOTO_REQUEST)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (resultCode == Activity.RESULT_OK && requestCode == TAKE_PHOTO_REQUEST) {
+            val bundle = data?.extras
+            bitmap = bundle?.get("data") as Bitmap
+
+            imgGroup.scaleType = ImageView.ScaleType.FIT_XY
+            imgGroup.background = null
+            GlideApp.with(this@CreateGroupActivity)
+                    .load(bitmap)
+                    .circleCrop()
+                    .transition(DrawableTransitionOptions.withCrossFade())
+                    .into(imgGroup)
+        }
+    }
+
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
     private fun showProgress(show: Boolean) {
