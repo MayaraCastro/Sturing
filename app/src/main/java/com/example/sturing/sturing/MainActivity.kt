@@ -129,12 +129,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 val i = Intent(this, CreateGroupActivity::class.java)
                 startActivity(i)
             }
-            R.id.nav_manage -> {
-                val i = Intent(this, ManageActivity::class.java)
-                startActivity(i)
-            }
-            R.id.nav_share -> {
-                val i = Intent(this, GroupListActivity::class.java)
+            R.id.nav_requests -> {
+                val i = Intent(this, FindAddUser::class.java)
+                i.putExtra("group", intent.getStringExtra("group"))
+                i.putExtra("funcao", 3)//mostrar convites recebidos
                 startActivity(i)
             }
             R.id.nav_friends -> {
@@ -142,6 +140,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 val i = Intent(this, FindAddUser::class.java)
                 i.putExtra("group", intent.getStringExtra("group"))
                 i.putExtra("funcao", 2)//mostrar todos os usuarios
+                startActivity(i)
+            }
+            R.id.nav_manage -> {
+                val i = Intent(this, ManageActivity::class.java)
+                startActivity(i)
+            }
+            R.id.nav_share -> {
+                val i = Intent(this, GroupListActivity::class.java)
                 startActivity(i)
             }
         }

@@ -21,7 +21,14 @@ class FriendAdapter(var items: ArrayList<User>, var context: Context, var funcao
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ViewHolder {
         var view = LayoutInflater.from(p0.context).inflate(R.layout.add_user_item, p0, false)
+
+        if(funcao != 3 ){
+            view.remove_user.visibility = View.INVISIBLE
+            view.add_user.isClickable = false
+        }
         var holder = ViewHolder(view)
+
+
         return holder
     }
 
@@ -47,9 +54,32 @@ class FriendAdapter(var items: ArrayList<User>, var context: Context, var funcao
             if (funcao == 1) {
                 addMember(items[p1].userKey)
             } else if (funcao == 2) {
-                addFriend(items[p1].userKey)
+                addFriend(items[p1].userKey) //send friend request
+            }else if (funcao == 3){
+                acceptRequest(items[p1].userKey)
             }
         }
+
+        p0.remove_user.setOnClickListener {
+            p0.remove_user.isClickable = false
+            p0.remove_user.speed = 2F
+            p0.remove_user.playAnimation()
+
+            val user = FirebaseAuth.getInstance().currentUser
+            val userKey = items[p1].userKey
+            removeFriendRequest(userKey, user!!.uid)
+            removeFriendRequest(user!!.uid, userKey)
+        }
+    }
+
+    private fun acceptRequest(userKey: String?) {
+        val user = FirebaseAuth.getInstance().currentUser
+
+        addFriendToUser(userKey, user!!.uid, 2)
+        addFriendToUser(user!!.uid, userKey, 2)
+
+        removeFriendRequest(userKey, user!!.uid)
+        removeFriendRequest(user!!.uid, userKey)
     }
 
     private fun addMember(userKey: String?) {
@@ -61,8 +91,8 @@ class FriendAdapter(var items: ArrayList<User>, var context: Context, var funcao
     private fun addFriend(userKey: String?) {
         val user = FirebaseAuth.getInstance().currentUser
 
-        addFriendToUser(userKey, user!!.uid)
-        addFriendToUser(user!!.uid, userKey)
+        addFriendToUser(userKey, user!!.uid, 1)
+        addFriendToUser(user!!.uid, userKey, 1)
     }
 
     fun addUserToGroup(userKey: String?, group: String?) {
@@ -161,7 +191,7 @@ class FriendAdapter(var items: ArrayList<User>, var context: Context, var funcao
 
     }
 
-    private fun addFriendToUser(userId: String?, currentUser: String?) {
+    private fun addFriendToUser(userId: String?, currentUser: String?, func: Int) {
         postValues = mutableMapOf<String, Boolean>()
 
         val userRef = FirebaseDatabase.getInstance().getReference("users").child(currentUser!!)
@@ -173,8 +203,77 @@ class FriendAdapter(var items: ArrayList<User>, var context: Context, var funcao
                 var user1 = p0.getValue(User::class.java)
                 Log.d("POSTVALUES", postValues.toString())
                 if (user1 != null) {
-                    if (user1.friends != null) {
-                        postValues = user1.friends!!
+
+                    if(func == 2){
+                        if (user1.friends != null) {
+
+                            postValues = user1.friends!!
+                        }else {
+                            postValues = mutableMapOf()
+                        }
+                    }else if(func == 1){
+                        if (user1.friend_requests != null) {
+
+                            postValues = user1.friend_requests!!
+                        }else {
+                            postValues = mutableMapOf()
+                        }
+                    } else {
+                        postValues = mutableMapOf()
+                    }
+
+                    var hash = mutableMapOf<String, Boolean>()
+
+                    if(func == 1){
+                        if (currentUser!!.equals(FirebaseAuth.getInstance().currentUser!!.uid)) {
+                            hash.put(userId!!, true) //true para a pessoa que enviou o pedido
+                        } else {
+                            hash.put(userId!!, false)
+                        }
+                    }else{
+                        hash.put(userId!!, true)
+                    }
+
+
+
+                    for ((gp, bol) in postValues) {
+                        // Log.d("ENTRA", "CHAMOU O POSTVALUES")
+                        hash.put(gp, bol)
+                    }
+                    Log.d("HASH", hash.toString())
+
+
+                    val childUpdates = HashMap<String, Any>()
+                    if(func == 1){
+                        childUpdates.put("/friend_requests/", hash)
+                    }else if(func == 2){
+                        childUpdates.put("/friends/", hash)
+                    }
+
+                    userRef.updateChildren(childUpdates)
+                            .addOnSuccessListener {
+                            }
+                            .addOnFailureListener {
+                            }
+                }
+            }
+            override fun onCancelled(p0: DatabaseError) {
+            }
+        }
+        userRef.addListenerForSingleValueEvent(user1Listener)
+    }
+    private fun removeFriendRequest(userId: String?, currentUser: String?) {
+        postValues = mutableMapOf<String, Boolean>()
+
+        val userRef = FirebaseDatabase.getInstance().getReference("users").child(currentUser!!)
+        userRef.keepSynced(true)
+        val user1Listener = object : ValueEventListener {
+            override fun onDataChange(p0: DataSnapshot) {
+                var user1 = p0.getValue(User::class.java)
+                Log.d("POSTVALUES", postValues.toString())
+                if (user1 != null) {
+                    if (user1.friend_requests != null) {
+                        postValues = user1.friend_requests!!
 
                     } else {
                         postValues = mutableMapOf()
@@ -182,42 +281,28 @@ class FriendAdapter(var items: ArrayList<User>, var context: Context, var funcao
 
                     var hash = mutableMapOf<String, Boolean>()
 
-                    if (currentUser!!.equals(FirebaseAuth.getInstance().currentUser!!.uid)) {
-                        hash.put(userId!!, true) //true para a pessoa que enviou o pedido
-                    } else {
-                        hash.put(userId!!, false)
-                    }
-
-
-                    for ((gp, _) in postValues) {
+                    for ((gp, bol) in postValues) {
                         // Log.d("ENTRA", "CHAMOU O POSTVALUES")
-                        hash.put(gp, true)
+                        if(!gp.equals(userId!!)){
+                            hash.put(gp, bol)
+                        }
                     }
                     Log.d("HASH", hash.toString())
 
 
                     val childUpdates = HashMap<String, Any>()
-                    //childUpdates.put("/friend_requests/", hash)
-                    childUpdates.put("/friends/", hash)
+                    childUpdates.put("/friend_requests/", hash)
                     userRef.updateChildren(childUpdates)
                             .addOnSuccessListener {
-
                             }
                             .addOnFailureListener {
-
                             }
-
                 }
-
-
             }
-
             override fun onCancelled(p0: DatabaseError) {
             }
         }
-
         userRef.addListenerForSingleValueEvent(user1Listener)
-
     }
 
     fun getFromBase(p1: Int, holder: ViewHolder) {
@@ -256,6 +341,9 @@ class FriendAdapter(var items: ArrayList<User>, var context: Context, var funcao
         val tvimgFriend = view.tvimgFriend
         val tvNameFriend = view.tvNameFriend
         val add_user = view.add_user
+        val remove_user = view.remove_user
+
+
     }
 
 }

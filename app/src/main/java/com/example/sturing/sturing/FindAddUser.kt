@@ -31,6 +31,8 @@ class FindAddUser : AppCompatActivity() {
             getFriendsFromBase()
         } else if (funcao == 2) {
             addAllUsers()
+        }else if(funcao == 3){
+            addFriendRequests()
         }
 
         setSupportActionBar(toolbar3)
@@ -40,6 +42,8 @@ class FindAddUser : AppCompatActivity() {
         rvFriends.layoutManager = LinearLayoutManager(this)
         rvFriends.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
     }
+
+
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_search, menu)
@@ -129,10 +133,8 @@ class FindAddUser : AppCompatActivity() {
                     override fun onCancelled(p0: DatabaseError) {
                     }
                 }
-
                 userRef.addListenerForSingleValueEvent(userListener)
             }
-
         }
     }
 
@@ -144,8 +146,10 @@ class FindAddUser : AppCompatActivity() {
                 for (dsp in p0.children) {
                     var user = dsp.getValue(User::class.java)
 
-                    user!!.userKey = dsp.key
-                    friendList.add(user!!)
+                    if(!dsp.key.equals(FirebaseAuth.getInstance().currentUser!!.uid)){
+                        user!!.userKey = dsp.key
+                        friendList.add(user!!)
+                    }
                     rvFriends.adapter!!.notifyDataSetChanged()
                 }
 
@@ -158,6 +162,53 @@ class FindAddUser : AppCompatActivity() {
         userRef.addListenerForSingleValueEvent(userListener)
 
 
+    }
+
+    private fun addFriendRequests() {
+        val user = FirebaseAuth.getInstance().currentUser
+        val userRef = FirebaseDatabase.getInstance().getReference("users").child(user!!.uid)
+
+        val userListener = object : ValueEventListener {
+            override fun onDataChange(p0: DataSnapshot) {
+                var use = p0.getValue(User::class.java)!!
+
+                addRequestsOnList(use.friend_requests)
+
+            }
+            override fun onCancelled(error: DatabaseError) {}
+        }
+
+        userRef.addListenerForSingleValueEvent(userListener)
+
+    }
+
+    fun addRequestsOnList(friends: HashMap<String, Boolean>?) {
+
+        if (friends == null) {
+
+            return
+        }
+        for ((userID, friend) in friends) {
+            if (!friend) {
+                val userRef = FirebaseDatabase.getInstance().getReference("users").child(userID)
+
+                val userListener = object : ValueEventListener {
+                    override fun onDataChange(p0: DataSnapshot) {
+                        var g1 = p0.getValue(User::class.java)!!
+                        g1!!.userKey = userID
+                        friendList.add(g1!!)
+                        rvFriends.adapter!!.notifyDataSetChanged()
+
+                    }
+
+                    override fun onCancelled(p0: DatabaseError) {
+                    }
+                }
+
+                userRef.addListenerForSingleValueEvent(userListener)
+            }
+
+        }
     }
 }
 
