@@ -56,4 +56,6 @@
     <string name="card_answer">Resposta do Cartão</string>
     <string name="error_must_end_with_interrogation">Uma questão deve terminar com uma interrogação</string>
     <string name="add_a_new_card"><![CDATA[Adicione um novo cartão ->]]></string>
+    <string name="add_friends">Adicionar Amigos</string>
+    <string name="account">Conta</string>
 </resources>

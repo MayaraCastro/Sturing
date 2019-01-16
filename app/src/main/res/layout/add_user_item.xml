@@ -53,8 +53,8 @@
             app:layout_constraintEnd_toStartOf="@+id/add_user"
             app:layout_constraintStart_toEndOf="@+id/tvNameFriend"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.578"
-            app:lottie_fileName="deleteSlash.json"
+            app:layout_constraintVertical_bias="0.473"
+            app:lottie_fileName="ic_delete_open.json"
             tools:ignore="MissingConstraints" />
 
         <TextView

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.Menu
 import android.widget.SearchView
 import com.google.firebase.auth.FirebaseAuth
@@ -27,11 +28,11 @@ class FindAddUser : AppCompatActivity() {
         groupSelecionado = intent!!.getStringExtra("group")
         funcao = intent!!.getIntExtra("funcao", 2)
 
-        if (funcao == 1) {
+        if (funcao == 1 || funcao == 4) { //get only friends
             getFriendsFromBase()
-        } else if (funcao == 2) {
+        } else if (funcao == 2) { // get users who are not friends
             addAllUsers()
-        }else if(funcao == 3){
+        }else if(funcao == 3){ // get friend requests
             addFriendRequests()
         }
 
@@ -114,7 +115,6 @@ class FindAddUser : AppCompatActivity() {
     fun addFriendsOnList(friends: HashMap<String, Boolean>?) {
 
         if (friends == null) {
-
             return
         }
         for ((userID, friend) in friends) {
@@ -125,7 +125,9 @@ class FindAddUser : AppCompatActivity() {
                     override fun onDataChange(p0: DataSnapshot) {
                         var g1 = p0.getValue(User::class.java)!!
                         g1!!.userKey = userID
+
                         friendList.add(g1!!)
+
                         rvFriends.adapter!!.notifyDataSetChanged()
 
                     }
@@ -139,29 +141,47 @@ class FindAddUser : AppCompatActivity() {
     }
 
     fun addAllUsers() {
-
-        val userRef = FirebaseDatabase.getInstance().getReference("users")
-        val userListener = object : ValueEventListener {
+        val user = FirebaseAuth.getInstance().currentUser
+        val userRefe = FirebaseDatabase.getInstance().getReference("users").child(user!!.uid)
+        val userCurrentListener = object : ValueEventListener {
             override fun onDataChange(p0: DataSnapshot) {
-                for (dsp in p0.children) {
-                    var user = dsp.getValue(User::class.java)
+                var use = p0.getValue(User::class.java)!!
 
-                    if(!dsp.key.equals(FirebaseAuth.getInstance().currentUser!!.uid)){
-                        user!!.userKey = dsp.key
-                        friendList.add(user!!)
+                var friendsBase = use.friends
+
+                val userRef = FirebaseDatabase.getInstance().getReference("users")
+                val userListener = object : ValueEventListener {
+                    override fun onDataChange(p0: DataSnapshot) {
+
+                        for (dsp in p0.children) {
+                            var user = dsp.getValue(User::class.java)
+
+                            if(!dsp.key.equals(FirebaseAuth.getInstance().currentUser!!.uid)){
+                                user!!.userKey = dsp.key
+
+                                if(friendsBase != null){
+                                    if(!friendsBase!!.any{ (x, friend) -> x.equals(user.userKey)}){
+                                        friendList.add(user!!)
+                                    }
+                                }else{
+                                    friendList.add(user!!)
+                                }
+
+                            }
+                            rvFriends.adapter!!.notifyDataSetChanged()
+                        }
                     }
-                    rvFriends.adapter!!.notifyDataSetChanged()
+                    override fun onCancelled(p0: DatabaseError) {}
                 }
-
+                userRef.addListenerForSingleValueEvent(userListener)
 
             }
 
-            override fun onCancelled(p0: DatabaseError) {
-            }
+            override fun onCancelled(error: DatabaseError) {}
+
+
         }
-        userRef.addListenerForSingleValueEvent(userListener)
-
-
+        userRefe.addListenerForSingleValueEvent(userCurrentListener)
     }
 
     private fun addFriendRequests() {

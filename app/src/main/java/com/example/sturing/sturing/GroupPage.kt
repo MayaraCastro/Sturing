@@ -124,9 +124,9 @@ class GroupPage : Fragment() {
         mFragGroupQuestions.arguments = bundle  //set the group
         mFragFlashCards.arguments = bundle
 
-        adapter.addFragment(mFragDeck, getString(R.string.deck))
+        adapter.addFragment(mFragFlashCards , getString(R.string.kanban))
         adapter.addFragment(mFragGroupQuestions, getString(R.string.questions))
-        adapter.addFragment(mFragFlashCards, getString(R.string.flash_cards))
+        adapter.addFragment(mFragDeck, getString(R.string.flash_cards))
         viewPager.adapter = adapter
 
     }

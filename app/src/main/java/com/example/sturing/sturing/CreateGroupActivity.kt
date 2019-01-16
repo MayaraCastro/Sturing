@@ -47,6 +47,7 @@ class CreateGroupActivity : AppCompatActivity() {
         val settings = intent.getBooleanExtra("settings", false)
 
         if (settings) {
+            title = getString(R.string.action_settings)
             val groupName = intent.getStringExtra("name")
             val groupDescription = intent.getStringExtra("description")
             val groupImage = intent.getStringExtra("image")

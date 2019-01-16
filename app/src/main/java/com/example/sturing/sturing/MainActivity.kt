@@ -7,17 +7,18 @@ import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.view.menu.ActionMenuItemView
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.ActionMenuView
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
 import com.example.sturing.sturing.Glide.GlideApp
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.ChildEventListener
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.nav_header_main.*
@@ -35,6 +36,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private var itemSelecionado: Int = 0
     private var menu: Menu? = null
     private lateinit var mChildEventListener: ChildEventListener
+    private lateinit var mNotification: com.airbnb.lottie.LottieAnimationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -95,7 +97,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.main, menu)
+        //menuInflater.inflate(R.menu.main, menu)
+
+        mNotification = findViewById(R.id.notification)
+        show_notification()
+
         this.menu = menu
         return true
     }
@@ -139,6 +145,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
                 val i = Intent(this, FindAddUser::class.java)
                 i.putExtra("group", intent.getStringExtra("group"))
+                i.putExtra("funcao", 4)//mostrar so os amigos com opcao de deletar
+                startActivity(i)
+            }
+            R.id.nav_addfriends -> {
+
+                val i = Intent(this, FindAddUser::class.java)
+                i.putExtra("group", intent.getStringExtra("group"))
                 i.putExtra("funcao", 2)//mostrar todos os usuarios
                 startActivity(i)
             }
@@ -147,8 +160,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 startActivity(i)
             }
             R.id.nav_share -> {
-                val i = Intent(this, GroupListActivity::class.java)
+                val i = Intent(this, LoginActivity::class.java)
                 startActivity(i)
+                FirebaseAuth.getInstance().signOut()
+                finish()
             }
         }
 
@@ -157,6 +172,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun updateUI() {
+        show_notification()
         val user = FirebaseAuth.getInstance().currentUser
         val userRef = FirebaseDatabase.getInstance().getReference("users").child(user!!.uid)
 
@@ -211,6 +227,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if (p0!!.key.equals("name")) {
             nav.txtName.hint = p0!!.value as CharSequence
         }
+        if(p0!!.key.equals("friend_requests")){
+            var friend_requests = p0!!.value as HashMap<String, Boolean>?
+
+            if(friend_requests !=null) {
+                if (friend_requests!!.any { (x, y) -> y == false }) {
+                    mNotification.speed = 2F
+                    mNotification.playAnimation()
+                }
+            }
+        }
+
     }
 
     override fun onResume() {
@@ -221,9 +248,39 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onStop() {
         super.onStop()
         if (mChildEventListener != null) {
-            val user = FirebaseAuth.getInstance().currentUser
-            val userRef = FirebaseDatabase.getInstance().getReference("users").child(user!!.uid)
-            userRef.removeEventListener(mChildEventListener)
+            if (FirebaseAuth.getInstance().currentUser != null) {
+                val user =FirebaseAuth.getInstance().currentUser
+                val userRef = FirebaseDatabase.getInstance().getReference("users").child(user!!.uid)
+                userRef.removeEventListener(mChildEventListener)
+            }
         }
+    }
+
+    fun show_notification(){
+        val user = FirebaseAuth.getInstance().currentUser
+        val userRef = FirebaseDatabase.getInstance().getReference("users").child(user!!.uid!!)
+
+        val user1Listener = object : ValueEventListener {
+            override fun onDataChange(p0: DataSnapshot) {
+                var user = p0.getValue(User::class.java)!!
+
+                var friend_requests = user.friend_requests
+
+                if(friend_requests !=null) {
+                    if (friend_requests!!.any { (x, y) -> y == false }) {
+                        mNotification.speed = 2F
+                        mNotification.playAnimation()
+                    }else{
+                        mNotification.frame = 0
+                    }
+                }else{
+                    mNotification.frame = 0
+                }
+
+            }
+            override fun onCancelled(error: DatabaseError) {}
+        }
+
+        userRef.addListenerForSingleValueEvent(user1Listener)
     }
 }

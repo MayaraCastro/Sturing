@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
@@ -18,19 +19,24 @@
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/new_group" />
         <item
+            android:id="@+id/nav_friends"
+            android:icon="@mipmap/ic_people"
+            android:title="@string/friends" />
+        <item
             android:id="@+id/nav_requests"
+            app:actionLayout="@layout/notification"
             android:icon="@mipmap/ic_people"
             android:title="@string/requests" />
 
         <item
-            android:id="@+id/nav_friends"
+            android:id="@+id/nav_addfriends"
             android:icon="@mipmap/ic_people"
-            android:title="@string/friends" />
+            android:title="@string/add_friends" />
 
            <!-- -->
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="@string/account">
         <menu>
             <item
                 android:id="@+id/nav_manage"
@@ -39,7 +45,7 @@
             <item
                 android:id="@+id/nav_share"
                 android:icon="@android:drawable/ic_menu_close_clear_cancel"
-                android:title="Share" />
+                android:title="@string/logout" />
             <!--
             <item
                 android:id="@+id/nav_send"

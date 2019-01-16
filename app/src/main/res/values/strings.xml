@@ -71,6 +71,9 @@
     <string name="card_answer">Card Answer</string>
     <string name="error_must_end_with_interrogation">A question must finish with an interrogation symbol</string>
     <string name="add_a_new_card"><![CDATA[Add a new card ->]]></string>
+    <string name="add_friends">Add Friends</string>
+    <string name="kanban" translatable="false">Kanban</string>
+    <string name="account">Account</string>
 
     <!-- TODO: Remove or change this placeholder text -->
 </resources>

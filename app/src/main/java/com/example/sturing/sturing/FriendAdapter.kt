@@ -22,8 +22,12 @@ class FriendAdapter(var items: ArrayList<User>, var context: Context, var funcao
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ViewHolder {
         var view = LayoutInflater.from(p0.context).inflate(R.layout.add_user_item, p0, false)
 
-        if(funcao != 3 ){
+        if(funcao != 3 && funcao != 4){
             view.remove_user.visibility = View.INVISIBLE
+            view.remove_user.isClickable = false
+        }
+        if(funcao == 4){
+            view.add_user.visibility = View.INVISIBLE
             view.add_user.isClickable = false
         }
         var holder = ViewHolder(view)
@@ -50,13 +54,16 @@ class FriendAdapter(var items: ArrayList<User>, var context: Context, var funcao
             p0.add_user.isClickable = false
             p0.add_user.speed = 2F
             p0.add_user.playAnimation()
-            Log.d("Teste", "Clicked")
+
             if (funcao == 1) {
                 addMember(items[p1].userKey)
             } else if (funcao == 2) {
                 addFriend(items[p1].userKey) //send friend request
             }else if (funcao == 3){
                 acceptRequest(items[p1].userKey)
+
+                p0.remove_user.visibility = View.INVISIBLE
+                p0.remove_user.isClickable = false
             }
         }
 
@@ -67,8 +74,13 @@ class FriendAdapter(var items: ArrayList<User>, var context: Context, var funcao
 
             val user = FirebaseAuth.getInstance().currentUser
             val userKey = items[p1].userKey
-            removeFriendRequest(userKey, user!!.uid)
-            removeFriendRequest(user!!.uid, userKey)
+
+            removeFriend(userKey, user!!.uid) //remove the friends requests or delete as friends
+            removeFriend(user!!.uid, userKey)
+
+            p0.add_user.visibility = View.INVISIBLE
+            p0.add_user.isClickable = false
+
         }
     }
 
@@ -78,8 +90,8 @@ class FriendAdapter(var items: ArrayList<User>, var context: Context, var funcao
         addFriendToUser(userKey, user!!.uid, 2)
         addFriendToUser(user!!.uid, userKey, 2)
 
-        removeFriendRequest(userKey, user!!.uid)
-        removeFriendRequest(user!!.uid, userKey)
+        removeFriend(userKey, user!!.uid)//remove the friends requests
+        removeFriend(user!!.uid, userKey)//remove the friends requests
     }
 
     private fun addMember(userKey: String?) {
@@ -262,7 +274,7 @@ class FriendAdapter(var items: ArrayList<User>, var context: Context, var funcao
         }
         userRef.addListenerForSingleValueEvent(user1Listener)
     }
-    private fun removeFriendRequest(userId: String?, currentUser: String?) {
+    private fun removeFriend(userId: String?, currentUser: String?) {
         postValues = mutableMapOf<String, Boolean>()
 
         val userRef = FirebaseDatabase.getInstance().getReference("users").child(currentUser!!)
@@ -272,12 +284,22 @@ class FriendAdapter(var items: ArrayList<User>, var context: Context, var funcao
                 var user1 = p0.getValue(User::class.java)
                 Log.d("POSTVALUES", postValues.toString())
                 if (user1 != null) {
-                    if (user1.friend_requests != null) {
-                        postValues = user1.friend_requests!!
+                    if(funcao == 3){
+                        if (user1.friend_requests != null) {
+                            postValues = user1.friend_requests!!
 
-                    } else {
-                        postValues = mutableMapOf()
+                        } else {
+                            postValues = mutableMapOf()
+                        }
+                    }else if(funcao == 4){
+                        if (user1.friends != null) {
+                            postValues = user1.friends!!
+
+                        } else {
+                            postValues = mutableMapOf()
+                        }
                     }
+
 
                     var hash = mutableMapOf<String, Boolean>()
 
@@ -291,7 +313,13 @@ class FriendAdapter(var items: ArrayList<User>, var context: Context, var funcao
 
 
                     val childUpdates = HashMap<String, Any>()
-                    childUpdates.put("/friend_requests/", hash)
+                    if(funcao == 3){
+                        childUpdates.put("/friend_requests/", hash)
+                    }
+                    else if( funcao == 4){
+                        childUpdates.put("/friends/", hash)
+                    }
+
                     userRef.updateChildren(childUpdates)
                             .addOnSuccessListener {
                             }
