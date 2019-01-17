@@ -66,6 +66,10 @@ class GroupPage : Fragment() {
         super.onSaveInstanceState(outState)
         outState.putInt("item", itemSelecionado!!)
         outState.putString("group", groupSelecionado)
+
+        outState.putString("name", groupName)
+        outState.putString("description", groupDescription)
+        outState.putString("image", groupImage)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -113,6 +117,9 @@ class GroupPage : Fragment() {
     }
 
     private fun setupViewPager(viewPager: ViewPager) {
+
+
+
         val adapter = Adapter(childFragmentManager)
 
         val mFragDeck = FragmentDeck()
@@ -120,6 +127,11 @@ class GroupPage : Fragment() {
         val mFragFlashCards = FragmentFlashCards()
         val bundle = Bundle()
         bundle.putString("group", groupSelecionado)   //parameters are (key, value).
+
+        bundle.putString("name", groupName)
+        bundle.putString("description", groupDescription)
+        bundle.putString("image", groupImage)
+
         mFragDeck.arguments = bundle
         mFragGroupQuestions.arguments = bundle  //set the group
         mFragFlashCards.arguments = bundle

@@ -10,4 +10,6 @@
     <color name="holo_red_light_color">#ffff4444</color>
     <color name="color_hint">#828682</color>
     <color name="color_text">#3e403f</color>
+    <color name="background_transparent">#32212122</color>
+    <color name="card">#6d6f6d</color>
 </resources>

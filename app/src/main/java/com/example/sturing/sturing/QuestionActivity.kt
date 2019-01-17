@@ -17,6 +17,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_question.*
+import java.util.*
 
 class QuestionActivity : AppCompatActivity() {
 
@@ -25,12 +26,22 @@ class QuestionActivity : AppCompatActivity() {
     var comments: ArrayList<Comment> = ArrayList()
     private var postValues = mutableMapOf<String, Boolean>()
 
+    private var name: String? = null
+    private var description: String? = null
+    private var image: String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_question)
 
         question = intent.getStringExtra("question")
         groupSelecionado = intent.getStringExtra("group")
+
+        name = intent.getStringExtra("name")
+        description = intent.getStringExtra("description")
+        image = intent.getStringExtra("image")
+
+        Log.d("NOME GRUPO", name)
 
         getQuestionFromBase()
 
@@ -51,6 +62,10 @@ class QuestionActivity : AppCompatActivity() {
         i.putExtra("group", groupSelecionado!!)
         i.putExtra("item", 1)
         i.putExtra("tab", 1)
+
+        i.putExtra("name", name)
+        i.putExtra("description", description)
+        i.putExtra("image", image)
         startActivity(i)
         finish()
 
@@ -94,7 +109,8 @@ class QuestionActivity : AppCompatActivity() {
                 txtQuestion.text = quest.question
                 getAuthorFromBase(quest.userAuthor!!)
 
-                getcommentsFromBase(quest.comments)
+                addCommentsOnList(quest!!.comments)
+                //getcommentsFromBase(quest.comments)
 
             }
 
@@ -162,6 +178,7 @@ class QuestionActivity : AppCompatActivity() {
 
             return
         }
+
         for ((commentID, _) in comentarios) {
             val userRef = FirebaseDatabase.getInstance().getReference("comments").child(commentID)
 
@@ -251,6 +268,11 @@ class QuestionActivity : AppCompatActivity() {
                     val i = Intent(this, QuestionActivity::class.java)
                     i.putExtra("question", question)
                     i.putExtra("group", groupSelecionado)
+
+                    i.putExtra("name", name)
+                    i.putExtra("description", description)
+                    i.putExtra("image", image)
+
                     startActivity(i)
                     finish()
 

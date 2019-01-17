@@ -221,7 +221,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                         .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .transition(withCrossFade())
                         .circleCrop()
-                        .into(imgFlashCard)
+                        .into(imgProfile)
             }
         }
         if (p0!!.key.equals("name")) {

@@ -19,6 +19,7 @@
         android:layout_marginEnd="8dp"
         android:foreground="?android:attr/selectableItemBackground"
         android:visibility="visible"
+        app:cardBackgroundColor="@color/card"
         app:cardCornerRadius="4dp"
         app:cardElevation="8dp"
         app:contentPadding="4dp"
@@ -97,7 +98,7 @@
                             android:fontFamily="sans-serif"
                             android:scrollIndicators="bottom"
                             android:text="Title here"
-                            android:textColor="@android:color/background_dark"
+                            android:textColor="@color/common_google_signin_btn_text_dark_pressed"
                             android:textSize="14sp"
                             android:textStyle="bold" />
 
@@ -106,7 +107,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Subtitle here"
-                            android:textColor="@android:color/darker_gray"
+                            android:textColor="@color/Base_color"
                             android:textSize="12sp" />
                     </LinearLayout>
                 </android.support.constraint.ConstraintLayout>

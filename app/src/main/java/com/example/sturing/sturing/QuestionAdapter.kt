@@ -1,5 +1,6 @@
 package com.example.sturing.sturing
 
+import android.content.ClipDescription
 import android.content.Context
 import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
@@ -17,7 +18,8 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.group_list_item.view.*
 
-class QuestionAdapter(var items: ArrayList<Question>, var context: Context, var group: String) : RecyclerView.Adapter<QuestionAdapter.ViewHolder>() {
+class QuestionAdapter(var items: ArrayList<Question>, var context: Context, var group: String, var name:String?,
+                      var description: String?, var image:String?) : RecyclerView.Adapter<QuestionAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ViewHolder {
         var view = LayoutInflater.from(p0.context).inflate(R.layout.group_list_item, p0, false)
@@ -39,6 +41,11 @@ class QuestionAdapter(var items: ArrayList<Question>, var context: Context, var 
             val i = Intent(context, QuestionActivity::class.java)
             i.putExtra("question", items[p1].questionKey)
             i.putExtra("group", group)
+
+            i.putExtra("name", name)
+            i.putExtra("description", description)
+            i.putExtra("image", image)
+
             // i.addFlags(FLAG_ACTIVITY_CLEAR_TASK)
             i.addFlags(FLAG_ACTIVITY_NEW_TASK)
             context.startActivity(i)

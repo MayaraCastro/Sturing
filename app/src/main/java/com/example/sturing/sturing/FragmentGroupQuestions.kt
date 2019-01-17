@@ -44,6 +44,10 @@ class FragmentGroupQuestions : Fragment() {
     private var groupSelecionado: String? = null
     private var postValues = mutableMapOf<String, Boolean>()
 
+    private var name:String? = null
+
+    private var description:String? = null
+    private var image:String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -53,12 +57,23 @@ class FragmentGroupQuestions : Fragment() {
         val bundle = arguments
         groupSelecionado = bundle!!.getString("group")
 
+        name = bundle!!.getString("name")
+        description = bundle!!.getString("description")
+        image = bundle!!.getString("image")
+
         retainInstance = true
 
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
+
+        val bundle = arguments
+        groupSelecionado = bundle!!.getString("group")
+
+        name = bundle!!.getString("name")
+        description = bundle!!.getString("description")
+        image = bundle!!.getString("image")
         // Inflate the layout for this fragment
 
         val view = inflater.inflate(R.layout.fragment_group_questions, container, false)
@@ -70,7 +85,7 @@ class FragmentGroupQuestions : Fragment() {
         val recyclerViewQuestion = view.findViewById(R.id.recyclerViewQuestion) as RecyclerView
         recyclerViewQuestion.layoutManager = LinearLayoutManager(activity)
         recyclerViewQuestion.addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.VERTICAL))
-        recyclerViewQuestion.adapter = QuestionAdapter(questions, activity!!.applicationContext, groupSelecionado!!)
+        recyclerViewQuestion.adapter = QuestionAdapter(questions, activity!!.applicationContext, groupSelecionado!!, name!!, description!!, image!!)
 
         btAddQuestion.setOnClickListener { sendQuestion() }
 
@@ -248,11 +263,14 @@ class FragmentGroupQuestions : Fragment() {
         userRef.updateChildren(childUpdates)
                 .addOnSuccessListener {
 
-
                     val i = Intent(activity, MainActivity::class.java)
                     i.putExtra("group", groupSelecionado)
                     i.putExtra("item", 1)
                     i.putExtra("tab", 1)
+
+                    i.putExtra("name", name)
+                    i.putExtra("description", description)
+                    i.putExtra("image", image)
                     startActivity(i)
                     activity!!.finish()
 
