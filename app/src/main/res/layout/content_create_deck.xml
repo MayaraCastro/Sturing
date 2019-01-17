@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/dark_blue"
+    android:background="@color/Base_color"
     android:fadeScrollbars="true"
     android:isScrollContainer="true"
     android:keepScreenOn="true"
@@ -63,7 +63,8 @@
                     android:backgroundTint="@android:color/holo_red_light"
                     android:text="@string/change_image"
                     android:textAlignment="center"
-                    android:textAllCaps="false" />
+                    android:textAllCaps="false"
+                    android:textColorLink="@color/Base_color" />
 
             </LinearLayout>
 
@@ -90,7 +91,9 @@
                 android:importantForAutofill="no"
                 android:inputType="text|textCapSentences"
                 android:selectAllOnFocus="true"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:textColor="@color/color_text"
+                android:textColorHint="@color/color_hint" />
 
             <TextView
                 android:id="@+id/textView14"
@@ -116,6 +119,8 @@
                 android:inputType="text|textCapSentences|textMultiLine"
                 android:selectAllOnFocus="true"
                 android:singleLine="true"
+                android:textColor="@color/color_text"
+                android:textColorHint="@color/color_hint"
                 android:visibility="visible" />
 
             <android.support.constraint.ConstraintLayout

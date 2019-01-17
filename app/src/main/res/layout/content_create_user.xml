@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/teste1"
+    android:background="@color/Base_color"
     android:fadeScrollbars="true"
     android:isScrollContainer="true"
     android:keepScreenOn="true"
@@ -48,7 +48,8 @@
                 android:backgroundTint="@color/colorPrimary"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:textColor="@color/colorPrimary" />
+                android:textColor="@color/color_text"
+                android:textColorHint="@color/color_hint" />
 
             <TextView
                 android:id="@+id/textView9"
@@ -70,7 +71,8 @@
                 android:backgroundTint="@color/colorPrimary"
                 android:ems="10"
                 android:inputType="textWebEmailAddress"
-                android:textColor="@color/colorPrimary" />
+                android:textColor="@color/color_text"
+                android:textColorHint="@color/color_hint" />
 
             <TextView
                 android:id="@+id/textView11"
@@ -92,7 +94,8 @@
                 android:backgroundTint="@color/colorPrimary"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:textColor="@color/colorPrimary" />
+                android:textColor="@color/color_text"
+                android:textColorHint="@color/color_hint" />
 
             <TextView
                 android:id="@+id/textView10"
@@ -114,7 +117,8 @@
                 android:backgroundTint="@color/colorPrimary"
                 android:ems="10"
                 android:inputType="textPassword"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/color_text"
+                android:textColorHint="@color/color_hint"
                 android:textColorLink="@android:color/holo_red_light" />
 
             <android.support.constraint.ConstraintLayout
@@ -142,9 +146,10 @@
                             android:id="@+id/txtRegister"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
                             android:text="@string/signUp"
-                            android:textColor="@color/dark_blue" />
+                            android:textColor="@color/Base_color" />
                     </RelativeLayout>
                 </android.support.v7.widget.CardView>
             </android.support.constraint.ConstraintLayout>
@@ -164,7 +169,7 @@
                     android:layout_gravity="center"
                     android:layout_marginStart="88dp"
                     android:text="@string/alreadyHaveAccount"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/color_text"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/btSignin"
                     app:layout_constraintHorizontal_bias="0.0"
