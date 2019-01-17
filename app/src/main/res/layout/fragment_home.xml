@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="0dp"
+    android:background="@color/Base_color"
     tools:context=".CameraFragment">
 
     <android.support.constraint.ConstraintLayout

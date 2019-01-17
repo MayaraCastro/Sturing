@@ -87,8 +87,8 @@ class GroupPage : Fragment() {
         viewPager.currentItem = itemSelecionado!!
 
         val tabLayout = view.findViewById(R.id.tabs) as TabLayout
-        tabLayout.setSelectedTabIndicatorColor(Color.parseColor("#008577"))
-        tabLayout.setTabTextColors(Color.parseColor("#7fa87f"), Color.parseColor("#008577"))
+        //tabLayout.setSelectedTabIndicatorColor(Color.parseColor("#008577"))
+        //tabLayout.setTabTextColors(Color.parseColor("#7fa87f"), Color.parseColor("#008577"))
         assert(viewPager != null)
         tabLayout.setupWithViewPager(viewPager)
 

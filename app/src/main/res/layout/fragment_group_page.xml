@@ -50,7 +50,6 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
                 android:adjustViewBounds="true"
-                android:background="@color/dark_blue"
                 android:src="@android:drawable/ic_menu_manage"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -91,12 +90,12 @@
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/dark_blue"
+            android:background="@android:color/holo_red_light"
             app:tabGravity="fill"
-            app:tabIndicatorColor="@color/colorPrimary"
+            app:tabIndicatorColor="@android:color/holo_red_dark"
             app:tabIndicatorHeight="5dp"
-            app:tabSelectedTextColor="@color/colorPrimary"
-            app:tabTextColor="@color/colorTab">
+            app:tabSelectedTextColor="@color/Base_color"
+            app:tabTextColor="@color/Base_color">
 
         </android.support.design.widget.TabLayout>
 

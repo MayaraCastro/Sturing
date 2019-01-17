@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private var itemSelecionado: Int = 0
     private var menu: Menu? = null
     private lateinit var mChildEventListener: ChildEventListener
-    private lateinit var mNotification: com.airbnb.lottie.LottieAnimationView
+    private  var mNotification: com.airbnb.lottie.LottieAnimationView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -227,16 +227,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if (p0!!.key.equals("name")) {
             nav.txtName.hint = p0!!.value as CharSequence
         }
-        if(p0!!.key.equals("friend_requests")){
-            var friend_requests = p0!!.value as HashMap<String, Boolean>?
-
-            if(friend_requests !=null) {
-                if (friend_requests!!.any { (x, y) -> y == false }) {
-                    mNotification.speed = 2F
-                    mNotification.playAnimation()
-                }
-            }
-        }
 
     }
 
@@ -265,17 +255,19 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 var user = p0.getValue(User::class.java)!!
 
                 var friend_requests = user.friend_requests
-
-                if(friend_requests !=null) {
-                    if (friend_requests!!.any { (x, y) -> y == false }) {
-                        mNotification.speed = 2F
-                        mNotification.playAnimation()
+                if(mNotification!=null){
+                    if(friend_requests !=null) {
+                        if (friend_requests!!.any { (x, y) -> y == false }) {
+                            mNotification!!.speed = 2F
+                            mNotification!!.playAnimation()
+                        }else{
+                            mNotification!!.frame = 0
+                        }
                     }else{
-                        mNotification.frame = 0
+                        mNotification!!.frame = 0
                     }
-                }else{
-                    mNotification.frame = 0
                 }
+
 
             }
             override fun onCancelled(error: DatabaseError) {}

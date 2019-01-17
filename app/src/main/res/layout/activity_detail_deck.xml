@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/Base_color"
     android:theme="@style/AppTheme.Detail"
     tools:context=".DetailDeckActivity">
 
@@ -15,7 +16,7 @@
         android:layout_marginBottom="8dp"
         android:clickable="true"
         android:src="@drawable/card"
-        app:backgroundTint="@color/colorPrimaryDark"
+        app:backgroundTint="@color/holo_red_light_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -26,7 +27,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="24dp"
         android:text="@string/add_a_new_card"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/color_text"
         android:textSize="18sp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -58,7 +58,7 @@
                 android:layout_height="wrap_content"
                 android:scrollIndicators="bottom"
                 android:text="@string/title"
-                android:textColor="@android:color/background_light"
+                android:textColor="@color/holo_red_light_color"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -67,7 +67,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/description"
-                android:textColor="@android:color/darker_gray"
+                android:textColor="@color/color_text"
                 android:textSize="14sp" />
         </LinearLayout>
     </android.support.constraint.ConstraintLayout>
